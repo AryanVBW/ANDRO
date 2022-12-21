@@ -78,7 +78,7 @@ L3MON Builds off and utilizes serveral opensource softwares, Without these, L3MO
  - [Leaflet](https://leafletjs.com/)
  - D3VL
 ## Disclaimer
-<b>D3VL Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
+<b>Aryan Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
 L3MON is built for both Educational and Internal use ONLY.</b>
 
 <br>
