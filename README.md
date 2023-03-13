@@ -82,5 +82,5 @@ L3MON Builds off and utilizes serveral opensource softwares, Without these, L3MO
 L3MON is built for both Educational and Internal use ONLY.</b>
 
 <br>
-<p align="center">Made with ❤️ By <a href="https://www.nsa.gov/">*Aryan*</a></p>
+<p align="center">Made with ❤️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
 <p align="center" style="font-size: 8px">v1.1.2</p>
