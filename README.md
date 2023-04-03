@@ -68,8 +68,8 @@ When opening an issue, you **MUST** use the provided templates. Issues without t
 
 Please have a look through the current issues, open and closed to see if your issue has been addressed before. If it's java related, it's most definitely been addressed - In short Use Java 1.8.0
 ## Thanks
-L3MON Builds off and utilizes serveral opensource softwares, Without these, L3MON Wouldn't be what it is!
- - Inspiration for the project and the basic building blocks for the Android App are based off [AhMyth](https://github.com/AhMyth/AhMyth-Android-RAT) 
+ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDRO Wouldn't be what it is!
+ - [Vinayak]
  - [express](https://github.com/expressjs/express)
  - [node-geoip](https://github.com/bluesmoon/node-geoip)
  - [lowdb](https://github.com/typicode/lowdb)
@@ -79,7 +79,7 @@ L3MON Builds off and utilizes serveral opensource softwares, Without these, L3MO
  - D3VL
 ## Disclaimer
 <b>Aryan Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
-L3MON is built for both Educational and Internal use ONLY.</b>
+ANDRO is built for both Educational and Internal use ONLY.</b>
 
 <br>
 <p align="center">Made with ❤️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
