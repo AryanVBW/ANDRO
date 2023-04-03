@@ -62,25 +62,26 @@ A cloud based remote android managment suite, powered by NodeJS
 7. in your browser navigate to `http://<SERVER IP>:22533`
     
 It's recommended to run L3MON behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
-
+## Contributor
+   - Vinayak
+   - J
 ## Notes
 When opening an issue, you **MUST** use the provided templates. Issues without this will not recieve support quickly and will be put to the bottom of the figurative pile.
 
 Please have a look through the current issues, open and closed to see if your issue has been addressed before. If it's java related, it's most definitely been addressed - In short Use Java 1.8.0
 ## Thanks
 ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDRO Wouldn't be what it is!
- - [Vinayak]
  - [express](https://github.com/expressjs/express)
  - [node-geoip](https://github.com/bluesmoon/node-geoip)
  - [lowdb](https://github.com/typicode/lowdb)
  - [socket.io](https://github.com/socketio/socket.io)
  - [Open Street Map](https://www.openstreetmap.org)
  - [Leaflet](https://leafletjs.com/)
- - D3VL
+ 
 ## Disclaimer
 <b>Aryan Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
 ANDRO is built for both Educational and Internal use ONLY.</b>
 
 <br>
-<p align="center">Made with ❤️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
+<p align="center">Made 🕸️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
 <p align="center" style="font-size: 8px">v1.1.2</p>
