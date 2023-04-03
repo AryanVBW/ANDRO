@@ -1,4 +1,4 @@
-# L3MON by WhiteDevil----*Aryan*
+# BY WhiteDevil
 <p align="center">
 <img src="https://github.com/ARYAN122333/L3MON/blob/main/logo.png" height="60"><br>
 A cloud based remote android managment suite, powered by NodeJS
