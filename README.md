@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/ARYAN122333/L3MON/blob/main/logo.png" height="60"><br>
+<img src="https://github.com/AryanVBW/ANDRO/blob/main/logo.png" height="60"><br>
 A cloud based remote android managment suite, powered by NodeJS
 </p>
 
