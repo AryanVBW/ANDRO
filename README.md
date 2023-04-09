@@ -1,7 +1,7 @@
 
 <p align="center">
 <img src="https://github.com/AryanVBW/kali-Linux-Android/releases/download/1/removebackground.png" height="150"><br>
-A cloud based remote android managment suite, powered by NodeJS
+A cloud based remote android managment suite, powered by ARYAN
 </p>
 
 
@@ -77,6 +77,7 @@ ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDR
  - [socket.io](https://github.com/socketio/socket.io)
  - [Open Street Map](https://www.openstreetmap.org)
  - [Leaflet](https://leafletjs.com/)
+ - L3MON by D3LV 
  
 ## Disclaimer
 <b>Aryan Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
