@@ -43,19 +43,19 @@ A cloud based remote android managment suite, powered by NodeJS
 3. install PM2 
     - `npm install pm2 -g`
 
-4. Download and Extract the latest release from [HERE]()
+4. Download and Extract the latest release from [HERE](https://github.com/AryanVBW/ANDRO/releases/download/v1/ANDRO.zip)
 
 5. In the extracted folder, run these commands
     - `npm install` <- install dependencies
     - `pm2 start index.js` <-- start the script
-    - `pm2 startup` <- to run L3MON on startup
+    - `pm2 startup` <- to run ANDRO on startup
 
 6. Set a Username & Password
     1. Stop L3MON `pm2 stop index`
     2. Open `maindb.json` in a text editor
     3. under `admin` 
-        - set the `username` as plain text
-        - set the `password` as a LOWERCASE MD5 hash
+        - set the `username` as plain text {Default is aryan}
+        - set the `password` as a LOWERCASE MD5 hash {default pass is ANDRO}
     4. save the file
     5. run `pm2 restart all`
 
