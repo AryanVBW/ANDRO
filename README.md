@@ -23,7 +23,7 @@ A cloud based remote android managment suite, powered by ARYAN
 - Command Queuing
 - Built In APK Builder
 ## Web Page on Android device 
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/kali-Linux-Android/releases" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/kali-Linux-Android/releases/download/5466/Screenshot_2023_0503_130026.jpg" alt="Darkside"></a>
 ## Web Page on Pc or Laptop 
 <a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/kali-Linux-Android/releases/download/untagged-3ca40236df7c164ed5de/010-NH-Rootless-Installation_Start_s.png" alt="Darkside"></a>
 
