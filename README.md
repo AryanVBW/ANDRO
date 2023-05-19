@@ -55,7 +55,7 @@ A cloud based remote android managment suite, powered by ARYAN
     - `pm2 startup` <- to run ANDRO on startup
 
 6. Set a Username & Password
-    1. Stop L3MON `pm2 stop index`
+    1. Stop ANDRO `pm2 stop index`
     2. Open `maindb.json` in a text editor
     3. under `admin` 
         - set the `username` as plain text {Default is aryan}
@@ -64,8 +64,9 @@ A cloud based remote android managment suite, powered by ARYAN
     5. run `pm2 restart all`
 
 7. in your browser navigate to `http://<SERVER IP>:22533`
+8. `http://localhost:22533`
     
-It's recommended to run L3MON behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
+It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 ## Contributor
    - Vinayak
    - J
