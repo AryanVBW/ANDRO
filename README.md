@@ -22,14 +22,7 @@ A cloud based remote android managment suite, powered by ARYAN
 - File Explorer & Downloader
 - Command Queuing
 - Built In APK Builder
-## DEMO LOGIN PAGE & CONTROL PANEL 
 
-
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/shot2.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-13.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-24.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-30.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-36-04.png" alt="Darkside"></a>
 
 ## Prerequisites 
  - Java Runtime Environment 8
@@ -71,6 +64,15 @@ A cloud based remote android managment suite, powered by ARYAN
 8. `http://localhost:22533`
     
 It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
+
+## DEMO LOGIN PAGE & CONTROL PANEL 
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/shot2.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-13.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-24.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-30.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-36-04.png" alt="Darkside"></a>
 ## Contributor
    - Vinayak
    - J
