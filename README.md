@@ -22,10 +22,14 @@ A cloud based remote android managment suite, powered by ARYAN
 - File Explorer & Downloader
 - Command Queuing
 - Built In APK Builder
-## Web Page on Android device 
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/kali-Linux-Android/releases/download/5466/Screenshot_2023_0503_130026.jpg" alt="Darkside"></a>
-## Web Page on Pc or Laptop 
+## DEMO LOGIN PAGE & CONTROL PANEL 
+
+
 <a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/shot2.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-13.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-24.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-30.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-36-04.png" alt="Darkside"></a>
 
 ## Prerequisites 
  - Java Runtime Environment 8
