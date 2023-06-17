@@ -91,3 +91,23 @@ ANDRO is built for both Educational and Internal use ONLY.</b>
 <br>
 <p align="center">Made 🕸️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
 <p align="center" style="font-size: 8px">v1.1.2</p>
+
+function insertYouTubeVideo(videoId, autoplay) {
+  // Get the YouTube video URL.
+  var videoUrl = "https://www.youtube.com/embed/" + videoId;
+
+  // If autoplay is enabled, add the `autoplay` attribute to the video tag.
+  if (autoplay) {
+    videoUrl += "?autoplay=1";
+  }
+
+  // Insert the video tag into the README.md file.
+  var readmeFile = document.getElementById("readme-file");
+  var videoTag = document.createElement("iframe");
+  videoTag.src = videoUrl;
+  videoTag.width = 560;
+  videoTag.height = 315;
+  videoTag.frameborder = 0;
+  readmeFile.appendChild(videoTag);
+}
+
