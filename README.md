@@ -65,17 +65,17 @@ A cloud based remote android managment suite, powered by ARYAN
     
 It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 
-## DEMO LOGIN PAGE & CONTROL PANEL 
-
-
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/shot2.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-13.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-24.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-35-30.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/blob/main/sc/Screenshot%20from%202023-04-28%2007-36-04.png" alt="Darkside"></a>
 ## Contributor
    - [Vinayak](https://www.instagram.com/mr_vinayak_1427)
    - J
+## DEMO LOGIN PAGE & CONTROL PANEL 
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/shot2.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/apkbilder.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/logs.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/deivicepanel.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/location.png" alt="Darkside"></a>
 ## Notes
 When opening an issue, you **MUST** use the provided templates. Issues without this will not recieve support quickly and will be put to the bottom of the figurative pile.
 
