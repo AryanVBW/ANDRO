@@ -1,0 +1,657 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "21232f297a57a5a743894a0e4a801fc3",
+    "loginToken": "",
+    "logs": [
+      {
+        "time": "2022-10-01T14:16:59.205Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-01T14:23:06.670Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-01T14:25:11.503Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Connected"
+      },
+      {
+        "time": "2022-10-01T14:25:38.683Z",
+        "type": "INFO",
+        "message": "Requested 0xMI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:25:41.728Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Disconnected"
+      },
+      {
+        "time": "2022-10-01T14:25:42.733Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Connected"
+      },
+      {
+        "time": "2022-10-01T14:25:49.724Z",
+        "type": "INFO",
+        "message": "Requested 0xMI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:25:57.932Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:25:58.015Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Contacts Updated - 2 New Contacts Added"
+      },
+      {
+        "time": "2022-10-01T14:26:05.984Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:20.081Z",
+        "type": "INFO",
+        "message": "Requested 0xWI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:20.481Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 WiFi Updated - 5 New WiFi Hotspots Found"
+      },
+      {
+        "time": "2022-10-01T14:26:28.699Z",
+        "type": "INFO",
+        "message": "Requested 0xIN From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:30.152Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Apps Updated"
+      },
+      {
+        "time": "2022-10-01T14:26:34.102Z",
+        "type": "INFO",
+        "message": "Requested 0xPM From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:34.187Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Permissions Updated"
+      },
+      {
+        "time": "2022-10-01T14:26:42.665Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:42.741Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T14:26:49.238Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:26:49.718Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T14:28:20.469Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:28:20.483Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T14:28:40.854Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:28:40.877Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T14:28:56.021Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:28:56.604Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T14:28:59.921Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:29:00.031Z",
+        "type": "INFO",
+        "message": "Recieving File From476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:29:00.035Z",
+        "type": "SUCCESS",
+        "message": "File From476900f8170a40b3 Saved"
+      },
+      {
+        "time": "2022-10-01T14:29:30.352Z",
+        "type": "INFO",
+        "message": "Requested 0xLO From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:29:30.831Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 GPS Updated"
+      },
+      {
+        "time": "2022-10-01T14:29:48.905Z",
+        "type": "INFO",
+        "message": "Requested 0xMI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:30:04.776Z",
+        "type": "INFO",
+        "message": "Requested 0xMI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:30:16.369Z",
+        "type": "INFO",
+        "message": "Recieving sound1742337230.mp3 from 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:30:53.352Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:31:14.968Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 ClipBoard Recieved"
+      },
+      {
+        "time": "2022-10-01T14:31:28.226Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 ClipBoard Recieved"
+      },
+      {
+        "time": "2022-10-01T14:32:32.843Z",
+        "type": "INFO",
+        "message": "Requested 0xSM From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:33:10.695Z",
+        "type": "INFO",
+        "message": "Requested 0xPM From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T14:33:11.209Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Permissions Updated"
+      },
+      {
+        "time": "2022-10-01T14:34:06.564Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Disconnected"
+      },
+      {
+        "time": "2022-10-01T14:49:12.556Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-01T15:57:18.351Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-01T16:08:28.976Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-01T16:13:33.812Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-01T16:13:57.854Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-01T16:13:59.722Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-01T16:14:22.620Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-01T16:14:36.773Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 Contacts Updated - 1907 New Contacts Added"
+      },
+      {
+        "time": "2022-10-01T16:14:58.868Z",
+        "type": "INFO",
+        "message": "Requested 0xSM From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-01T16:15:15.067Z",
+        "type": "INFO",
+        "message": "Requested 0xSM From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-01T16:16:11.963Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 SMS List Updated - 0 New Messages"
+      },
+      {
+        "time": "2022-10-01T16:16:11.978Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 SENT SMS"
+      },
+      {
+        "time": "2022-10-01T16:16:11.999Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-01T17:53:00.797Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Connected"
+      },
+      {
+        "time": "2022-10-01T17:53:00.799Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Running Queued Commands"
+      },
+      {
+        "time": "2022-10-01T17:53:00.802Z",
+        "type": "INFO",
+        "message": "Requested 0xLO From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:53:00.808Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:53:02.004Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 GPS Updated"
+      },
+      {
+        "time": "2022-10-01T17:53:02.545Z",
+        "type": "INFO",
+        "message": "Recieving File From476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:53:02.555Z",
+        "type": "SUCCESS",
+        "message": "File From476900f8170a40b3 Saved"
+      },
+      {
+        "time": "2022-10-01T17:53:50.090Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:53:50.554Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:53:53.997Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:53:54.543Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:53:59.363Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:02.338Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:54:16.129Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:16.535Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:54:19.464Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:20.154Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:54:24.638Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:25.035Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:54:33.835Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:34.157Z",
+        "type": "SUCCESS",
+        "message": "File List Updated"
+      },
+      {
+        "time": "2022-10-01T17:54:39.984Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:48.516Z",
+        "type": "INFO",
+        "message": "Recieving File From476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:54:48.524Z",
+        "type": "SUCCESS",
+        "message": "File From476900f8170a40b3 Saved"
+      },
+      {
+        "time": "2022-10-01T17:54:58.472Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:55:02.712Z",
+        "type": "INFO",
+        "message": "Recieving File From476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:55:02.726Z",
+        "type": "SUCCESS",
+        "message": "File From476900f8170a40b3 Saved"
+      },
+      {
+        "time": "2022-10-01T17:56:51.359Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:56:59.666Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:57:00.319Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Contacts Updated - 0 New Contacts Added"
+      },
+      {
+        "time": "2022-10-01T17:58:15.688Z",
+        "type": "INFO",
+        "message": "Requested 0xPM From 476900f8170a40b3"
+      },
+      {
+        "time": "2022-10-01T17:58:16.084Z",
+        "type": "SUCCESS",
+        "message": "476900f8170a40b3 Permissions Updated"
+      },
+      {
+        "time": "2022-10-01T17:59:14.915Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 Disconnected"
+      },
+      {
+        "time": "2022-10-02T09:49:06.517Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      },
+      {
+        "time": "2022-10-02T10:32:49.204Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:32:49.214Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Running Queued Commands"
+      },
+      {
+        "time": "2022-10-02T10:32:49.221Z",
+        "type": "INFO",
+        "message": "Requested 0xSM From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:32:49.279Z",
+        "type": "INFO",
+        "message": "Requested 0xWI From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:32:49.324Z",
+        "type": "INFO",
+        "message": "Requested 0xPM From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:32:57.616Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 SMS List Updated - 0 New Messages"
+      },
+      {
+        "time": "2022-10-02T10:32:57.655Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 Permissions Updated"
+      },
+      {
+        "time": "2022-10-02T10:33:13.000Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:33:21.163Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 Contacts Updated - 6 New Contacts Added"
+      },
+      {
+        "time": "2022-10-02T10:33:25.383Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:33:30.940Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:37:47.264Z",
+        "type": "SUCCESS",
+        "message": "8b485144ac52d7d4 Call Log Updated - 4822 New Calls"
+      },
+      {
+        "time": "2022-10-02T10:37:47.283Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.518Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.521Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Running Queued Commands"
+      },
+      {
+        "time": "2022-10-02T10:37:47.529Z",
+        "type": "INFO",
+        "message": "Requested 0xCL From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:37:47.621Z",
+        "type": "INFO",
+        "message": "Requested 0xMI From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:37:47.705Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.730Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Running Queued Commands"
+      },
+      {
+        "time": "2022-10-02T10:37:47.734Z",
+        "type": "INFO",
+        "message": "Requested 0xIN From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:37:47.812Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.859Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.869Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:37:47.890Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Connected"
+      },
+      {
+        "time": "2022-10-02T10:38:11.691Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:38:16.185Z",
+        "type": "INFO",
+        "message": "Requested 0xCO From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:38:32.270Z",
+        "type": "INFO",
+        "message": "Requested 0xFI From 8b485144ac52d7d4"
+      },
+      {
+        "time": "2022-10-02T10:38:32.701Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-02T10:38:32.807Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-02T10:38:32.849Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-02T10:38:32.863Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2022-10-02T10:38:32.882Z",
+        "type": "INFO",
+        "message": "8b485144ac52d7d4 Disconnected"
+      },
+      {
+        "time": "2023-04-21T08:56:18.370Z",
+        "type": "ERROR",
+        "message": "Build Failed - Unable to spawn Java - Error: spawn java ENOENT"
+      },
+      {
+        "time": "2023-04-21T08:56:18.405Z",
+        "type": "ERROR",
+        "message": "Build Failed - Java Not Installed"
+      },
+      {
+        "time": "2023-04-21T09:32:36.019Z",
+        "type": "SUCCESS",
+        "message": "Build Succeded!"
+      }
+    ],
+    "ipLog": []
+  },
+  "clients": [
+    {
+      "clientID": "476900f8170a40b3",
+      "firstSeen": "2022-10-01T14:25:11.483Z",
+      "lastSeen": "2022-10-01T17:59:14.919Z",
+      "isOnline": false,
+      "dynamicData": {
+        "clientIP": "10.9.0.1",
+        "clientGeo": {},
+        "device": {
+          "model": "Lenovo TB-8304F1",
+          "manufacture": "LENOVO",
+          "version": "7.0"
+        }
+      }
+    },
+    {
+      "clientID": "8b485144ac52d7d4",
+      "firstSeen": "2022-10-01T16:13:33.779Z",
+      "lastSeen": "2022-10-02T10:38:32.886Z",
+      "isOnline": false,
+      "dynamicData": {
+        "clientIP": "10.9.0.1",
+        "clientGeo": {},
+        "device": {
+          "model": "V2141",
+          "manufacture": "vivo",
+          "version": "12"
+        }
+      }
+    }
+  ]
+}
