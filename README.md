@@ -93,12 +93,14 @@ ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDR
  - L3MON by D3LV 
  
 ## Disclaimer
-<b>Aryan Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
+<b>Vivek W Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
 ANDRO is built for both Educational and Internal use ONLY.</b>
 
 <br>
 <p align="center">Made 🕸️ By <a href="https://aryanvbw.github.io/">*Vivek W*</a></p>
-<p align="center" style="font-size: 8px">v1.1.2</p>
-
+<p align="center" style="font-size: 8px">v1.0</p>
+<p align="center">
+<img src="https://github.com/AryanVBW/ANDRO/releases/download/A1/andro__5_-removebg-preview.png" height="100"><br>
+</p>
 
 
