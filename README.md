@@ -1,6 +1,6 @@
 **Disclaimer** : This software or tool is meant for educational purposes only. we are not responsible for any malicious use of the app.
 <p align="center">
-<img src="https://github.com/AryanVBW/ANDRO/releases/download/A1/andro__1_-removebg-preview.png" height=""><br>
+<img src="https://github.com/AryanVBW/ANDRO/releases/download/A1/andro__9_-removebg-preview.png" height=""><br>
 A cloud based remote android managment suite, powered by ARYAN
 </p>
 
@@ -97,7 +97,7 @@ ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDR
 ANDRO is built for both Educational and Internal use ONLY.</b>
 
 <br>
-<p align="center">Made 🕸️ By <a href="whiteDevilVBW@proton.me">*Aryan*</a></p>
+<p align="center">Made 🕸️ By <a href="https://aryanvbw.github.io/">*Vivek W*</a></p>
 <p align="center" style="font-size: 8px">v1.1.2</p>
 
 
