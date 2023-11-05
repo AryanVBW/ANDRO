@@ -31,6 +31,9 @@ A cloud based remote android managment suite, powered by ARYAN
  - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
 ## 1click Installation
    
+```bash
+   
+```
 ## Installation 
 1. Install JRE 8 (We cannot stress this enough USE java 1.8.0 ANY issues that dont use this will be closed WITHOUT a response)
     - Debian, Ubuntu, Etc
