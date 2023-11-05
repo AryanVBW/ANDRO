@@ -35,7 +35,7 @@ A cloud based remote android managment suite, powered by ARYAN
 ```bash
    curl -sSL https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh | bash
 ```
- <p align="center"><h1>OR</h1></p>
+ <p align="center"> <h1>OR</h1> </p>
  
 ```bash
  wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
