@@ -36,10 +36,11 @@ A cloud based remote android managment suite, powered by ARYAN
    curl -sSL https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh | bash
 ```
  <p align="center"><h1>OR</h1></p>
- ```bash
-wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
-chmod +x ANDRO1click.sh 
-sudo ./ANDRO1click.sh 
+ 
+```bash
+ wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
+ chmod +x ANDRO1click.sh 
+ sudo ./ANDRO1click.sh 
 ```
 ## Installation 
 1. Install JRE 8 (We cannot stress this enough USE java 1.8.0 ANY issues that dont use this will be closed WITHOUT a response)
