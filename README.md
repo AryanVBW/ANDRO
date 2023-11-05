@@ -30,6 +30,7 @@ A cloud based remote android managment suite, powered by ARYAN
  - NodeJs 
  - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
 ## 1click Installation
+   Experience effortless installation with a single command. Simply copy and paste the following line into your terminal to automatically install all dependencies and have your ANDRO application up and running seamlessly
    
 ```bash
    
