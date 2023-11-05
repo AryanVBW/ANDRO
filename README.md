@@ -44,7 +44,7 @@ A cloud based remote android managment suite, powered by ARYAN
 3. install PM2 
     - `npm install pm2 -g`
 
-4. Download and Extract the latest release from [HERE](https://github.com/AryanVBW/ANDRO/releases/download/V.1/L3MON-2024.zip)
+4. Download and Extract the latest release from [HERE](https://github.com/AryanVBW/ANDRO/releases/download/v.1.0/ANDRO.zip)
 
 5. In the extracted folder, run these commands
     - `npm install` <- install dependencies
