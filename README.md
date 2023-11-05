@@ -28,7 +28,7 @@ A cloud based remote android managment suite, powered by ARYAN
  - Java Runtime Environment 8
     - See [installation](#Installation) for OS specifics
  - NodeJs 
- - A Server
+ - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
 
 ## Installation 
 1. Install JRE 8 (We cannot stress this enough USE java 1.8.0 ANY issues that dont use this will be closed WITHOUT a response)
