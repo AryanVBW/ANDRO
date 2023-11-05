@@ -55,13 +55,13 @@ A cloud based remote android managment suite, powered by ARYAN
     1. Stop ANDRO `pm2 stop index`
     2. Open `maindb.json` in a text editor
     3. under `admin` 
-        - set the `username` as plain text {Default is aryan}
-        - set the `password` as a LOWERCASE MD5 hash {default pass is ANDRO}
+        - set the `username` as plain text {Default is andro}
+        - set the `password` as a LOWERCASE MD5 hash {default pass is admin}
     4. save the file
     5. run `pm2 restart all`
 
-7. in your browser navigate to `http://<SERVER IP>:22533`
-8. `http://localhost:22533`
+7. in your browser navigate to `http://<SERVER IP>:8080`
+8. `http://localhost:8080`
     
 It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 
