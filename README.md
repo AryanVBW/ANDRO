@@ -81,7 +81,7 @@ It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www
    - [Vinayak](https://www.instagram.com/mr_vinayak_1427)
    - J
 ## Demo Login page & Control Panel
-</p>
+<p>
 <img src="https://github.com/AryanVBW/ANDRO/releases/download/p1/controlpanel.gif">
 </p>
 
