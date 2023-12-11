@@ -94,6 +94,7 @@ It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www
   Visitor count<br>
   <img src="https://profile-counter.glitch.me/Aryanvbw/count.svg" />
 </p>
+
 ## Notes
 When opening an issue, you **MUST** use the provided templates. Issues without this will not recieve support quickly and will be put to the bottom of the figurative pile.
 
