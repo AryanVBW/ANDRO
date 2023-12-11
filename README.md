@@ -90,6 +90,10 @@ It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www
 <a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/logs.png" alt="Darkside"></a>
 <a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/deivicepanel.png" alt="Darkside"></a>
 <a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/location.png" alt="Darkside"></a>
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/Aryanvbw/count.svg" />
+</p>
 ## Notes
 When opening an issue, you **MUST** use the provided templates. Issues without this will not recieve support quickly and will be put to the bottom of the figurative pile.
 
