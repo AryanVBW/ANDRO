@@ -1,7 +1,7 @@
 **Disclaimer** : This software or tool is meant for educational purposes only. we are not responsible for any malicious use of the app.
 <p align="center">
 <img src="https://github.com/AryanVBW/ANDRO/releases/download/A1/andro__5_-removebg-preview.png" height="100"><br>
-A cloud based remote android managment suite, powered by <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/nodejs.png" height="20">
+A cloud based remote android managment suite, powered by Nodejs <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/nodejs%20(1).png" height="10">
 </p>
 
 
