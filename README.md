@@ -8,12 +8,12 @@ A cloud based remote android managment suite, powered by Nodejs <img src="https:
 
 
 ## Features
-- GPS Logging
+- GPS Logging📍
 - Microphone Recording
 - View Contacts
 - SMS Logs
 - Send SMS
-- Call Logs
+- Call Logs1📞
 - View Installed Apps
 - View Stub Permissions
 - Live Clipboard Logging
@@ -25,7 +25,7 @@ A cloud based remote android managment suite, powered by Nodejs <img src="https:
 
 
 ## Prerequisites 
- - Java Runtime Environment 8
+ - Java Runtime Environment 8<img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/java.png" height="30">
     - See [installation](#Installation) for OS specifics
  - NodeJs 
  - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
