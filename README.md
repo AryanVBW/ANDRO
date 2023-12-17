@@ -13,7 +13,7 @@ A cloud based remote android managment suite, powered by Nodejs <img src="https:
 - View Contacts
 - SMS Logs
 - Send SMS
-- Call Logs1📞
+- Call Logs📞
 - View Installed Apps
 - View Stub Permissions
 - Live Clipboard Logging
