@@ -648,6 +648,11 @@
         "time": "2025-03-13T11:51:49.357Z",
         "type": "ERROR",
         "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T15:35:42.204Z",
+        "type": "INFO",
+        "message": "476900f8170a40b3 POLL COMMAND - GPS"
       }
     ],
     "ipLog": []

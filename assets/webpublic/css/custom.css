@@ -30,6 +30,146 @@
     --glow-color: rgba(0, 255, 157, 0.5);
 }
 
+/* Common container styles for all pages */
+[data-theme="dark"] .ui.segment {
+    background-color: rgba(18, 18, 18, 0.95) !important;
+    border: 1px solid var(--highlight-color) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2) !important;
+}
+
+[data-theme="dark"] .ui.table {
+    background-color: transparent !important;
+    border: 1px solid rgba(0, 255, 157, 0.2) !important;
+}
+
+[data-theme="dark"] .ui.table thead th {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: var(--highlight-color) !important;
+    border-bottom: 1px solid var(--highlight-color) !important;
+}
+
+[data-theme="dark"] .ui.table td {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+    border-color: rgba(0, 255, 157, 0.1) !important;
+}
+
+[data-theme="dark"] .ui.table tr:hover td {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+}
+
+/* Empty state styling */
+[data-theme="dark"] .empty-state {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px dashed rgba(0, 255, 157, 0.2) !important;
+}
+
+[data-theme="dark"] .empty-state i {
+    color: var(--highlight-color) !important;
+    opacity: 0.5;
+}
+
+/* Secondary menu/toolbar styling */
+[data-theme="dark"] .ui.secondary.menu {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px solid var(--highlight-color) !important;
+    margin-bottom: 0 !important;
+}
+
+[data-theme="dark"] .ui.secondary.menu .header {
+    color: var(--highlight-color) !important;
+}
+
+/* Update button styling */
+[data-theme="dark"] .update-btn {
+    background-color: transparent !important;
+    color: var(--highlight-color) !important;
+    border: 1px solid var(--highlight-color) !important;
+}
+
+[data-theme="dark"] .update-btn:hover {
+    background-color: var(--highlight-color) !important;
+    color: #121212 !important;
+}
+
+/* Permissions list styling */
+[data-theme="dark"] .permissions-list .permission-item {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(0, 255, 157, 0.2) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .permissions-list .permission-item:hover {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+    border-color: var(--highlight-color) !important;
+}
+
+/* Downloads section styling */
+[data-theme="dark"] .downloads-list .download-item {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(0, 255, 157, 0.2) !important;
+}
+
+[data-theme="dark"] .downloads-list .download-item:hover {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+    border-color: var(--highlight-color) !important;
+}
+
+/* Call Log specific styling */
+[data-theme="dark"] .call-row.incoming .icon {
+    color: #00ccff !important;
+}
+
+[data-theme="dark"] .call-row.outgoing .icon {
+    color: var(--highlight-color) !important;
+}
+
+[data-theme="dark"] .call-row.missed .icon {
+    color: #ff5252 !important;
+}
+
+/* Applications list styling */
+[data-theme="dark"] .apps-table tr:hover {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+}
+
+[data-theme="dark"] .apps-table td {
+    border-color: rgba(0, 255, 157, 0.1) !important;
+}
+
+/* Clipboard items styling */
+[data-theme="dark"] .clipboard-row:hover {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+}
+
+[data-theme="dark"] .clipboard-content {
+    color: var(--text-color) !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(0, 255, 157, 0.2) !important;
+}
+
+/* Notification items styling */
+[data-theme="dark"] .notification-row:hover {
+    background-color: rgba(0, 255, 157, 0.05) !important;
+}
+
+[data-theme="dark"] .notification-content {
+    color: var(--text-color) !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-left: 3px solid var(--highlight-color) !important;
+}
+
+/* Container backgrounds */
+[data-theme="dark"] .contacts-container,
+[data-theme="dark"] .calls-container,
+[data-theme="dark"] .clipboard-container,
+[data-theme="dark"] .notifications-container,
+[data-theme="dark"] .apps-container,
+[data-theme="dark"] .downloads-container,
+[data-theme="dark"] .permissions-container {
+    background-color: transparent !important;
+}
+
 /* Apply theme colors */
 body {
   background-color: var(--primary-bg);
@@ -221,14 +361,27 @@ body {
   margin-bottom: 30px;
 }
 
-/* Matrix effect for loading */
+/* Matrix effect */
 .matrix-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .matrix-bg {
+    display: none;
+}
+
+.ui.container,
+.ui.segment,
+.ui.card,
+.ui.form {
+    position: relative;
+    z-index: 1;
 }

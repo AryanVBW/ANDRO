@@ -68,32 +68,41 @@ function initTheme() {
     }
 }
 
+let matrixAnimation;
+
 // Initialize matrix background effect
 function initMatrix() {
-    if ($('.matrix-bg').length === 0 && document.documentElement.getAttribute('data-theme') === 'dark') {
+    // Clean up any existing matrix effect
+    if (matrixAnimation) {
+        cancelAnimationFrame(matrixAnimation);
+    }
+    $('.matrix-bg').remove();
+
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
         const canvas = document.createElement('canvas');
         canvas.classList.add('matrix-bg');
         document.body.appendChild(canvas);
         
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
         
         const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
         const matrixChars = matrix.split('');
         
         const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = [];
-        
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
+        const columns = Math.ceil(window.innerWidth / fontSize);
+        const drops = new Array(columns).fill(1);
         
         function drawMatrix() {
             if (document.documentElement.getAttribute('data-theme') !== 'dark') {
                 cancelAnimationFrame(matrixAnimation);
-                $('.matrix-bg').remove();
+                canvas.remove();
                 return;
             }
             
@@ -116,26 +125,21 @@ function initMatrix() {
             matrixAnimation = requestAnimationFrame(drawMatrix);
         }
         
-        let matrixAnimation = requestAnimationFrame(drawMatrix);
-        
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        window.addEventListener('resize', resizeCanvas);
+        matrixAnimation = requestAnimationFrame(drawMatrix);
     }
 }
 
 // Initialize theme and matrix effect when DOM is ready
 $(document).ready(function() {
     initTheme();
+    initMatrix(); // Initialize matrix effect on page load
     
     // Add event listener for theme changes to toggle matrix effect
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.attributeName === 'data-theme') {
-                if (document.documentElement.getAttribute('data-theme') === 'dark') {
-                    initMatrix();
-                }
+                initMatrix(); // Re-initialize matrix when theme changes
             }
         });
     });
