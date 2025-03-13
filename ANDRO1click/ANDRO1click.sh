@@ -186,7 +186,7 @@ if [ -f "ANDRO.zip" ]; then
     log "ANDRO.zip already exists. Using existing file."
 else
     log "Downloading ANDRO.zip..."
-    execute "wget https://github.com/AryanVBW/ANDRO/releases/download/v.1.0/ANDRO.zip" "Failed to download ANDRO.zip"
+    execute "wget https://github.com/AryanVBW/ANDRO/releases/download/v.2.0/ANDRO.zip" "Failed to download ANDRO.zip"
 fi
 
 # Check if ANDRO directory exists
