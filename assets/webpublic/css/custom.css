@@ -1,33 +1,33 @@
-/* Light Mode (Default) */
-:root {
-  --primary-bg: #ffffff;
-  --secondary-bg: #f9f9f9;
-  --card-bg: #ffffff;
-  --text-color: #333333;
-  --header-color: #222222;
-  --border-color: #e0e0e0;
-  --highlight-color: #2ecc71;
-  --accent-color: #00b5ad;
-  --danger-color: #f03434;
-  --success-color: #2ecc71;
-  --info-color: #6781f8;
-  --glow-color: rgba(46, 204, 113, 0.5);
+/* Light Mode */
+[data-theme="light"] {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f9f9f9;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --header-color: #222222;
+    --border-color: #e0e0e0;
+    --highlight-color: #2ecc71;
+    --accent-color: #00b5ad;
+    --danger-color: #f03434;
+    --success-color: #2ecc71;
+    --info-color: #6781f8;
+    --glow-color: rgba(46, 204, 113, 0.5);
 }
 
-/* Dark Mode */
-[data-theme="dark"] {
-  --primary-bg: #121212;
-  --secondary-bg: #1e1e1e;
-  --card-bg: #252525;
-  --text-color: #e0e0e0;
-  --header-color: #00ff9d;
-  --border-color: #333333;
-  --highlight-color: #00ff9d;
-  --accent-color: #00ff9d;
-  --danger-color: #ff5252;
-  --success-color: #00ff9d;
-  --info-color: #00ccff;
-  --glow-color: rgba(0, 255, 157, 0.5);
+/* Dark Mode (Default) */
+:root {
+    --primary-bg: #121212;
+    --secondary-bg: #1e1e1e;
+    --card-bg: #252525;
+    --text-color: #e0e0e0;
+    --header-color: #00ff9d;
+    --border-color: #333333;
+    --highlight-color: #00ff9d;
+    --accent-color: #00ff9d;
+    --danger-color: #ff5252;
+    --success-color: #00ff9d;
+    --info-color: #00ccff;
+    --glow-color: rgba(0, 255, 157, 0.5);
 }
 
 /* Apply theme colors */

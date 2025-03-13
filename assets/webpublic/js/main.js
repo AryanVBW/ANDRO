@@ -46,7 +46,7 @@ function setTheme(themeName) {
 
 // Check for saved theme preference or set default
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Changed default from 'light' to 'dark'
     setTheme(savedTheme);
     
     // Initialize theme toggle button if it exists

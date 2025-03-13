@@ -71,6 +71,7 @@
             padding: 0 !important;
             overflow: hidden;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
         
         [data-theme="dark"] .logs-container {
@@ -118,66 +119,76 @@
         
         .terminal-title {
             color: var(--text-color);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            opacity: 0.7;
         }
         
         .logs {
             background-color: rgba(0, 0, 0, 0.3);
             min-height: 600px;
             max-height: 600px;
-            padding: 15px;
+            padding: 15px 20px;
             overflow-y: auto;
-            font-family: 'Courier New', monospace;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            line-height: 1.6;
         }
         
         .logitm {
-            margin-bottom: 5px;
-            font-size: 0.9em;
+            padding: 6px 10px;
+            margin-bottom: 4px;
+            font-size: 0.92em;
             line-height: 1.5;
             white-space: pre-wrap;
             transition: all 0.3s ease;
+            border-radius: 4px;
+            border-left: 3px solid transparent;
         }
         
         .logitm:hover {
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 3px;
+            transform: translateX(2px);
         }
         
         .logitm .timestamp {
             color: #888;
+            font-size: 0.9em;
+            margin-right: 4px;
         }
         
         .logitm .type {
-            margin: 0 8px;
+            margin: 0 6px;
+            font-weight: 500;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
         
         .logitm .message {
-            margin-left: 8px;
+            margin-left: 6px;
+            color: var(--text-color);
         }
         
         .logitm.INFO {
-            color: #00ccff;
+            border-left-color: #00ccff;
         }
         
         .logitm.INFO .type {
+            background: rgba(0, 204, 255, 0.1);
             color: #00ccff;
         }
         
         .logitm.SUCCESS {
-            color: var(--highlight-color);
+            border-left-color: var(--highlight-color);
         }
         
         .logitm.SUCCESS .type {
+            background: rgba(0, 255, 157, 0.1);
             color: var(--highlight-color);
         }
         
         .logitm.ERROR {
-            color: #ff5252;
+            border-left-color: #ff5252;
         }
         
         .logitm.ERROR .type {
+            background: rgba(255, 82, 82, 0.1);
             color: #ff5252;
         }
         
@@ -185,20 +196,24 @@
             color: #666;
             text-align: center;
             margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
         }
         
         /* Custom Scrollbar */
         .logs::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         
         .logs::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
         }
         
         .logs::-webkit-scrollbar-thumb {
             background: var(--highlight-color);
-            border-radius: 4px;
+            border-radius: 3px;
         }
         
         .logs::-webkit-scrollbar-thumb:hover {
@@ -210,6 +225,7 @@
             content: '█';
             animation: cursor-blink 1s infinite;
             opacity: 0.7;
+            margin-left: 4px;
         }
         
         @keyframes cursor-blink {
@@ -219,28 +235,32 @@
         
         /* Glitch effect for errors */
         @keyframes glitch {
-            0% {
-                transform: translate(0);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                transform: translate(2px, 2px);
-            }
-            80% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
         
         .logitm.ERROR:hover {
             animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+
+        /* Fade-in animation for logs */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logitm {
+            animation: fadeIn 0.3s ease forwards;
         }
     </style>
 </body>
