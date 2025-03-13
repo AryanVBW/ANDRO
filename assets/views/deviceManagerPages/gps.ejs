@@ -53,7 +53,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (const [key, value] of Object.entries(sorted)) { %>
+                    <% 
+                    const sorted = pageData.reduce((acc, curr) => {
+                        const date = new Date(curr.time).toLocaleDateString();
+                        if (!acc[date]) acc[date] = [];
+                        acc[date].push(curr);
+                        return acc;
+                    }, {});
+                    
+                    for (const [key, value] of Object.entries(sorted)) { %>
                     <tr class="log-row">
                         <td><%= key %></td>
                         <td><%= value.length %></td>

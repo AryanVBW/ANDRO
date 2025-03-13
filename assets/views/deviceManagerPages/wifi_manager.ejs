@@ -16,12 +16,18 @@
             </tr>
         </thead>
         <tbody>
-            <% pageData.now.forEach((wifi) => { %>
-            <tr>
-                <td><%= wifi.SSID %></td>
-                <td><%= wifi.BSSID %></td>
-            </tr>
-            <% }) %>
+            <% if (pageData && pageData.now) { %>
+                <% pageData.now.forEach((wifi) => { %>
+                <tr>
+                    <td><%= wifi.SSID %></td>
+                    <td><%= wifi.BSSID %></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="2" class="center aligned">No current WiFi connections</td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 
@@ -36,13 +42,19 @@
             </tr>
         </thead>
         <tbody>
-            <% pageData.history.forEach((wifi) => { %>
-            <tr>
-                <td><%= wifi.SSID %></td>
-                <td><%= wifi.BSSID %></td>
-                <td><%= wifi.time %></td>
-            </tr>
-            <% }) %>
+            <% if (pageData && pageData.history) { %>
+                <% pageData.history.forEach((wifi) => { %>
+                <tr>
+                    <td><%= wifi.SSID %></td>
+                    <td><%= wifi.BSSID %></td>
+                    <td><%= wifi.time %></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3" class="center aligned">No WiFi history available</td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 </div>
