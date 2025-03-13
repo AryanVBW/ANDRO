@@ -1,84 +1,354 @@
-<div class="ui top attached tabular menu">
-    <a class="item active" data-tab="first">
-        SMS Log
-    </a>
-    <a class="item " data-tab="second">
-        Send SMS
-    </a>
-</div>
+<div class="sms-container">
 
-<div class="ui bottom attached tab segment active" data-tab="first">
-    <!-- SMS Log -->
-    <div class="ui secondary menu">
-        <div class="right menu">
-            <button onclick="updateButton(this, '0xSM', {'action': 'ls'})" class="ui blue button"> <i
-                    class="icon sync"></i>Update</button>
-        </div>
+    <div class="ui top attached tabular menu custom-tabs">
+        <a class="item active" data-tab="first"><i class="inbox icon"></i> SMS Log</a>
+        <a class="item" data-tab="second"><i class="paper plane icon"></i> Send SMS</a>
     </div>
-    <div class="ui feed">
+    <div class="ui bottom attached tab segment active custom-tab-content" data-tab="first">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="comments icon"></i>
+                <span class="title">Message History</span>
+            </div>
+            <div class="right menu">
+                <button onclick="updateButton(this, '0xSM', {'action': 'ls'})" class="ui button update-btn"><i
+                        class="icon sync"></i><span class="btn-text">Update</span></button>
+            </div>
+        </div>
+        <div class="messages-feed">
+            <% if (pageData.length === 0) { %>
+            <div class="empty-state">
+                <i class="icon comments outline"></i>
+                <p>No messages found</p>
+            </div>
+            <% } %>
 
-        <% pageData.forEach((smsData) => { 
+            <% pageData.forEach((smsData) => {
                 let date = new Date(parseInt(smsData.date));
                 let status = {
                     "updown": "question",
-                    "action": ""
+                    "action": "",
+                    "class": "unknown"
                 };
                 if(smsData.type === "1") status = {
                     "updown": "down",
-                    "action": "Recieved From "
+                    "action": "Received From ",
+                    "class": "received"
                 };
                 if(smsData.type === "2") status = {
                     "updown": "up",
-                    "action": "Sent To "
+                    "action": "Sent To ",
+                    "class": "sent"
                 };
-            %>
-        <div class="event">
-            <div class="label">
-                <i class="arrow <%= status.updown %> icon"></i>
-            </div>
-            <div class="content">
-                <div class="summary">
-                    <%= status.action %> <a href="?filter=<%= smsData.address %>"><%= smsData.address %></a>
-                    <div class="date"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></div>
+                %>
+            <div class="message-event <%= status.class %>">
+                <div class="message-icon">
+                    <i class="arrow <%= status.updown %> icon"></i>
                 </div>
-                <div class="extra text">
-                    <%= smsData.body %>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="message-info">
+                            <%= status.action %>
+                            <a href="?filter=<%= smsData.address %>" class="phone-number"><%= smsData.address %></a>
+                        </div>
+                        <div class="message-time"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></div>
+                    </div>
+                    <div class="message-body">
+                        <%= smsData.body %>
+                    </div>
                 </div>
             </div>
-            <div class="ui divider"></div>
-
+            <% }) %>
         </div>
-        <div class="ui divider"></div>
-
-        <% }) %>
+    </div>
+    <div class="ui bottom attached tab segment custom-tab-content" data-tab="second">
+        <div class="send-sms-container">
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui labeled input recipient-input">
+                        <div class="ui label">To</div>
+                        <input id="to" type="number" placeholder="Enter phone number">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Message</label>
+                    <textarea id="sms" placeholder="Type your message here..."></textarea>
+                </div>
+                <button class="ui button send-btn" type="submit" onclick="sendSMS(this)">
+                    <i class="paper plane outline icon"></i><span class="btn-text">Send Message</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="ui bottom attached tab segment" data-tab="second">
-    <!-- Send SMS -->
-    <div class="ui form">
-        <div class="ui labeled input fluid">
-            <div class="ui label">
-                To
-            </div>
-            <input id="to" type="number">
-        </div>
-        <br>
-        <div class="field">
-            <label>Message</label>
-            <textarea id="sms"></textarea>
-        </div>
-        <button class="ui button fluid positive" type="submit" onclick="sendSMS(this)">
-            <i class="paper plane outline icon"></i>
-            Send
-        </button>
-    </div>
-</div>
+<style>
+    .sms-container {
+        padding: 20px;
+    }
+
+    .custom-tabs {
+        background: transparent !important;
+        border: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    [data-theme="dark"] .custom-tabs {
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .custom-tabs .item {
+        background: transparent !important;
+        color: var(--text-color) !important;
+        border: 1px solid transparent !important;
+        margin-bottom: -1px;
+        font-family: 'Courier New', monospace;
+        transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .custom-tabs .item:hover {
+        color: var(--highlight-color) !important;
+        border-color: var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .custom-tabs .item.active {
+        background-color: rgba(0, 255, 157, 0.1) !important;
+        color: var(--highlight-color) !important;
+        border-color: var(--highlight-color) !important;
+        border-bottom-color: transparent !important;
+    }
+
+    .custom-tab-content {
+        border-radius: 0 0 8px 8px !important;
+        border-top: none !important;
+        margin-top: 0 !important;
+    }
+
+    [data-theme="dark"] .custom-tab-content {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        border-top: none !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+
+    .toolbar {
+        background-color: transparent !important;
+        padding: 15px 0 !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+
+    .update-btn {
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+
+    [data-theme="dark"] .update-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+
+    [data-theme="dark"] .update-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+
+    .messages-feed {
+        padding: 20px 0;
+    }
+
+    .message-event {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .message-event {
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 255, 157, 0.1);
+    }
+
+    [data-theme="dark"] .message-event:hover {
+        transform: translateX(5px);
+        border-color: var(--highlight-color);
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+    }
+
+    [data-theme="dark"] .message-event.received {
+        border-left: 3px solid #00ccff;
+    }
+
+    [data-theme="dark"] .message-event.sent {
+        border-left: 3px solid var(--highlight-color);
+    }
+
+    .message-icon {
+        padding-top: 5px;
+    }
+
+    [data-theme="dark"] .message-icon i {
+        color: var(--highlight-color);
+    }
+
+    .message-content {
+        flex: 1;
+    }
+
+    .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .message-info {
+        font-family: 'Courier New', monospace;
+        color: var(--text-color);
+    }
+
+    .phone-number {
+        color: var(--highlight-color) !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .phone-number:hover {
+        text-shadow: 0 0 8px var(--highlight-color);
+    }
+
+    .message-time {
+        font-size: 0.9em;
+        opacity: 0.7;
+        font-family: 'Courier New', monospace;
+    }
+
+    .message-body {
+        line-height: 1.5;
+        font-family: 'Courier New', monospace;
+    }
+
+    [data-theme="dark"] .message-body {
+        color: var(--text-color);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 40px;
+        opacity: 0.7;
+    }
+
+    [data-theme="dark"] .empty-state {
+        color: var(--text-color);
+    }
+
+    .empty-state i {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .send-sms-container {
+        padding: 20px 0;
+    }
+
+    [data-theme="dark"] .recipient-input {
+        border: 1px solid var(--highlight-color) !important;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    [data-theme="dark"] .recipient-input .label {
+        background-color: rgba(0, 255, 157, 0.1) !important;
+        color: var(--highlight-color) !important;
+        border: none !important;
+    }
+
+    [data-theme="dark"] input,
+    [data-theme="dark"] textarea {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid var(--highlight-color) !important;
+        color: var(--text-color) !important;
+        font-family: 'Courier New', monospace !important;
+    }
+
+    [data-theme="dark"] input:focus,
+    [data-theme="dark"] textarea:focus {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2) !important;
+    }
+
+    [data-theme="dark"] label {
+        color: var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        margin-bottom: 8px;
+    }
+
+    .send-btn {
+        margin-top: 20px !important;
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+
+    [data-theme="dark"] .send-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+
+    [data-theme="dark"] .send-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+    }
+
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+
+    [data-theme="dark"] .send-btn.loading {
+        animation: pulse-border 1.5s infinite;
+        background-color: transparent !important;
+    }
+</style>
 
 <script>
     $('.menu .item').tab();
+
     function sendSMS(element) {
-        $(element).addClass('loading')
+        $(element).addClass('loading');
+        $('.btn-text', element).fadeOut(200);
         sendCommand('0xSM', {
             'action': 'sendSMS',
             'sms': $('#sms').val(),
@@ -86,15 +356,22 @@
         }, (error, message) => {
             if (error) {
                 setTimeout(() => {
-                    showNotification('#f03434', error)
-                    $(element).removeClass('loading')
-                }, 300)
+                    showNotification('#ff5252', error);
+                    $(element).removeClass('loading');
+                    $('.btn-text', element).fadeIn(200);
+                }, 300);
             } else {
                 setTimeout(() => {
                     $(element).removeClass('loading');
-                    if (message === 'Requested') showNotification('#2ecc71', 'SMS Sent');
-                    else showNotification('#2ecc71', message);
-                }, 300)
+                    $('.btn-text', element).fadeIn(200);
+                    if (message === 'Requested') {
+                        showNotification('#00ff9d', 'SMS Sent Successfully');
+                        $('#sms').val('');
+                        $('#to').val('');
+                    } else {
+                        showNotification('#00ff9d', message);
+                    }
+                }, 300);
             }
         });
     }

@@ -1,9 +1,101 @@
-<br><br>
-<div style="text-align: center">
-       <h2 ">Made with <a href="https://aryanvbw.github.com" target="_blank">❤️‍🔥</a>By <a href="https://github.com/AryanVBW" target="_blank">🔥Vivek🔥</a></h2>
-    <!--    An Open Source Project     -->
-    <!--       Built By ❤️‍🔥🕸🕸AryanVBw🕸🕸❤️‍🔥  -->
-    <!-- https://github.com/AryanVBW -->
+<div class="footer-container">
+    <div class="footer-content">
+        <div class="typing-animation">Made with <span class="heart">❤️‍🔥</span> By <a href="https://github.com/AryanVBW" target="_blank" class="dev-link">🔥Vivek🔥</a></div>
+        <div class="footer-links">
+            <a href="https://github.com/AryanVBW" target="_blank" class="social-link"><i class="github icon"></i></a>
+        </div>
+    </div>
 </div>
 
-<br><br>
+<style>
+    .footer-container {
+        text-align: center;
+        margin: 40px 0 20px;
+        padding: 15px;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    [data-theme="dark"] .footer-container {
+        border-color: var(--highlight-color);
+    }
+    
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .typing-animation {
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        color: var(--text-color);
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid transparent;
+        animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+        margin-bottom: 10px;
+    }
+    
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: var(--highlight-color); }
+    }
+    
+    .heart {
+        color: #ff3366;
+        display: inline-block;
+        animation: pulse 1.3s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+    }
+    
+    .dev-link {
+        color: var(--highlight-color);
+        text-decoration: none;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .dev-link:hover {
+        text-shadow: 0 0 8px var(--highlight-color);
+    }
+    
+    [data-theme="dark"] .dev-link {
+        color: var(--highlight-color);
+    }
+    
+    .footer-links {
+        margin-top: 10px;
+    }
+    
+    .social-link {
+        font-size: 20px;
+        margin: 0 10px;
+        color: var(--text-color);
+        transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+        color: var(--highlight-color);
+        transform: scale(1.2);
+    }
+    
+    [data-theme="dark"] .social-link {
+        color: var(--text-color);
+    }
+    
+    [data-theme="dark"] .social-link:hover {
+        color: var(--highlight-color);
+        text-shadow: 0 0 8px var(--highlight-color);
+    }
+</style>

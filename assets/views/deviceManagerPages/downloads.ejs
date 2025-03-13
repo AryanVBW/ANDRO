@@ -1,27 +1,224 @@
-<div class="ui segment">
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th style="text-align: center" colspan="3">Downloads</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((item) => { 
-                    let date = new Date(item.time);
-                %>
-            <tr>
-                <td class="collapsing"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                <td><%= item.originalName %></td>
-                <td class="collapsing">
-                    <div class="ui buttons">
-                        <a href="<%= item.path %>" target="_blank" class="ui button blue">Open</a>
-                        <div class="or"></div>
-                        <a href="<%= item.path %>" download="<%= item.originalName %>"
-                            class="ui positive button">Save</a>
-                    </div>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+<div class="downloads-container">
+    <div class="ui segment downloads-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="download icon"></i>
+                <span class="title">Downloads</span>
+            </div>
+        </div>
+        
+        <div class="downloads-table-container">
+            <table class="ui celled table downloads-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Filename</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="3" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon download slash"></i>
+                                    <p>No downloads available</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((item) => { 
+                            let date = new Date(item.time);
+                        %>
+                        <tr class="download-row">
+                            <td class="time-cell">
+                                <i class="clock outline icon"></i>
+                                <%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %>
+                            </td>
+                            <td class="file-cell">
+                                <i class="file outline icon"></i>
+                                <%= item.originalName %>
+                            </td>
+                            <td class="actions-cell">
+                                <div class="action-buttons">
+                                    <a href="<%= item.path %>" target="_blank" class="ui button preview-btn">
+                                        <i class="eye icon"></i>
+                                        <span class="btn-text">Preview</span>
+                                    </a>
+                                    <a href="<%= item.path %>" download="<%= item.originalName %>" class="ui button download-btn">
+                                        <i class="download icon"></i>
+                                        <span class="btn-text">Download</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<style>
+    .downloads-container {
+        padding: 20px;
+    }
+    
+    .downloads-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .downloads-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .downloads-table-container {
+        padding: 15px;
+    }
+    
+    .downloads-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .downloads-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .download-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .download-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .time-cell,
+    .file-cell {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    [data-theme="dark"] .download-row td {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .download-row i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .actions-cell {
+        text-align: right !important;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+    }
+    
+    .preview-btn,
+    .download-btn {
+        font-family: 'Courier New', monospace !important;
+        padding: 8px 15px !important;
+        transition: all 0.3s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+    
+    [data-theme="dark"] .preview-btn {
+        background-color: transparent !important;
+        color: #00ccff !important;
+        border: 1px solid #00ccff !important;
+        box-shadow: 0 0 5px rgba(0, 204, 255, 0.2);
+    }
+    
+    [data-theme="dark"] .preview-btn:hover {
+        background-color: #00ccff !important;
+        color: #121212 !important;
+        box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    [data-theme="dark"] .download-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .download-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Download animation */
+    @keyframes downloading {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(3px); }
+        100% { transform: translateY(0); }
+    }
+    
+    .download-btn:active i {
+        animation: downloading 0.3s ease;
+    }
+</style>

@@ -2,7 +2,7 @@
   "admin": {
     "username": "andro",
     "password": "21232f297a57a5a743894a0e4a801fc3",
-    "loginToken": "e040100c8956fad128223d2a650deb08",
+    "loginToken": "c9a9a9412d3c11cd66676fe8f8a29ea5",
     "logs": [
       {
         "time": "2022-10-01T14:16:59.205Z",
@@ -623,6 +623,31 @@
         "time": "2023-11-05T20:08:41.699Z",
         "type": "ERROR",
         "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21\" 2023-0. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T10:47:18.769Z",
+        "type": "ERROR",
+        "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T10:54:52.473Z",
+        "type": "ERROR",
+        "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T11:40:37.083Z",
+        "type": "ERROR",
+        "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T11:44:46.026Z",
+        "type": "ERROR",
+        "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
+      },
+      {
+        "time": "2025-03-13T11:51:49.357Z",
+        "type": "ERROR",
+        "message": "Build Failed - Wrong Java Version Installed. Detected openjdk version \"21.0.6\" 20. Please use Java 1.8.0"
       }
     ],
     "ipLog": []

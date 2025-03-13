@@ -1,26 +1,209 @@
-<div class="ui segment">
-    <div class="ui secondary menu">
-        <div class="right menu">
-            <button onclick="updateButton(this, '0xIN')" class="ui blue button"> <i
-                    class="icon sync"></i>Update</button>
+<div class="apps-container">
+    <div class="ui segment apps-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="cube icon"></i>
+                <span class="title">Installed Applications</span>
+            </div>
+            <div class="right menu">
+                <button onclick="updateButton(this, '0xIN')" class="ui button update-btn">
+                    <i class="icon sync"></i>
+                    <span class="btn-text">Update</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="apps-table-container">
+            <table class="ui celled table apps-table">
+                <thead>
+                    <tr>
+                        <th>Application Name</th>
+                        <th>Package ID</th>
+                        <th>Version</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="3" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon cube outline"></i>
+                                    <p>No applications found</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((app) => { %>
+                        <tr class="app-row">
+                            <td class="app-name" title="<%= app.appName %>">
+                                <i class="cube icon"></i>
+                                <span class="name-text"><%= app.appName.substring(0,24) %></span>
+                            </td>
+                            <td class="package-name" title="<%= app.packageName %>">
+                                <i class="code branch icon"></i>
+                                <span class="package-text"><%= app.packageName %></span>
+                            </td>
+                            <td class="version" title="<%= app.versionName %>">
+                                <i class="tag icon"></i>
+                                <span class="version-text"><%= app.versionName.substring(0,12) %></span>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Package</th>
-                <th>Version</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((app) => { %>
-            <tr>
-                <td title="<%= app.appName %>"><%= app.appName.substring(0,24) %></td>
-                <td title="<%= app.packageName %>"><%= app.packageName %></td>
-                <td title="<%= app.versionName %>"><%= app.versionName.substring(0,12) %></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
 </div>
+
+<style>
+    .apps-container {
+        padding: 20px;
+    }
+    
+    .apps-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .apps-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .update-btn {
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .update-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .update-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+    
+    .apps-table-container {
+        padding: 15px;
+    }
+    
+    .apps-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .apps-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .app-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .app-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .app-name,
+    .package-name,
+    .version {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    [data-theme="dark"] .app-row td {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .app-row i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .name-text,
+    .package-text,
+    .version-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+    
+    [data-theme="dark"] .update-btn.loading {
+        animation: pulse-border 1.5s infinite;
+        background-color: transparent !important;
+    }
+</style>

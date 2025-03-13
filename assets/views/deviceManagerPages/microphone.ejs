@@ -1,8 +1,8 @@
-<div class="ui segment">
+<div class="ui inverted segment">
     <div>
-        <div class="ui action input fluid">
+        <div class="ui inverted action input fluid">
             <input type="number" placeholder="Duration (seconds)" min="0" max="120" id="seconds">
-            <button onclick="record(this)" class="ui red left labeled icon button">
+            <button onclick="record(this)" class="ui red inverted left labeled icon button">
                 <i class="microphone icon"></i>
                 Record
             </button>
@@ -29,8 +29,7 @@
 
     </script>
 
-
-    <table class="ui celled table">
+    <table class="ui inverted celled table">
         <thead>
             <tr>
                 <th>Time</th>
@@ -47,17 +46,16 @@
                 <td><%= item.originalName %></td>
                 <td class="collapsing">
                     <div class="ui buttons">
-                        <button onclick="playClip('<%= item.path %>')" class="ui button blue">Play</button>
+                        <button onclick="playClip('<%= item.path %>')" class="ui blue inverted button">Play</button>
                         <div class="or"></div>
                         <a href="<%= item.path %>" download="<%= item.originalName %>"
-                            class="ui positive button">Save</a>
+                            class="ui positive inverted button">Save</a>
                     </div>
                 </td>
             </tr>
             <% }) %>
         </tbody>
     </table>
-
 
     <script>
         function record(element) {

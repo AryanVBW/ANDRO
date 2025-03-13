@@ -3,27 +3,246 @@
 
 <% include partials/head.ejs %>
 
-
 <body>
     <script>
         gtag('event', 'screen_view', {
             'screen_name': 'logs',
             'app_name': 'ANDRO'
         });
+
+        // Auto-scroll to bottom of logs
+        $(document).ready(function() {
+            const logs = document.querySelector('.logs');
+            logs.scrollTop = logs.scrollHeight;
+            
+            // Add typing animation to new logs
+            $('.logitm').each(function(index) {
+                $(this).css({
+                    'opacity': '0',
+                    'transform': 'translateY(10px)'
+                });
+                
+                setTimeout(() => {
+                    $(this).css({
+                        'opacity': '1',
+                        'transform': 'translateY(0)',
+                        'transition': 'all 0.3s ease'
+                    });
+                }, index * 100);
+            });
+        });
     </script>
-    <div class="ui container">
+
+    <div class="ui container main-container">
         <% include partials/header.ejs %>
-        <div class="ui segment">
+        <div class="ui segment logs-container">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-button close"></span>
+                    <span class="terminal-button minimize"></span>
+                    <span class="terminal-button maximize"></span>
+                </div>
+                <div class="terminal-title">System Logs</div>
+            </div>
             <div class="logs">
-                <% logs.forEach((log) => { %>
-                <div class="logitm <%= log.type %>">
-                    <%= new Date(log.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %> =>
-                    <%= log.type %> | <%= log.message %> </div>
-                <% }) %>
+                <% if (logs.length === 0) { %>
+                    <div class="logitm empty">No logs available...</div>
+                <% } else { %>
+                    <% logs.forEach((log) => { %>
+                        <div class="logitm <%= log.type %>">
+                            <span class="timestamp">[<%= new Date(log.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %>]</span>
+                            <span class="type">[<%= log.type %>]</span>
+                            <span class="message"><%= log.message %></span>
+                        </div>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
     </div>
     <% include partials/footer.ejs %>
+
+    <style>
+        .main-container {
+            padding-bottom: 80px;
+        }
+        
+        .logs-container {
+            border-radius: 8px;
+            padding: 0 !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .logs-container {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .terminal-header {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--highlight-color);
+        }
+        
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-button.close {
+            background-color: #ff5f56;
+        }
+        
+        .terminal-button.minimize {
+            background-color: #ffbd2e;
+        }
+        
+        .terminal-button.maximize {
+            background-color: #27c93f;
+        }
+        
+        .terminal-button:hover {
+            filter: brightness(0.8);
+        }
+        
+        .terminal-title {
+            color: var(--text-color);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        
+        .logs {
+            background-color: rgba(0, 0, 0, 0.3);
+            min-height: 600px;
+            max-height: 600px;
+            padding: 15px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .logitm {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            transition: all 0.3s ease;
+        }
+        
+        .logitm:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        
+        .logitm .timestamp {
+            color: #888;
+        }
+        
+        .logitm .type {
+            margin: 0 8px;
+        }
+        
+        .logitm .message {
+            margin-left: 8px;
+        }
+        
+        .logitm.INFO {
+            color: #00ccff;
+        }
+        
+        .logitm.INFO .type {
+            color: #00ccff;
+        }
+        
+        .logitm.SUCCESS {
+            color: var(--highlight-color);
+        }
+        
+        .logitm.SUCCESS .type {
+            color: var(--highlight-color);
+        }
+        
+        .logitm.ERROR {
+            color: #ff5252;
+        }
+        
+        .logitm.ERROR .type {
+            color: #ff5252;
+        }
+        
+        .logitm.empty {
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Custom Scrollbar */
+        .logs::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .logs::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .logs::-webkit-scrollbar-thumb {
+            background: var(--highlight-color);
+            border-radius: 4px;
+        }
+        
+        .logs::-webkit-scrollbar-thumb:hover {
+            background: #00cc7a;
+        }
+        
+        /* Terminal cursor effect */
+        .logitm:last-child::after {
+            content: '█';
+            animation: cursor-blink 1s infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Glitch effect for errors */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .logitm.ERROR:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+    </style>
 </body>
 
 </html>

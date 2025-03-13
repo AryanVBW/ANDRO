@@ -1,22 +1,77 @@
-<br>
-<div class="ui secondary menu">
-    <div class="header item"><img src="/logo.png" style="width: 120px"></div>
-    <a href="/" class="item">
-        <i class="icon mobile alternate"></i>&nbsp;&nbsp; Devices
-    </a>
-
-    <a href="/builder" class="item">
-        <i class="icon wrench"></i>&nbsp;&nbsp; APP Builder
-    </a>
-
-    <a href="/logs" class="item">
-        <i class="icon terminal"></i>&nbsp;&nbsp; Event Log's
-    </a>
-    <div class="right menu">
-        <a href="/Logout" class="ui item">
-            <i class="icon door"></i>&nbsp;&nbsp; Logout
+<div class="ui container main-header">
+    <div class="ui secondary menu">
+        <div class="header item"><img src="/logo.png" style="width: 120px" alt="ANDRO_RAT"></div>
+        <a href="/" class="item">
+            <i class="icon mobile alternate"></i><span class="menu-text">Devices</span>
         </a>
+
+        <a href="/builder" class="item">
+            <i class="icon wrench"></i><span class="menu-text">APP Builder</span>
+        </a>
+
+        <a href="/logs" class="item">
+            <i class="icon terminal"></i><span class="menu-text">Event Log's</span>
+        </a>
+        <div class="right menu">
+            <a href="/Logout" class="ui item">
+                <i class="icon sign-out"></i><span class="menu-text">Logout</span>
+            </a>
+        </div>
     </div>
+    <div class="ui divider header-divider"></div>
 </div>
-<div class="ui divider"></div>
-<br>
+
+<style>
+    .main-header {
+        padding: 15px 0;
+    }
+    
+    .ui.secondary.menu {
+        border-radius: 8px;
+        padding: 10px;
+        backdrop-filter: blur(5px);
+    }
+    
+    [data-theme="dark"] .ui.secondary.menu {
+        background-color: rgba(18, 18, 18, 0.8);
+        border: 1px solid var(--highlight-color);
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+    }
+    
+    .ui.secondary.menu .item {
+        border-radius: 5px;
+        margin: 0 5px;
+        padding: 8px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] .ui.secondary.menu .item {
+        color: var(--text-color);
+    }
+    
+    [data-theme="dark"] .ui.secondary.menu .item:hover {
+        background-color: rgba(0, 255, 157, 0.1);
+        color: var(--highlight-color);
+    }
+    
+    [data-theme="dark"] .ui.secondary.menu .active.item {
+        background-color: rgba(0, 255, 157, 0.2);
+        color: var(--highlight-color);
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
+    }
+    
+    .menu-text {
+        margin-left: 5px;
+    }
+    
+    .header-divider {
+        margin-top: 5px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    [data-theme="dark"] .header-divider {
+        background-color: var(--highlight-color) !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+        height: 1px;
+    }
+</style>

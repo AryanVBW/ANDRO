@@ -1,10 +1,143 @@
+/* Light Mode (Default) */
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f9f9f9;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --header-color: #222222;
+  --border-color: #e0e0e0;
+  --highlight-color: #2ecc71;
+  --accent-color: #00b5ad;
+  --danger-color: #f03434;
+  --success-color: #2ecc71;
+  --info-color: #6781f8;
+  --glow-color: rgba(46, 204, 113, 0.5);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --primary-bg: #121212;
+  --secondary-bg: #1e1e1e;
+  --card-bg: #252525;
+  --text-color: #e0e0e0;
+  --header-color: #00ff9d;
+  --border-color: #333333;
+  --highlight-color: #00ff9d;
+  --accent-color: #00ff9d;
+  --danger-color: #ff5252;
+  --success-color: #00ff9d;
+  --info-color: #00ccff;
+  --glow-color: rgba(0, 255, 157, 0.5);
+}
+
+/* Apply theme colors */
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.ui.segment, .ui.card, .ui.form input, .ui.menu {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.ui.header, h1, h2, h3, h4, h5 {
+  color: var(--header-color);
+}
+
+/* Hacker Theme Styles */
+[data-theme="dark"] .ui.segment, 
+[data-theme="dark"] .ui.card, 
+[data-theme="dark"] .ui.stacked.segment {
+  box-shadow: 0 0 10px var(--glow-color);
+  border: 1px solid var(--highlight-color);
+}
+
+[data-theme="dark"] .ui.header, 
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5 {
+  text-shadow: 0 0 5px var(--glow-color);
+}
+
+[data-theme="dark"] .ui.button {
+  background-color: transparent;
+  color: var(--highlight-color);
+  border: 1px solid var(--highlight-color);
+  box-shadow: 0 0 5px var(--glow-color);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .ui.button:hover {
+  background-color: var(--highlight-color);
+  color: #121212;
+  box-shadow: 0 0 15px var(--glow-color);
+}
+
+[data-theme="dark"] .ui.input input {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--text-color);
+  border: 1px solid var(--highlight-color);
+}
+
+[data-theme="dark"] .ui.menu {
+  background-color: var(--secondary-bg);
+  border-color: var(--highlight-color);
+}
+
+[data-theme="dark"] .ui.menu .item {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .ui.menu .active.item {
+  background-color: rgba(0, 255, 157, 0.1);
+  color: var(--highlight-color);
+}
+
+[data-theme="dark"] .ui.menu .item:hover {
+  background-color: rgba(0, 255, 157, 0.2);
+}
+
+/* Terminal effect for logs */
+.logs {
+  background-color: #121212;
+  min-height: 600px;
+  max-height: 600px;
+  width: 100%;
+  border-radius: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace;
+  word-wrap: break-word;
+  padding: 10px;
+  border: 1px solid var(--highlight-color);
+}
+
+.logs .logitm.INFO {
+  color: var(--info-color);
+}
+
+.logs .logitm.SUCCESS {
+  color: var(--success-color);
+}
+
+.logs .logitm.ERROR {
+  color: var(--danger-color);
+}
+
+/* Default theme classes */
 .hoverEdit .item.active {
-  background-color: #eaeaea !important;
+  background-color: var(--secondary-bg) !important;
 }
 
 .hoverEdit .item:hover {
-  background-color: #fbfbfb !important;
-  border-color: rgba(34, 36, 38, 0.25) !important;
+  background-color: var(--secondary-bg) !important;
+  border-color: var(--border-color) !important;
 }
 
 .event i.arrow.icon {
@@ -12,29 +145,90 @@
   position: relative;
 }
 
-.logs {
-  background-color: #4d4d4d;
-  min-height: 600px;
-  max-height: 600px;
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle {
+  box-shadow: 0 0 5px var(--glow-color);
+}
+
+/* Hacker-style animation effects */
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                0.05em 0 0 rgba(0, 255, 0, 0.75),
+                0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+                -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+                -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+[data-theme="dark"] h1.glitch,
+[data-theme="dark"] h2.glitch,
+[data-theme="dark"] h3.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+/* Login page specific styling */
+.login-container {
+  max-width: 550px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(37, 37, 37, 0.8);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+[data-theme="dark"] .login-container {
+  border: 1px solid var(--highlight-color);
+}
+
+.login-logo {
+  margin-bottom: 20px;
+}
+
+.login-header {
+  margin-bottom: 30px;
+}
+
+/* Matrix effect for loading */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-radius: 5px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  color: #fff;
-  font-family: 'Courier New', Courier, monospace;
-  word-wrap: break-word;
-  padding: 10px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  z-index: -1;
 }
-
-.logs .logitm.INFO {
-  color: #6781f8;
-}
-
-.logs .logitm.SUCCESS {
-  color: #2ecc71;
-}
-
-.logs .logitm.ERROR {
-  color: #f03434;
-}
-/*# sourceMappingURL=custom.css.map */

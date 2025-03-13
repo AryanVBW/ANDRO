@@ -1,20 +1,221 @@
-<div class="ui segment">
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Content</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((notification) => { 
-                    let date = new Date(notification.time);
-                %>
-            <tr>
-                <td class="collapsing"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                <td><%= notification.content %></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+<div class="clipboard-container">
+    <div class="ui segment clipboard-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="clipboard icon"></i>
+                <span class="title">Clipboard History</span>
+            </div>
+        </div>
+        
+        <div class="clipboard-table-container">
+            <table class="ui celled table clipboard-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="2" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon clipboard outline"></i>
+                                    <p>No clipboard history found</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((notification) => { 
+                            let date = new Date(notification.time);
+                        %>
+                        <tr class="clipboard-row">
+                            <td class="time-cell">
+                                <i class="clock outline icon"></i>
+                                <%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %>
+                            </td>
+                            <td class="content-cell">
+                                <div class="content-wrapper">
+                                    <i class="code icon"></i>
+                                    <span class="clipboard-content"><%= notification.content %></span>
+                                    <button class="ui button copy-btn" onclick="copyContent(this)" data-content="<%= notification.content %>">
+                                        <i class="copy outline icon"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<style>
+    .clipboard-container {
+        padding: 20px;
+    }
+    
+    .clipboard-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .clipboard-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .clipboard-table-container {
+        padding: 15px;
+    }
+    
+    .clipboard-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .clipboard-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .clipboard-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .clipboard-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .time-cell {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+    }
+    
+    .content-cell {
+        font-family: 'Courier New', monospace;
+    }
+    
+    .content-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .clipboard-content {
+        flex: 1;
+        word-break: break-all;
+    }
+    
+    [data-theme="dark"] .clipboard-row td {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .clipboard-row i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .copy-btn {
+        background: transparent !important;
+        padding: 8px !important;
+        min-width: 36px !important;
+        height: 36px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .copy-btn {
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .copy-btn:hover {
+        background-color: rgba(0, 255, 157, 0.1) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    [data-theme="dark"] .copy-btn.copied {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Copy animation */
+    @keyframes copied {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.9); }
+        100% { transform: scale(1); }
+    }
+    
+    .copy-btn.copied i {
+        animation: copied 0.3s ease;
+    }
+</style>
+
+<script>
+    function copyContent(button) {
+        const content = button.getAttribute('data-content');
+        navigator.clipboard.writeText(content).then(() => {
+            $(button).addClass('copied');
+            setTimeout(() => {
+                $(button).removeClass('copied');
+            }, 1000);
+            showNotification('#00ff9d', 'Content copied to clipboard');
+        });
+    }
+</script>
