@@ -1,7 +1,6 @@
 /* 
 *   ANDRO
-*   ANDRO Unleash Mobile Security with our Android Exploitation and Analysis Tool. An Android Monitoring Tool
-*   By Vivek W
+*   By AryanVBW
 */
 
 

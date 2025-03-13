@@ -7,8 +7,8 @@ const
 
 db.defaults({
     admin: {
-        username: 'admin',
-        password: '',
+        username: 'ANDRO',
+        password: 'admin',
         loginToken: '',
         logs: [],
         ipLog: []
