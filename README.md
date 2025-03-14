@@ -83,14 +83,37 @@ It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www
    - J
 ## Demo Login page & Control Panel
 
+
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/login.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/APK-Builder.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Control-Panel.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Device-Management.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Logs.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/callhistory.png" alt="Darkside"></a>
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Files-Directories.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/contact.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/downlaods.png" alt="Darkside"></a>
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/clipbord.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/recoding.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/permission.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/gps.png" alt="Darkside"></a>
 <img src="https://github.com/AryanVBW/ANDRO/releases/download/p1/controlpanel.gif">
 
-
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/shot2.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/apkbilder.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/logs.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/deivicepanel.png" alt="Darkside"></a>
-<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/logos2024/location.png" alt="Darkside"></a>
 <p align="center"> 
   Visitor count<br>
   <img src="https://profile-counter.glitch.me/Aryanvbw/count.svg" />
