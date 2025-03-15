@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<% include partials/head.ejs %>
-
+<%- include('partials/head.ejs') %>
 
 <body>
     <script>
@@ -13,86 +12,283 @@
 
         gtag('event', 'devicecount', {
             'devicesonline': <%= clientsOnline.length %>,
-            'devicesoffline': <%= clientsOffline.length %>,
+            'devicesoffline': <%= clientsOffline.length %>
         });
-
     </script>
-    <div class="ui container">
-        <% include partials/header.ejs %>
-        <div class="ui segment">
+    
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        
+        <div class="ui segment device-list-container">
+            <div class="status-section">
+                <h2 class="ui header section-header">
+                    <i class="circle icon online-icon"></i>
+                    <div class="content">
+                        Online Devices
+                        <div class="sub header device-count"><%= clientsOnline.length %> device(s) connected</div>
+                    </div>
+                </h2>
+                
+                <div class="ui divider styled-divider"></div>
+                
+                <table class="ui celled table device-table online-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>IP</th>
+                            <th>Device</th>
+                            <th>Last Seen</th>
+                            <th>Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (clientsOnline.length === 0) { %>
+                            <tr>
+                                <td colspan="6" class="center aligned">
+                                    <div class="empty-state">
+                                        <i class="icon mobile slash"></i>
+                                        <p>No devices online</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <% clientsOnline.forEach((item) => { 
+                           let lsdate = new Date(item.lastSeen);
+                           let flagCss = (item.dynamicData.clientGeo.country !== undefined) ? ('flag ' + item.dynamicData.clientGeo.country).toLowerCase() : 'icon question mark' 
+                           let deviceStr = '';
+                           deviceStr += (item.dynamicData.device.manufacture !== undefined) ? item.dynamicData.device.manufacture :  ''; 
+                           deviceStr += (item.dynamicData.device.model !== undefined) ? ' (' + item.dynamicData.device.model + ')' :  ''; 
+                           %>
+                        <tr>
+                            <td class="collapsing client-id"><%= item.clientID %></td>
+                            <td class="collapsing"><i class="<%= flagCss %>"></i></td>
+                            <td class="collapsing"><%= item.dynamicData.clientIP %></td>
+                            <td><%= deviceStr %></td>
+                            <td class="collapsing"><%= lsdate.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
+                            <td class="collapsing">
+                                <a href="/manage/<%= item.clientID %>/info" class="ui button manage-btn">
+                                    <i class="terminal icon"></i> Manage
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
 
-            <h3 class="ui grey dividing header">Online</h3>
-
-            <table class="ui celled table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>IP</th>
-                        <th>Device</th>
-                        <th>Last Seen</th>
-                        <th>Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% clientsOnline.forEach((item) => { 
-                       let lsdate = new Date(item.lastSeen);
-                       let flagCss = (item.dynamicData.clientGeo.country !== undefined) ? ('flag ' + item.dynamicData.clientGeo.country).toLowerCase() : 'icon question mark' 
-                       let deviceStr = '';
-                       deviceStr += (item.dynamicData.device.manufacture !== undefined) ? item.dynamicData.device.manufacture :  ''; 
-                       deviceStr += (item.dynamicData.device.model !== undefined) ? ' (' + item.dynamicData.device.model + ')' :  ''; 
-                       %>
-                    <tr>
-                        <td class="collapsing"><%= item.clientID %></td>
-                        <td class="collapsing"><i class="<%= flagCss %>"></i></td>
-                        <td class="collapsing"><%= item.dynamicData.clientIP %></td>
-                        <td><%= deviceStr %></td>
-                        <td class="collapsing"><%= lsdate.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                        <td class="collapsing"><a href="/manage/<%= item.clientID %>/info"
-                                class="ui button blue">Manage</a>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-
-
-            <h3 class="ui grey dividing header">Offline</h3>
-            <table class="ui celled table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>IP</th>
-                        <th>Device</th>
-                        <th>Last Seen</th>
-                        <th>Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% clientsOffline.forEach((item) => { 
-                       let lsdate = new Date(item.lastSeen);
-                       let flagCss = (item.dynamicData.clientGeo.country !== undefined) ? ('flag ' + item.dynamicData.clientGeo.country).toLowerCase() : 'icon question mark' 
-                       let deviceStr = '';
-                       deviceStr += (item.dynamicData.device.manufacture !== undefined) ? item.dynamicData.device.manufacture :  ''; 
-                       deviceStr += (item.dynamicData.device.model !== undefined) ? ' (' + item.dynamicData.device.model + ')' :  ''; 
-                       %>
-                    <tr>
-                        <td class="collapsing"><%= item.clientID %></td>
-                        <td class="collapsing"><i class="<%= flagCss %>"></i></td>
-                        <td class="collapsing"><%= item.dynamicData.clientIP %></td>
-                        <td><%= deviceStr %></td>
-                        <td class="collapsing"><%= lsdate.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                        <td class="collapsing"><a href="/manage/<%= item.clientID %>/info"
-                                class="ui button blue">Manage</a>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+            <div class="status-section">
+                <h2 class="ui header section-header">
+                    <i class="circle icon offline-icon"></i>
+                    <div class="content">
+                        Offline Devices
+                        <div class="sub header device-count"><%= clientsOffline.length %> device(s) disconnected</div>
+                    </div>
+                </h2>
+                
+                <div class="ui divider styled-divider"></div>
+                
+                <table class="ui celled table device-table offline-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>IP</th>
+                            <th>Device</th>
+                            <th>Last Seen</th>
+                            <th>Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (clientsOffline.length === 0) { %>
+                            <tr>
+                                <td colspan="6" class="center aligned">
+                                    <div class="empty-state">
+                                        <i class="icon mobile slash"></i>
+                                        <p>No offline devices</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <% clientsOffline.forEach((item) => { 
+                           let lsdate = new Date(item.lastSeen);
+                           let flagCss = (item.dynamicData.clientGeo.country !== undefined) ? ('flag ' + item.dynamicData.clientGeo.country).toLowerCase() : 'icon question mark' 
+                           let deviceStr = '';
+                           deviceStr += (item.dynamicData.device.manufacture !== undefined) ? item.dynamicData.device.manufacture :  ''; 
+                           deviceStr += (item.dynamicData.device.model !== undefined) ? ' (' + item.dynamicData.device.model + ')' :  ''; 
+                           %>
+                        <tr>
+                            <td class="collapsing client-id"><%= item.clientID %></td>
+                            <td class="collapsing"><i class="<%= flagCss %>"></i></td>
+                            <td class="collapsing"><%= item.dynamicData.clientIP %></td>
+                            <td><%= deviceStr %></td>
+                            <td class="collapsing"><%= lsdate.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
+                            <td class="collapsing">
+                                <a href="/manage/<%= item.clientID %>/info" class="ui button manage-btn offline-btn">
+                                    <i class="terminal icon"></i> Manage
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <% include partials/footer.ejs %>
+    <%- include('partials/footer.ejs') %>
+
+    <style>
+        .main-container {
+            padding-bottom: 80px;
+        }
+        
+        .device-list-container {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .device-list-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+        }
+        
+        .status-section {
+            margin-bottom: 30px;
+        }
+        
+        .status-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 15px;
+        }
+        
+        [data-theme="dark"] .section-header {
+            color: var(--highlight-color);
+        }
+        
+        .online-icon {
+            color: #00ff9d !important;
+        }
+        
+        .offline-icon {
+            color: #ff5252 !important;
+        }
+        
+        .device-count {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        [data-theme="dark"] .device-count {
+            color: var(--text-color);
+        }
+        
+        .styled-divider {
+            height: 1px;
+            margin: 15px 0 20px !important;
+        }
+        
+        [data-theme="dark"] .styled-divider {
+            background-color: var(--highlight-color) !important;
+            opacity: 0.5;
+            box-shadow: 0 0 5px var(--highlight-color);
+        }
+        
+        .device-table {
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .device-table {
+            background-color: rgba(18, 18, 18, 0.8);
+            border: 1px solid var(--highlight-color);
+        }
+        
+        [data-theme="dark"] .device-table thead th {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+            font-family: 'Courier New', monospace;
+            font-weight: normal;
+        }
+        
+        [data-theme="dark"] .device-table td {
+            border-color: rgba(0, 255, 157, 0.2) !important;
+            color: var(--text-color);
+            font-family: 'Courier New', monospace;
+        }
+        
+        [data-theme="dark"] .device-table tr:hover td {
+            background-color: rgba(0, 255, 157, 0.05) !important;
+        }
+        
+        .client-id {
+            font-weight: bold;
+        }
+        
+        [data-theme="dark"] .client-id {
+            color: var(--highlight-color) !important;
+        }
+        
+        .manage-btn {
+            background-color: var(--accent-color) !important;
+            color: white !important;
+            border-radius: 4px !important;
+            font-family: 'Courier New', monospace !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        [data-theme="dark"] .manage-btn {
+            background-color: transparent !important;
+            color: var(--highlight-color) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .manage-btn:hover {
+            background-color: var(--highlight-color) !important;
+            color: #121212 !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.5) !important;
+        }
+        
+        [data-theme="dark"] .offline-btn {
+            border: 1px solid rgba(255, 82, 82, 0.7) !important;
+            color: rgba(255, 82, 82, 0.9) !important;
+            box-shadow: 0 0 5px rgba(255, 82, 82, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .offline-btn:hover {
+            background-color: rgba(255, 82, 82, 0.9) !important;
+            color: #121212 !important;
+            box-shadow: 0 0 10px rgba(255, 82, 82, 0.5) !important;
+        }
+        
+        .empty-state {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        .empty-state i {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        [data-theme="dark"] .empty-state {
+            color: var(--text-color);
+        }
+    </style>
 </body>
 
 </html>

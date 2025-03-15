@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html>
 
-<% include partials/head.ejs %>
-
+<%- include('partials/head.ejs') %>
 
 <body>
-    <div class="ui container">
-        <% include partials/header.ejs %>
-        <div class="ui segment">
-
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        <div class="ui segment builder-container">
             <div id="dimmer" class="ui dimmer">
-                <div class="ui indeterminate text loader" id="loadingText">Submitting</div>
+                <div class="ui text loader" id="loadingText">
+                    <div class="loading-content">
+                        <div class="terminal-text"></div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h1 class="ui" style="text-align: center">APK Builder</h1>
+            <h1 class="ui center aligned header builder-title">APK Builder</h1>
             <div class="ui form" id="form">
                 <div class="inline fields">
                     <div class="six wide field">
                         <div class="ui labeled input">
-                            <div class="ui label">
+                            <div class="ui label protocol-label">
                                 http://
                             </div>
-                            <input type="text" id="uriInput" placeholder="IP / Public URL"
+                            <input type="text" id="uriInput" placeholder="IP / Public URL" 
                                 title="This is the public url of your server (AryanVBW.domain.com)">
                         </div>
                     </div>
                     <div class="two wide field">
-                        <label>:</label>
+                        <label class="port-label">:</label>
                         <input type="number" id="portInput" placeholder="PORT" min="2048" max="25565"
                             title="This is the `control_port` set in the consts" value="<%= myPort %>">
                     </div>
-
                 </div>
                 <div class="inline fields">
                     <div class="eight wide field">
-                        <button id="gobuild" class="positive ui fluid button"><i class="wrench icon"></i>Build</button>
+                        <button id="gobuild" class="ui fluid button build-btn">
+                            <i class="wrench icon"></i>Build
+                        </button>
                     </div>
                 </div>
             </div>
@@ -42,17 +48,163 @@
             <div class="ui form" id="download" style="display: none">
                 <div class="inline fields">
                     <div class="eight wide field">
-                        <a class="blue ui fluid button" download="AryanVBW.apk" href="/build.s.apk"><i
-                                class="download icon"></i>Download</a>
+                        <a class="ui fluid button download-btn" download="AryanVBW.apk" href="/build.s.apk">
+                            <i class="download icon"></i>Download APK
+                        </a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
     <style>
+        .main-container {
+            padding-bottom: 80px;
+        }
+        
+        .builder-container {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            padding: 30px;
+        }
+        
+        [data-theme="dark"] .builder-container {
+            background-color: rgba(18, 18, 18, 0.8);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .builder-title {
+            font-family: 'Courier New', monospace !important;
+            margin-bottom: 30px !important;
+            font-size: 2.5em !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        [data-theme="dark"] .builder-title {
+            color: var(--highlight-color) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+        
         .inline.fields {
             justify-content: center;
+            margin-bottom: 20px !important;
+        }
+        
+        [data-theme="dark"] .ui.labeled.input {
+            border: 1px solid var(--highlight-color);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .protocol-label {
+            background-color: rgba(0, 255, 157, 0.1) !important;
+            color: var(--highlight-color) !important;
+            border: none !important;
+            font-family: 'Courier New', monospace;
+        }
+        
+        [data-theme="dark"] input {
+            background-color: rgba(18, 18, 18, 0.9) !important;
+            color: var(--text-color) !important;
+            border: none !important;
+            font-family: 'Courier New', monospace !important;
+        }
+        
+        [data-theme="dark"] input:focus {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .port-label {
+            color: var(--highlight-color) !important;
+            font-size: 1.2em;
+            margin: 0 10px;
+        }
+        
+        .build-btn, .download-btn {
+            font-family: 'Courier New', monospace !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease !important;
+            height: 45px;
+        }
+        
+        [data-theme="dark"] .build-btn {
+            background-color: transparent !important;
+            color: var(--highlight-color) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .build-btn:hover {
+            background-color: var(--highlight-color) !important;
+            color: #121212 !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+        }
+        
+        [data-theme="dark"] .download-btn {
+            background-color: transparent !important;
+            color: #00ccff !important;
+            border: 1px solid #00ccff !important;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
+        }
+        
+        [data-theme="dark"] .download-btn:hover {
+            background-color: #00ccff !important;
+            color: #121212 !important;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+        }
+        
+        /* Loading animation styles */
+        .loading-content {
+            text-align: center;
+        }
+        
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            color: var(--highlight-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress {
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--highlight-color);
+            animation: progress 2s linear infinite;
+            box-shadow: 0 0 10px var(--highlight-color);
+        }
+        
+        @keyframes progress {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        [data-theme="dark"] .dimmer {
+            background-color: rgba(18, 18, 18, 0.95);
+        }
+
+        [data-theme="dark"] .terminal-text {
+            animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both infinite;
         }
     </style>
 
@@ -63,17 +215,20 @@
         });
 
         var loadingTexts = [
-            "Decompiling APK",
-            "Patching Server Information",
-            "Compiling APK",
-            "Signing APK",
-            "Verifying Build",
-            "Finalizing by AryanVBW"
+            "Initializing Build Process...",
+            "Decompiling APK...",
+            "Patching Server Information...",
+            "Injecting Payload...",
+            "Compiling Modified APK...",
+            "Signing Package...",
+            "Verifying Build Integrity...",
+            "Finalizing Build..."
         ];
 
         var loadingIndex = 0;
         var isDone = false;
         var isDoneInterval;
+
         $('#gobuild').click((e) => {
             $('#dimmer').addClass('active');
             build($('#uriInput').val(), $('#portInput').val());
@@ -82,21 +237,25 @@
 
         function loaderText() {
             var nextTimeout = Math.floor(Math.random() * 1500) + 700;
-            $('#loadingText').text(loadingTexts[loadingIndex]);
+            $('.terminal-text').text(loadingTexts[loadingIndex]);
             loadingIndex++;
-            if (loadingIndex !== loadingTexts.length) setTimeout(loaderText, nextTimeout);
-            else isDoneInterval = setInterval(() => {
-                if (isDone) {
-                    clearInterval(isDoneInterval);
-                    isDone = false;
-                    $('#dimmer').fadeOut(500, () => {
-                        $('#download').removeClass('active');
-                    })
-                    $('#form').fadeOut(500, () => {
-                        $('#download').fadeIn(200);
-                    })
-                }
-            }, 100);
+            
+            if (loadingIndex !== loadingTexts.length) {
+                setTimeout(loaderText, nextTimeout);
+            } else {
+                isDoneInterval = setInterval(() => {
+                    if (isDone) {
+                        clearInterval(isDoneInterval);
+                        isDone = false;
+                        $('#dimmer').fadeOut(500, () => {
+                            $('#download').removeClass('active');
+                        });
+                        $('#form').fadeOut(500, () => {
+                            $('#download').fadeIn(200);
+                        });
+                    }
+                }, 100);
+            }
         }
 
         function build(URI, PORT) {
@@ -105,13 +264,15 @@
             });
             $.post("/builder?uri=" + URI + "&port=" + PORT, function (data) {
                 if (!data.error) {
-                    isDone = true
-                } else showNotification('#f03434', data.error)
+                    isDone = true;
+                    showNotification('#00ff9d', 'Build completed successfully!');
+                } else {
+                    showNotification('#ff5252', data.error);
+                }
             });
         }
-
     </script>
-    <% include partials/footer.ejs %>
+    <%- include('partials/footer.ejs') %>
 </body>
 
 </html>

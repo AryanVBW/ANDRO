@@ -1,36 +1,281 @@
-<div class="ui segment">
-    <div class="ui secondary menu">
-        <div class="right menu">
-            <button onclick="updateButton(this, '0xCL')" class="ui blue button"> <i
-                    class="icon sync"></i>Update</button>
+<div class="calls-container">
+    <div class="ui segment calls-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="phone square icon"></i>
+                <span class="title">Call History</span>
+            </div>
+            <div class="right menu">
+                <button onclick="updateButton(this, '0xCL')" class="ui button update-btn">
+                    <i class="icon sync"></i>
+                    <span class="btn-text">Update</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="calls-table-container">
+            <table class="ui celled table calls-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Phone Number</th>
+                        <th>Type</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon phone slash"></i>
+                                    <p>No call history found</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((callData) => { 
+                            let date = new Date(parseInt(callData.date));
+                            let status = {
+                                type: "UNKNOWN",
+                                icon: "question",
+                                class: "unknown"
+                            };
+                            
+                            if(callData.type === 1) status = {
+                                type: "INCOMING",
+                                icon: "arrow down",
+                                class: "incoming"
+                            };
+                            if(callData.type === 2) status = {
+                                type: "OUTGOING",
+                                icon: "arrow up",
+                                class: "outgoing"
+                            };
+                            if(callData.type === 3) status = {
+                                type: "MISSED",
+                                icon: "phone slash",
+                                class: "missed"
+                            };
+                        %>
+                        <tr class="call-row <%= status.class %>">
+                            <td class="date-cell">
+                                <i class="clock outline icon"></i>
+                                <%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %>
+                            </td>
+                            <td class="phone-cell">
+                                <i class="phone icon"></i>
+                                <a href="?filter=<%= callData.phoneNo %>" class="phone-number">
+                                    <%= callData.phoneNo %>
+                                </a>
+                            </td>
+                            <td class="status-cell">
+                                <i class="<%= status.icon %> icon"></i>
+                                <%= status.type %>
+                            </td>
+                            <td class="duration-cell">
+                                <i class="stopwatch icon"></i>
+                                <%= callData.duration %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Phone Number</th>
-                <th>Status</th>
-                <th>Duration</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((callData) => { 
-                let date = new Date(parseInt(callData.date));
-                let status = "UNKNOWN";
-                if(callData.type === 1) status = "IN";
-                if(callData.type === 2) status = "OUT";
-                if(callData.type === 3) status = "MISSED";
-                
-            %>
-            <tr>
-                <td class="collapsing"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                <td><a href="?filter=<%= callData.phoneNo %>"><%= callData.phoneNo %></a></td>
-                <td><%= status %></td>
-                <td><%= callData.duration %></td>
-            </tr>
-            <% }) %>
-
-        </tbody>
-    </table>
 </div>
+
+<style>
+    .calls-container {
+        padding: 20px;
+    }
+    
+    .calls-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .calls-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .update-btn {
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .update-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .update-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+    
+    .calls-table-container {
+        padding: 15px;
+    }
+    
+    .calls-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .calls-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .call-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+        font-family: 'Courier New', monospace;
+    }
+    
+    [data-theme="dark"] .call-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .date-cell,
+    .phone-cell,
+    .status-cell,
+    .duration-cell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    [data-theme="dark"] .call-row td {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .call-row i {
+        opacity: 0.8;
+    }
+    
+    [data-theme="dark"] .incoming i {
+        color: #00ff9d !important;
+    }
+    
+    [data-theme="dark"] .outgoing i {
+        color: #00ccff !important;
+    }
+    
+    [data-theme="dark"] .missed i {
+        color: #ff5252 !important;
+    }
+    
+    .phone-number {
+        color: var(--highlight-color) !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .phone-number:hover {
+        text-shadow: 0 0 8px var(--highlight-color);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Call type indicators */
+    [data-theme="dark"] .call-row.incoming {
+        border-left: 3px solid #00ff9d;
+    }
+    
+    [data-theme="dark"] .call-row.outgoing {
+        border-left: 3px solid #00ccff;
+    }
+    
+    [data-theme="dark"] .call-row.missed {
+        border-left: 3px solid #ff5252;
+    }
+    
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+    
+    [data-theme="dark"] .update-btn.loading {
+        animation: pulse-border 1.5s infinite;
+        background-color: transparent !important;
+    }
+</style>
+
+<script>
+    function updateCallStatus() {
+        $('.call-row').each(function() {
+            const duration = $(this).find('.duration-cell').text().trim();
+            if (duration === '0') {
+                $(this).addClass('missed');
+            }
+        });
+    }
+    
+    $(document).ready(function() {
+        updateCallStatus();
+    });
+</script>

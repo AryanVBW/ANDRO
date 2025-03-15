@@ -1,93 +1,298 @@
-<div class="ui segment">
-    <div class="ui secondary menu">
-        <div class="right menu">
-            <button onclick="openDirectory(this, '/storage/emulated/0')" class="ui blue button dlop"> <i
-                    class="icon home"></i>Home</button>
-            <!-- Home = /storage/emulated/0 -->
+<div class="file-manager-container">
+    <div class="ui segment manager-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="path-display">
+                <i class="terminal icon"></i>
+                <span class="current-path">/storage/emulated/0</span>
+            </div>
+            <div class="right menu">
+                <button onclick="openDirectory(this, '/storage/emulated/0')" class="ui button home-btn dlop">
+                    <i class="icon home"></i>Home
+                </button>
+            </div>
+        </div>
+        
+        <div class="ui segment files-panel">
+            <table class="ui celled table files-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <div class="table-header">
+                                <i class="folder open icon"></i>
+                                Files and Directories
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% pageData.forEach((item) => { %>
+                    <tr class="file-item">
+                        <td class="file-info" title="<%= item.path %>">
+                            <i class="icon <%= item.isDir ? 'folder outline' : 'file outline' %>"></i>
+                            <span class="file-name"><%= item.name %></span>
+                        </td>
+                        <td class="file-actions collapsing">
+                            <% if(!item.isDir) { %>
+                            <button class="ui button action-btn dlop" onclick="downloadFile(this, '<%= item.path %>')">
+                                <i class="icon download"></i>
+                                <span class="action-text">Download</span>
+                            </button>
+                            <% } else { %>
+                            <button class="ui button action-btn dlop" onclick="openDirectory(this, '<%= item.path %>')">
+                                <i class="icon folder open"></i>
+                                <span class="action-text">Open</span>
+                            </button>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
         </div>
     </div>
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th style="text-align: center" colspan="2">Files</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((item) => { %>
-            <tr>
-                <td title="<%= item.path %>"><%= item.name %></td>
-                <td class="collapsing">
-                    <% if(!item.isDir) { %>
-                    <button class="ui button dlop" onclick="downloadFile(this, '<%= item.path %>')">&nbsp;&nbsp;&nbsp;<i
-                            class="icon download blue"></i></button>
-                    <% } else { %>
-                    <button class="ui button dlop"
-                        onclick="openDirectory(this, '<%= item.path %>')">&nbsp;&nbsp;&nbsp;<i
-                            class="icon folder open grey"></i></button>
-                    <% } %>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-
-    <script>
-
-        function openDirectory(element, path) {
-            $(element).children().css("opacity", "0");
-            $(element).addClass('blue');
-            $(element).addClass('loading');
-            $('.dlop').addClass('disabled');
-            sendCommand('0xFI', {
-                action: 'ls',
-                path
-            }, (error, message) => {
-                if (error) {
-                    setTimeout(() => {
-                        showNotification('#f03434', error)
-                        $(element).children().css("opacity", "1");
-                        $(element).removeClass('blue');
-                        $('.dlop').removeClass('loading')
-                    }, 300)
-                } else {
-                    if (message === 'Requested') {
-                        showNotification('#2ecc71', 'Requesting Files, Please Wait');
-                        setTimeout(() => {
-                            location.reload();
-                        }, 500)
-                    }
-                }
-            })
-        }
-
-        function downloadFile(element, path) {
-            $(element).children().css("opacity", "0");
-            $(element).addClass('green');
-            $(element).addClass('loading');
-            $('.dlop').addClass('disabled');
-            sendCommand('0xFI', {
-                action: 'dl',
-                path
-            }, (error, message) => {
-                if (error) {
-                    setTimeout(() => {
-                        showNotification('#f03434', error)
-                        $(element).children().css("opacity", "1");
-                        $(element).removeClass('green');
-                        $('.dlop').removeClass('disabled')
-                    }, 300)
-                } else {
-                    if (message === 'Requested') {
-                        setTimeout(() => {
-                            $(element).children().css("opacity", "1");
-                            $(element).removeClass('green');
-                            $(element).removeClass('loading');
-                            $('.dlop').removeClass('disabled')
-                            showNotification('#2ecc71', 'Downloading File, It will be avaliable in `Downloads` Soon');
-                        }, 300)
-                    }
-                }
-            })
-        }
-    </script>
 </div>
+
+<style>
+    .file-manager-container {
+        padding: 20px;
+    }
+
+    .manager-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .manager-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .path-display {
+        font-family: 'Courier New', monospace;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    [data-theme="dark"] .path-display {
+        color: var(--highlight-color);
+    }
+    
+    .current-path {
+        opacity: 0.8;
+    }
+    
+    .home-btn {
+        font-family: 'Courier New', monospace !important;
+    }
+    
+    [data-theme="dark"] .home-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .home-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+    
+    .files-panel {
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background-color: transparent !important;
+    }
+    
+    .files-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .files-table {
+        background-color: transparent !important;
+        border: none !important;
+    }
+    
+    [data-theme="dark"] .files-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .table-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    [data-theme="dark"] .file-item td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] .file-item:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .file-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .file-info {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .file-info i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .file-name {
+        opacity: 0.9;
+    }
+    
+    .file-actions {
+        text-align: right !important;
+        padding: 8px !important;
+    }
+    
+    .action-btn {
+        font-family: 'Courier New', monospace !important;
+        padding: 8px 15px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .action-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .action-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    [data-theme="dark"] .action-btn.loading {
+        background-color: transparent !important;
+        border-color: var(--highlight-color) !important;
+    }
+    
+    [data-theme="dark"] .action-btn.loading::after {
+        border-color: var(--highlight-color) transparent transparent !important;
+    }
+    
+    .action-text {
+        margin-left: 5px;
+    }
+    
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+    
+    [data-theme="dark"] .action-btn.loading {
+        animation: pulse-border 1.5s infinite;
+    }
+</style>
+
+<script>
+    function openDirectory(element, path) {
+        $(element).children('.action-text').fadeOut(200);
+        $(element).addClass('loading');
+        $('.dlop').addClass('disabled');
+        
+        // Update path display
+        $('.current-path').text(path);
+        
+        sendCommand('0xFI', {
+            action: 'ls',
+            path
+        }, (error, message) => {
+            if (error) {
+                setTimeout(() => {
+                    showNotification('#ff5252', error);
+                    $(element).children('.action-text').fadeIn(200);
+                    $(element).removeClass('loading');
+                    $('.dlop').removeClass('disabled');
+                }, 300);
+            } else if (message === 'Requested') {
+                showNotification('#00ff9d', 'Fetching files...');
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            }
+        });
+    }
+
+    function downloadFile(element, path) {
+        $(element).children('.action-text').fadeOut(200);
+        $(element).addClass('loading');
+        $('.dlop').addClass('disabled');
+        
+        sendCommand('0xFI', {
+            action: 'dl',
+            path
+        }, (error, message) => {
+            if (error) {
+                setTimeout(() => {
+                    showNotification('#ff5252', error);
+                    $(element).children('.action-text').fadeIn(200);
+                    $(element).removeClass('loading');
+                    $('.dlop').removeClass('disabled');
+                }, 300);
+            } else if (message === 'Requested') {
+                setTimeout(() => {
+                    $(element).children('.action-text').fadeIn(200);
+                    $(element).removeClass('loading');
+                    $('.dlop').removeClass('disabled');
+                    showNotification('#00ff9d', 'Downloading file... Check Downloads section soon.');
+                }, 300);
+            }
+        });
+    }
+
+    // Add path click functionality
+    $(document).ready(function() {
+        $('.current-path').on('click', function() {
+            const path = $(this).text();
+            navigator.clipboard.writeText(path).then(() => {
+                showNotification('#00ff9d', 'Path copied to clipboard');
+            });
+        });
+    });
+</script>

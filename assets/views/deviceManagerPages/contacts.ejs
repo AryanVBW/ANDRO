@@ -1,27 +1,255 @@
-<div class="ui segment">
-    <div class="ui secondary menu">
-        <div class="right menu">
-            <button onclick="updateButton(this, '0xCO')" class="ui blue button"> <i
-                    class="icon sync"></i>Update</button>
+<div class="contacts-container">
+    <div class="ui segment contacts-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="address book icon"></i>
+                <span class="title">Contact List</span>
+            </div>
+            <div class="right menu">
+                <button onclick="updateButton(this, '0xCO')" class="ui button update-btn">
+                    <i class="icon sync"></i>
+                    <span class="btn-text">Update</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="contacts-table-container">
+            <table class="ui celled table contacts-table">
+                <thead>
+                    <tr>
+                        <th class="name-col">Name</th>
+                        <th class="phone-col">Phone Number</th>
+                        <th class="actions-col" colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon address card outline"></i>
+                                    <p>No contacts found</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((contact) => { %>
+                        <tr class="contact-row">
+                            <td class="name-cell">
+                                <i class="user circle icon"></i>
+                                <%= contact.name %>
+                            </td>
+                            <td class="phone-cell">
+                                <i class="phone icon"></i>
+                                <%= contact.phoneNo %>
+                            </td>
+                            <td class="action-cell collapsing">
+                                <a href="<%= baseURL %>/calls?filter=<%= contact.phoneNo %>" class="ui button action-btn calls-btn">
+                                    <i class="phone icon"></i>
+                                    <span class="action-text">Calls</span>
+                                </a>
+                            </td>
+                            <td class="action-cell collapsing">
+                                <a href="<%= baseURL %>/sms?filter=<%= contact.phoneNo %>" class="ui button action-btn sms-btn">
+                                    <i class="comment icon"></i>
+                                    <span class="action-text">SMS</span>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th colspan="2">Logs</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((contact) => { %>
-            <tr>
-                <td><%= contact.name %></td>
-                <td><%= contact.phoneNo %></td>
-                <td class="collapsing"><a href="<%= baseURL %>/calls?filter=<%= contact.phoneNo %>">Call Log</a></td>
-                <td class="collapsing"><a href="<%= baseURL %>/sms?filter=<%= contact.phoneNo %>">SMS Log</a></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
 </div>
+
+<style>
+    .contacts-container {
+        padding: 20px;
+    }
+    
+    .contacts-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .contacts-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .update-btn {
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .update-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .update-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+    }
+    
+    .contacts-table-container {
+        padding: 15px;
+    }
+    
+    .contacts-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .contacts-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .contact-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .contact-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .name-cell, .phone-cell {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    [data-theme="dark"] .name-cell,
+    [data-theme="dark"] .phone-cell {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .name-cell i,
+    [data-theme="dark"] .phone-cell i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .action-btn {
+        font-family: 'Courier New', monospace !important;
+        padding: 8px 15px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .action-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .action-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    [data-theme="dark"] .calls-btn {
+        color: #00ccff !important;
+        border-color: #00ccff !important;
+        box-shadow: 0 0 5px rgba(0, 204, 255, 0.2);
+    }
+    
+    [data-theme="dark"] .calls-btn:hover {
+        background-color: #00ccff !important;
+        box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+    }
+    
+    [data-theme="dark"] .sms-btn {
+        color: #00ff9d !important;
+        border-color: #00ff9d !important;
+        box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .sms-btn:hover {
+        background-color: #00ff9d !important;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+    }
+    
+    .action-text {
+        margin-left: 5px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+    
+    [data-theme="dark"] .update-btn.loading {
+        animation: pulse-border 1.5s infinite;
+        background-color: transparent !important;
+    }
+</style>

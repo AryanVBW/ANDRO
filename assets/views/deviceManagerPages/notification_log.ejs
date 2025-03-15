@@ -1,27 +1,213 @@
-<div class="ui segment">
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Package</th>
-                <th>Content</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% pageData.forEach((notification) => { 
-                let date = new Date(parseInt(notification.postTime));
-            %>
-            <tr>
-                <td class="collapsing"><%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %></td>
-                <td class="collapsing" title="<%= notification.appName %>"><a
-                        href="?filter=<%= notification.appName %>"><%= notification.appName.substring(0,24) %></a>
-                </td>
-                <td>
-                    <b><%= notification.title %></b><br>
-                    <%= notification.content %>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+<div class="notifications-container">
+    <div class="ui segment notifications-panel">
+        <div class="ui secondary menu toolbar">
+            <div class="header">
+                <i class="bell icon"></i>
+                <span class="title">Notification History</span>
+            </div>
+        </div>
+        
+        <div class="notifications-table-container">
+            <table class="ui celled table notifications-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Application</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (pageData.length === 0) { %>
+                        <tr>
+                            <td colspan="3" class="empty-state">
+                                <div class="empty-content">
+                                    <i class="icon bell slash"></i>
+                                    <p>No notifications found</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <% pageData.forEach((notification) => { 
+                            let date = new Date(parseInt(notification.postTime));
+                        %>
+                        <tr class="notification-row">
+                            <td class="time-cell">
+                                <i class="clock outline icon"></i>
+                                <%= date.toLocaleString('en-GB', { timeZone: 'UTC' }) %>
+                            </td>
+                            <td class="app-cell" title="<%= notification.appName %>">
+                                <i class="cube icon"></i>
+                                <a href="?filter=<%= notification.appName %>" class="app-link">
+                                    <%= notification.appName.substring(0,24) %>
+                                </a>
+                            </td>
+                            <td class="content-cell">
+                                <div class="notification-content">
+                                    <div class="notification-title">
+                                        <i class="heading icon"></i>
+                                        <%= notification.title %>
+                                    </div>
+                                    <div class="notification-body">
+                                        <i class="comment outline icon"></i>
+                                        <%= notification.content %>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<style>
+    .notifications-container {
+        padding: 20px;
+    }
+    
+    .notifications-panel {
+        border-radius: 8px !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    
+    [data-theme="dark"] .notifications-panel {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    }
+    
+    .toolbar {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        padding: 15px !important;
+        margin: 0 !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+    
+    .toolbar .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2em;
+    }
+    
+    [data-theme="dark"] .toolbar .header {
+        color: var(--highlight-color);
+    }
+    
+    .notifications-table-container {
+        padding: 15px;
+    }
+    
+    .notifications-table {
+        border: none !important;
+        margin: 0 !important;
+    }
+    
+    [data-theme="dark"] .notifications-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        border-bottom: 1px solid var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+        font-weight: normal;
+        padding: 15px !important;
+    }
+    
+    [data-theme="dark"] .notification-row td {
+        background-color: transparent !important;
+        border-color: rgba(0, 255, 157, 0.1) !important;
+        transition: all 0.3s ease;
+        padding: 12px !important;
+    }
+    
+    [data-theme="dark"] .notification-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+    
+    .time-cell,
+    .app-cell {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+    }
+    
+    .content-cell {
+        font-family: 'Courier New', monospace;
+    }
+    
+    [data-theme="dark"] .notification-row td {
+        color: var(--text-color) !important;
+    }
+    
+    [data-theme="dark"] .notification-row i {
+        color: var(--highlight-color) !important;
+        opacity: 0.8;
+    }
+    
+    .app-link {
+        color: var(--highlight-color) !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .app-link:hover {
+        text-shadow: 0 0 8px var(--highlight-color);
+    }
+    
+    .notification-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .notification-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        color: var(--highlight-color) !important;
+    }
+    
+    .notification-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-left: 20px;
+        opacity: 0.8;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px !important;
+    }
+    
+    .empty-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.7;
+    }
+    
+    [data-theme="dark"] .empty-content {
+        color: var(--text-color);
+    }
+    
+    .empty-content i {
+        font-size: 2em;
+    }
+    
+    /* Notification hover effect */
+    .notification-row {
+        transition: transform 0.3s ease;
+    }
+    
+    .notification-row:hover {
+        transform: translateX(5px);
+    }
+</style>

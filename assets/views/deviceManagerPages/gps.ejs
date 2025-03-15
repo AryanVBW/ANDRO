@@ -1,139 +1,305 @@
-<link rel="stylesheet" href="/css/leaflet.css">
-<script src="/js/leaflet.js"></script>
+<%- include('../partials/head.ejs') %>
+<div class="gps-container">
+    <div class="ui top attached tabular menu custom-tabs">
+        <a class="item active" data-tab="now">
+            <i class="crosshairs icon"></i>GPS Now
+        </a>
+        <a class="item" data-tab="log">
+            <i class="history icon"></i>GPS Log
+        </a>
+        <a class="item" data-tab="settings">
+            <i class="cog icon"></i>GPS Settings
+        </a>
+    </div>
 
-
-<div class="ui top attached tabular menu">
-    <a class="item active" data-tab="now">
-        GPS Now
-    </a>
-    <a class="item " data-tab="log">
-        GPS Log
-    </a>
-    <a class="item" data-tab="settings">
-        GPS Settings
-    </a>
-</div>
-
-<% 
-let latest = {
-    "time": "2000-01-01T00:00:00.005Z",
-    "enabled": true,
-    "latitude": 0,
-    "longitude": 0,
-    "altitude": 0,
-    "accuracy": 0,
-    "speed": 0
-  };
-if(pageData.length !== 0) {
-    if(pageData[pageData.length-1].speed !== undefined) latest = pageData[pageData.length-1];
-}
-%>
-
-<div class="ui bottom attached tab segment active" data-tab="now">
-    <div id="GPS_NOW_MAP" style="width: 100%; height: 300px;"></div>
-    <p style="text-align:center"><%= new Date(latest.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %></p>
-    <button onclick="updateButton(this, '0xLO')" class="ui button fluid positive" type="submit">
-        <i class="map marker alternate icon"></i>
-        Request Update
-    </button>
-
-    <script>
-        var GPS_NOW_MAP = L.map('GPS_NOW_MAP').setView([<%= latest.latitude %>, <%= latest.longitude %>], 13);
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
-        }).addTo(GPS_NOW_MAP);
-        var currentLocationMarker = L.marker([<%= latest.latitude %>, <%= latest.longitude %>]).addTo(GPS_NOW_MAP);
-
-        currentLocationMarker.bindPopup("<b>Time:</b> <%= new Date(latest.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %><br><b>speed:</b> <%= latest.speed.toFixed(2) %>mph<br><b>Accuracy:</b> <%= latest.accuracy.toFixed(2) %>m");
-    </script>
-</div>
-
-<%
-
-let sorted = {};
-
-pageData.forEach((item) => {
-    let date = new Date(item.time);
-    let month = date.getUTCMonth() + 1;
-    let day = date.getUTCDate();
-    let year = date.getUTCFullYear();
-
-    newdate = day + "-" + month + "-" + year;
-    if(item.latitude !== undefined && item.longitude !== undefined && item.speed !== undefined && item.accuracy !== undefined){
-        if(sorted[newdate]) {
-            // Exists, pop it in
-            sorted[newdate].push(item);
-        } else sorted[newdate] = [item];
+    <% 
+    let latest = {
+        "time": "2000-01-01T00:00:00.005Z",
+        "enabled": true,
+        "latitude": 0,
+        "longitude": 0,
+        "altitude": 0,
+        "accuracy": 0,
+        "speed": 0
+    };
+    if(pageData.length !== 0) {
+        if(pageData[pageData.length-1].speed !== undefined) latest = pageData[pageData.length-1];
     }
-    
-});
+    %>
 
+    <div class="ui bottom attached tab segment active custom-tab-content" data-tab="now">
+        <div class="map-container">
+            <div id="GPS_NOW_MAP"></div>
+            <div class="time-overlay">
+                <i class="clock outline icon"></i>
+                <%= new Date(latest.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %>
+            </div>
+        </div>
+        <button onclick="updateButton(this, 'GPS')" class="ui button fluid update-btn">
+            <i class="map marker alternate icon"></i>
+            <span class="btn-text">Request Update</span>
+        </button>
+    </div>
 
-%>
+    <div class="ui bottom attached tab segment custom-tab-content" data-tab="log">
+        <div id="GPS_LOG_MAP"></div>
+        <div class="log-table-container">
+            <table class="ui celled table log-table">
+                <thead>
+                    <tr>
+                        <th><i class="calendar outline icon"></i>Date</th>
+                        <th><i class="list icon"></i>Entries</th>
+                        <th><i class="eye icon"></i>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% 
+                    const sorted = pageData.reduce((acc, curr) => {
+                        const date = new Date(curr.time).toLocaleDateString();
+                        if (!acc[date]) acc[date] = [];
+                        acc[date].push(curr);
+                        return acc;
+                    }, {});
+                    
+                    for (const [key, value] of Object.entries(sorted)) { %>
+                    <tr class="log-row">
+                        <td><%= key %></td>
+                        <td><%= value.length %></td>
+                        <td class="collapsing">
+                            <button onclick="loadLogToMap('<%= key %>')" class="ui circular icon button view-btn">
+                                <i class="eye icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div class="ui bottom attached tab segment" data-tab="log">
-    <div id="GPS_LOG_MAP" style="width: 100%; height: 500px;"></div>
-    <script>
-        var GPS_LOG_MAP = L.map('GPS_LOG_MAP').setView([<%= latest.latitude %>, <%= latest.longitude %>], 13);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
-        }).addTo(GPS_LOG_MAP);
-
-        var logLayer = L.layerGroup().addTo(GPS_LOG_MAP);
-
-        function loadLogToMap(date) {
-            var data = mapData[date];
-            var latlngs = data.map(({ latitude, longitude }) => ([latitude, longitude]))
-            logLayer.clearLayers();
-            var path = L.polyline(latlngs, { "weight": 3, "color": "#6781f8" }).addTo(logLayer);
-            GPS_LOG_MAP.addLayer(path);
-            GPS_LOG_MAP.fitBounds(path.getBounds());
-        }
-
-    </script>
-    <table class="ui celled table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Entries</th>
-                <th>View</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (const [key, value] of Object.entries(sorted)) { %>
-            <tr>
-                <td><%= key %></td>
-                <td><%= value.length %></td>
-                <td class="collapsing"><a href="#" onclick="loadLogToMap('<%= key %>')" style="text-align: center"><i
-                            class="eye icon blue"></i></a></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-</div>
-
-<div class="ui bottom attached tab segment" data-tab="settings">
-    <p>Set how often you want to poll the client for an updated GPS position below<br>
-        recommended intervals above 5 minutes, anything less would be of no benefit</p>
-    <div class="ui right labeled input">
-        <input type="number" placeholder="Interval" id="gpsInterval">
-        <div class="ui dropdown label">
-            <div id="intervalMeasure" class="text">minutes</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="item">hours</div>
-                <div class="item">seconds</div>
+    <div class="ui bottom attached tab segment custom-tab-content" data-tab="settings">
+        <div class="settings-container">
+            <div class="settings-info">
+                <i class="info circle icon"></i>
+                <p>Set how often you want to poll the client for an updated GPS position.<br>
+                    Recommended intervals above 5 minutes, anything less would be of no benefit.</p>
+            </div>
+            <div class="interval-settings">
+                <div class="ui labeled input interval-input">
+                    <input type="number" placeholder="Interval" id="gpsInterval">
+                    <div class="ui dropdown label interval-dropdown">
+                        <div id="intervalMeasure" class="text">minutes</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item">hours</div>
+                            <div class="item">minutes</div>
+                            <div class="item">seconds</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="ui button set-btn" onclick="updateGPSInterval()">
+                    <i class="save icon"></i>
+                    <span class="btn-text">Set Interval</span>
+                </button>
             </div>
         </div>
     </div>
-    <button class="positive ui button" onclick="updateGPSInterval()">SET</button>
-
 </div>
+
+<style>
+    .gps-container {
+        padding: 20px;
+    }
+
+    .custom-tabs {
+        background: transparent !important;
+        border: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    [data-theme="dark"] .custom-tabs {
+        border-bottom: 1px solid var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .custom-tabs .item {
+        background: transparent !important;
+        color: var(--text-color) !important;
+        margin-bottom: -1px;
+        font-family: 'Courier New', monospace;
+    }
+
+    [data-theme="dark"] .custom-tabs .item:hover {
+        color: var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .custom-tabs .item.active {
+        background-color: rgba(0, 255, 157, 0.1) !important;
+        color: var(--highlight-color) !important;
+        border-bottom-color: transparent !important;
+    }
+
+    .custom-tab-content {
+        border-radius: 0 0 8px 8px !important;
+        border-top: none !important;
+        margin-top: 0 !important;
+    }
+
+    [data-theme="dark"] .custom-tab-content {
+        background-color: rgba(18, 18, 18, 0.95) !important;
+        border-top: none !important;
+    }
+
+    .map-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    #GPS_NOW_MAP,
+    #GPS_LOG_MAP {
+        width: 100%;
+        height: 400px;
+        border-radius: 8px;
+        border: 1px solid var(--highlight-color);
+    }
+
+    .time-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(18, 18, 18, 0.9);
+        color: var(--highlight-color);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-family: 'Courier New', monospace;
+        border: 1px solid var(--highlight-color);
+    }
+
+    .update-btn,
+    .set-btn {
+        font-family: 'Courier New', monospace !important;
+        transition: all 0.3s ease !important;
+    }
+
+    [data-theme="dark"] .update-btn,
+    [data-theme="dark"] .set-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .update-btn:hover,
+    [data-theme="dark"] .set-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+    }
+
+    .log-table-container {
+        margin-top: 20px;
+    }
+
+    [data-theme="dark"] .log-table {
+        background-color: transparent !important;
+    }
+
+    [data-theme="dark"] .log-table thead th {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        color: var(--highlight-color) !important;
+        padding: 15px !important;
+    }
+
+    [data-theme="dark"] .log-row td {
+        background-color: transparent !important;
+        color: var(--text-color) !important;
+        font-family: 'Courier New', monospace;
+    }
+
+    [data-theme="dark"] .log-row:hover td {
+        background-color: rgba(0, 255, 157, 0.05) !important;
+    }
+
+    [data-theme="dark"] .view-btn {
+        background-color: transparent !important;
+        color: var(--highlight-color) !important;
+        border: 1px solid var(--highlight-color) !important;
+    }
+
+    [data-theme="dark"] .view-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: #121212 !important;
+    }
+
+    .settings-container {
+        padding: 20px 0;
+    }
+
+    .settings-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 30px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: rgba(0, 255, 157, 0.05);
+        border: 1px solid var(--highlight-color);
+    }
+
+    [data-theme="dark"] .settings-info {
+        color: var(--text-color);
+    }
+
+    .settings-info i {
+        color: var(--highlight-color);
+        font-size: 1.2em;
+    }
+
+    .interval-settings {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    [data-theme="dark"] .interval-input {
+        border: 1px solid var(--highlight-color) !important;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    [data-theme="dark"] .interval-input input {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        color: var(--text-color) !important;
+        font-family: 'Courier New', monospace !important;
+    }
+
+    [data-theme="dark"] .interval-dropdown {
+        background-color: rgba(0, 255, 157, 0.1) !important;
+        color: var(--highlight-color) !important;
+        border: none !important;
+        border-left: 1px solid var(--highlight-color) !important;
+    }
+
+    /* Loading animation */
+    @keyframes pulse-border {
+        0% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        50% {
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+        }
+        100% {
+            border-color: var(--highlight-color);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+    }
+
+    [data-theme="dark"] .update-btn.loading,
+    [data-theme="dark"] .set-btn.loading {
+        animation: pulse-border 1.5s infinite;
+        background-color: transparent !important;
+    }
+</style>
 
 <script>
     $('.menu .item').tab({
@@ -143,7 +309,93 @@ pageData.forEach((item) => {
         }
     });
 
-    $('.ui.dropdown').dropdown()
+    $('.ui.dropdown').dropdown();
+
+    // Initialize maps with dark theme
+    var initialLat = Number('<%- latest.latitude %>');
+    var initialLng = Number('<%- latest.longitude %>');
+    var GPS_NOW_MAP = L.map('GPS_NOW_MAP').setView([initialLat, initialLng], 13);
+    var GPS_LOG_MAP = L.map('GPS_LOG_MAP').setView([initialLat, initialLng], 13);
+
+    // Dark theme tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(GPS_NOW_MAP);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(GPS_LOG_MAP);
+
+    // Custom marker style
+    var markerIcon = L.divIcon({
+        html: '<i class="map marker alternate icon" style="color: #00ff9d; font-size: 24px;"></i>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 24],
+        className: 'custom-marker'
+    });
+
+    var currentLocationMarker = L.marker([initialLat, initialLng], {
+        icon: markerIcon
+    }).addTo(GPS_NOW_MAP);
+
+    currentLocationMarker.bindPopup(`
+        <div class="custom-popup">
+            <div><b>Time:</b> <%= new Date(latest.time).toLocaleString('en-GB', { timeZone: 'UTC' }) %></div>
+            <div><b>Speed:</b> <%= latest.speed.toFixed(2) %> mph</div>
+            <div><b>Accuracy:</b> <%= latest.accuracy.toFixed(2) %> m</div>
+        </div>
+    `);
+
+    var logLayer = L.layerGroup().addTo(GPS_LOG_MAP);
+
+    function loadLogToMap(date) {
+        var data = mapData[date];
+        var latlngs = data.map(({ latitude, longitude }) => ([latitude, longitude]));
+        logLayer.clearLayers();
+        
+        // Add path with custom style
+        var path = L.polyline(latlngs, {
+            weight: 3,
+            color: '#00ff9d',
+            opacity: 0.8,
+            dashArray: '10, 10',
+            lineJoin: 'round'
+        }).addTo(logLayer);
+
+        // Add markers at start and end
+        var startMarker = L.marker(latlngs[0], {
+            icon: L.divIcon({
+                html: '<i class="dot circle icon" style="color: #00ff9d; font-size: 16px;"></i>',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+                className: 'custom-marker'
+            })
+        }).addTo(logLayer);
+
+        var endMarker = L.marker(latlngs[latlngs.length - 1], {
+            icon: markerIcon
+        }).addTo(logLayer);
+
+        GPS_LOG_MAP.fitBounds(path.getBounds());
+        
+        // Animate the path
+        var length = path.getLatLngs().length;
+        var i = 0;
+        
+        function animatePath() {
+            if (i < length) {
+                path.setLatLngs(latlngs.slice(0, i));
+                i++;
+                requestAnimationFrame(animatePath);
+            }
+        }
+        
+        animatePath();
+    }
 
     function gpsIntervalToS() {
         var intMes = $('#intervalMeasure').text();
@@ -154,14 +406,55 @@ pageData.forEach((item) => {
     }
 
     function updateGPSInterval() {
-        $.post(baseURL + '/GPSPOLL/' + gpsIntervalToS(), function (data) {
-            if (data.error) showNotification('#f03434', data.error)
-            else showNotification('#2ecc71', 'GPS Interval Updated!');
+        $('.set-btn').addClass('loading');
+        $('.set-btn .btn-text').fadeOut(200);
+        
+        $.post(baseURL + '/GPSPOLL/' + gpsIntervalToS(), function(data) {
+            setTimeout(() => {
+                $('.set-btn').removeClass('loading');
+                $('.set-btn .btn-text').fadeIn(200);
+                
+                if (data.error) {
+                    showNotification('#ff5252', data.error);
+                } else {
+                    showNotification('#00ff9d', 'GPS Interval Updated!');
+                }
+            }, 300);
         });
     }
 
     var mapData = JSON.parse('<%- JSON.stringify(sorted) %>');
-
-
-    loadLogToMap('<%= Object.keys(sorted)[Object.keys(sorted).length -1] %>')
+    if (Object.keys(sorted).length > 0) {
+        loadLogToMap('<%= Object.keys(sorted)[Object.keys(sorted).length -1] %>');
+    }
+    
+    // Custom popup styles
+    var style = document.createElement('style');
+    style.textContent = `
+        .leaflet-popup-content-wrapper {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid #00ff9d !important;
+            border-radius: 8px !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2) !important;
+        }
+        
+        .leaflet-popup-tip {
+            background-color: #00ff9d !important;
+        }
+        
+        .custom-popup {
+            color: #00ff9d !important;
+            font-family: 'Courier New', monospace !important;
+            padding: 5px;
+        }
+        
+        .custom-popup div {
+            margin: 5px 0;
+        }
+        
+        .custom-popup b {
+            color: #ffffff;
+        }
+    `;
+    document.head.appendChild(style);
 </script>

