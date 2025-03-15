@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANDRO - Cloud Based Remote Android Management</title>
+    <meta name="description" content="ANDRO is a cloud-based remote Android management suite with features like GPS logging, microphone recording, contact viewing, and more.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+    <!-- Matrix animation background -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="ANDRO Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#features" class="nav-link">Features</a>
+                    </li>
+                    <li><a href="#screenshots" class="nav-link">Screenshots</a></li>
+                    <li class="dropdown">
+                        <a href="#installation" class="nav-link">Install</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="versions.html" class="nav-link">Versions</a></li>
+                    <li><a href="https://github.com/AryanVBW/ANDRO" target="_blank" class="nav-link github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section with Camtix-style background -->
+    <section id="home" class="hero">
+        <!-- Camtix-style grid background -->
+        <div class="camtix-bg">
+            <div class="camtix-grid" id="camtix-grid"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="glitch-title">ANDRO</h1>
+            <p class="hero-description">A Cloud-Based Remote Android Management Suite</p>
+            <p class="hero-description">Powered by NodeJS with Advanced Monitoring Capabilities</p>
+            <div class="hero-buttons">
+                <a href="#features" class="cta-btn primary">Explore Features</a>
+                <a href="#installation" class="cta-btn secondary">Get Started</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Features</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Real-time</span>
+                    <span class="stat-label">Monitoring</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Secure</span>
+                    <span class="stat-label">Connection</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title reveal">Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="feature-title">GPS Logging</h3>
+                <p class="feature-description">Track device location in real-time with GPS coordinates logging.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3 class="feature-title">Microphone Recording</h3>
+                <p class="feature-description">Record audio from the target device's microphone remotely.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-address-book"></i>
+                </div>
+                <h3 class="feature-title">View Contacts</h3>
+                <p class="feature-description">Access and browse all contacts stored on the target device.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-sms"></i>
+                </div>
+                <h3 class="feature-title">SMS Logs & Send</h3>
+                <p class="feature-description">View SMS history and send messages from the target device.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3 class="feature-title">Call Logs</h3>
+                <p class="feature-description">Access detailed call history from the target device.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">Installed Apps</h3>
+                <p class="feature-description">View all applications installed on the target device.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard"></i>
+                </div>
+                <h3 class="feature-title">Live Clipboard</h3>
+                <p class="feature-description">Monitor clipboard content in real-time as it changes.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3 class="feature-title">Notification Logging</h3>
+                <p class="feature-description">Monitor all notifications that appear on the target device.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3 class="feature-title">WiFi Networks</h3>
+                <p class="feature-description">View all WiFi networks that the device has connected to.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3 class="feature-title">File Explorer</h3>
+                <p class="feature-description">Browse and download files from the target device remotely.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3 class="feature-title">Command Queuing</h3>
+                <p class="feature-description">Queue commands to be executed when the device is online.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3 class="feature-title">Built-In APK Builder</h3>
+                <p class="feature-description">Generate custom APK files directly from the control panel.</p>
+            </div>
+            
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="feature-title">Screen Recording</h3>
+                <p class="feature-description">Capture screen recordings and screenshots from the target device remotely.</p>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots">
+        <div class="screenshots-container">
+            <h2 class="section-title reveal">Screenshots</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/login.png" alt="ANDRO Login Page">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Login Interface</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/Control-Panel.png" alt="ANDRO Control Panel">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Control Panel</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/APK-Builder.png" alt="APK Builder">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">APK Builder Interface</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/Logs.png" alt="Logs">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Device Logs</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/Device-Management.png" alt="Device Panel">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Device Management Panel</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/gps.png" alt="Location Tracking">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">GPS Location Tracking</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/Files-Directories.png" alt="Files and Directories">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Files & Directories</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/Installed Applications.png" alt="Installed Applications">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Installed Applications</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/callhistory.png" alt="Call History">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Call History</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/clipbord.png" alt="Clipboard">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Clipboard Monitoring</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/contact.png" alt="Contacts">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Contacts</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/downlaods.png" alt="Downloads">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Downloads</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/permission.png" alt="Permissions">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">App Permissions</h3>
+                    </div>
+                </div>
+                <div class="screenshot-item reveal">
+                    <img src="images/ANDRO_V2.0/recoding.png" alt="Recording">
+                    <div class="screenshot-overlay">
+                        <h3 class="screenshot-title">Audio Recording</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal for Screenshots -->
+    <div class="modal-container">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="" alt="Screenshot Preview">
+        </div>
+    </div>
+    
+    <!-- Installation Section -->
+    <section id="installation" class="installation">
+        <h2 class="section-title reveal">Installation</h2>
+        
+        <!-- 1-Click Installation (Highlighted) -->
+        <div class="feature-card reveal" style="max-width: 900px; margin: 0 auto 40px; border: 2px solid var(--primary-color); background: rgba(0, 255, 0, 0.05);">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="feature-title" style="font-size: 1.8rem; color: var(--primary-color);">⚡ 1-Click Installation ⚡</h3>
+            <p class="feature-description" style="margin-bottom: 20px;">Experience effortless installation with a single command. Simply copy and paste the following line into your terminal to automatically install all dependencies and have your ANDRO application up and running seamlessly:</p>
+            
+            <div class="code-block terminal-command" style="margin-bottom: 15px; background: rgba(0, 0, 0, 0.3); border-left: 4px solid var(--primary-color);">
+                <button class="copy-btn" aria-label="Copy command">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <code>curl -sSL https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh | bash</code>
+            </div>
+            
+            <p class="feature-description">Alternatively, you can download and run the script manually:</p>
+            
+            <div class="code-block terminal-command" style="background: rgba(0, 0, 0, 0.3); border-left: 4px solid var(--primary-color);">
+                <button class="copy-btn" aria-label="Copy command">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <code>wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
+chmod +x ANDRO1click.sh 
+sudo ./ANDRO1click.sh</code>
+            </div>
+            
+            <div class="security-note" style="margin-top: 20px;">
+                <h4>Why use 1-Click Installation?</h4>
+                <p>This method automatically handles all the installation steps, including installing Java, NodeJS, PM2, and configuring the application to start on boot. It's the fastest and most reliable way to get ANDRO up and running.</p>
+            </div>
+        </div>
+
+        <!-- Manual Installation Steps -->
+        <div class="installation-steps reveal">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #aaa;">Manual Installation (Alternative Method)</h3>
+            
+            <div class="step">
+                <div class="step-number">Step 01</div>
+                <h3 class="step-title">Prerequisites</h3>
+                <div class="step-content">
+                    <p>Before installing ANDRO, ensure you have the following prerequisites:</p>
+                    <ul>
+                        <li>Java Runtime Environment 8 (JRE 8 ONLY - other versions are not supported)</li>
+                        <li>NodeJS 16+</li>
+                        <li>Any Linux distribution (Kali, Arch) or Android with LinuxDroid</li>
+                    </ul>
+                    <div class="os-specific-instructions">
+                        <h4>JRE 8 Installation:</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" aria-label="Copy command">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <code><span class="highlight"># Debian, Ubuntu:</span>
+sudo apt-get install openjdk-8-jre
+<span class="highlight"># Fedora, Oracle, Red Hat:</span>
+su -c "yum install java-1.8.0-openjdk"
+<span class="highlight"># macOS (using brew):</span>
+brew tap adoptopenjdk/openjdk
+brew install --cask adoptopenjdk8
+<span class="highlight"># Windows:</span>
+Download from Oracle JRE 8 website</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">Step 02</div>
+                <h3 class="step-title">Manual Installation Steps</h3>
+                <div class="step-content">
+                    <p>If you prefer to install manually instead of using the 1-Click method, follow these steps:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" aria-label="Copy command">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <code><span class="highlight"># 1. Install PM2 globally</span>
+npm install pm2 -g
+
+<span class="highlight"># 2. Download and extract the latest release</span>
+# Get it from https://github.com/AryanVBW/ANDRO/releases/download/v.1.0/ANDRO.zip
+
+<span class="highlight"># 3. Install and configure</span>
+npm install
+pm2 start index.js
+pm2 startup
+pm2 save</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">Step 03</div>
+                <h3 class="step-title">Configuration</h3>
+                <div class="step-content">
+                    <p>Set up your username and password:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" aria-label="Copy command">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <code>1. Stop ANDRO: pm2 stop index
+2. Edit maindb.json
+3. Set username (default: andro)
+4. Set password as MD5 hash (default: admin)
+5. Restart: pm2 restart all</code>
+                    </div>
+                    <p>Access the control panel at:</p>
+                    <div class="code-block">
+                        http://localhost:8080
+                        # Or
+                        http://&lt;SERVER IP&gt;:8080
+                    </div>
+                    <div class="security-note">
+                        <h4>Security Recommendation:</h4>
+                        <p>It's highly recommended to run ANDRO behind a reverse proxy such as NGINX for enhanced security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="features">
+        <h2 class="section-title reveal">About ANDRO</h2>
+        <div class="feature-card reveal" style="max-width: 800px; margin: 0 auto;">
+            <p class="feature-description">ANDRO is a cloud-based remote Android management suite developed for educational purposes. The project is maintained by a community of developers who are passionate about cybersecurity and mobile technology.</p>
+            <br>
+            <p class="feature-description">This tool is meant for educational purposes only. The developers are not responsible for any misuse or damage caused by this program. Always ensure you have explicit permission before monitoring any device you don't own.</p>
+            
+            <div class="contributors-section">
+                <h3>Contributors</h3>
+                <div class="contributor-list">
+                    <div class="contributor">
+                        <a href="https://www.instagram.com/mr_vinayak_1427" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <span>Vinayak</span>
+                        </a>
+                    </div>
+                    <div class="contributor">
+                        <span>J</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="opensource-section">
+                <h3>Open Source Acknowledgments</h3>
+                <p>ANDRO builds upon several excellent open-source projects:</p>
+                <ul class="opensource-list">
+                    <li><a href="https://github.com/expressjs/express" target="_blank">Express</a></li>
+                    <li><a href="https://github.com/bluesmoon/node-geoip" target="_blank">Node-GeoIP</a></li>
+                    <li><a href="https://github.com/typicode/lowdb" target="_blank">LowDB</a></li>
+                    <li><a href="https://github.com/socketio/socket.io" target="_blank">Socket.IO</a></li>
+                    <li><a href="https://www.openstreetmap.org" target="_blank">Open Street Map</a></li>
+                    <li><a href="https://leafletjs.com/" target="_blank">Leaflet</a></li>
+                </ul>
+            </div>
+            
+            <br>
+            <p class="feature-description terminal-text">Explore the full potential of Android device management with ANDRO's comprehensive feature set.</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">ANDRO</h3>
+                <p>A cloud-based remote Android management suite powered by NodeJS.</p>
+                <div class="social-links">
+                    <a href="https://github.com/AryanVBW/ANDRO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="versions.html">Versions</a></li>
+                    <li><a href="https://github.com/AryanVBW/ANDRO" target="_blank">GitHub Repository</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Disclaimer</h3>
+                <p>This software is meant for educational purposes only. We are not responsible for any malicious use of the app.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023-2024 ANDRO. All rights reserved.</p>
+            <div class="visitor-counter">
+                <p>Visitor count</p>
+                <img src="https://profile-counter.glitch.me/Aryanvbw/count.svg" alt="Visitor Count" />
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANDRO - Version History</title>
+    <meta name="description" content="Version history and changelog for ANDRO, the cloud-based remote Android management suite.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        /* Additional styles specific to versions page */
+        .version-card {
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .version-card:before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--primary-color);
+            opacity: 0.1;
+            transition: width 0.3s ease;
+        }
+        
+        .version-card:hover:before {
+            width: 100%;
+        }
+        
+        .version-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .version-title {
+            font-family: var(--header-font);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .version-date {
+            color: #999;
+            font-size: 0.9rem;
+            font-family: var(--header-font);
+        }
+        
+        .version-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
+        .version-badge.current {
+            background-color: rgba(0, 255, 0, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .version-badge.upcoming {
+            background-color: rgba(255, 165, 0, 0.1);
+            color: orange;
+            border: 1px solid orange;
+        }
+        
+        .changelog {
+            margin-top: 20px;
+        }
+        
+        .changelog h4 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .change-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .change-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .change-list li:before {
+            content: "✦";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #eee;
+        }
+        
+        /* Timeline design */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.3;
+        }
+        
+        .upcoming-section {
+            border: 1px dashed var(--primary-color);
+            background: rgba(0, 255, 0, 0.03);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .upcoming-badge {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--background-color);
+            color: orange;
+            border: 1px solid orange;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-family: var(--header-font);
+            font-size: 0.9rem;
+        }
+        
+        .progress-container {
+            margin-top: 25px;
+        }
+        
+        .progress-item {
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-value {
+            height: 100%;
+            background-color: var(--primary-color);
+        }
+        
+        .feedback-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .feedback-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-family: var(--header-font);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .feedback-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix animation background -->
+    <canvas id="matrix-canvas"></canvas>
+    
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="ANDRO Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#features" class="nav-link">Features</a>
+                    </li>
+                    <li><a href="index.html#screenshots" class="nav-link">Screenshots</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#installation" class="nav-link">Install</a>
+                    </li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="versions.html" class="nav-link" style="color: var(--primary-color);">Versions</a></li>
+                    <li><a href="https://github.com/AryanVBW/ANDRO" target="_blank" class="nav-link github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Content -->
+    <div style="padding-top: 80px;">
+        <!-- Hero Section with Camtix-style background -->
+        <section id="versions-hero" class="hero" style="height: 50vh;">
+            <!-- Camtix-style grid background -->
+            <div class="camtix-bg">
+                <div class="camtix-grid" id="camtix-grid"></div>
+            </div>
+            
+            <div class="hero-content" style="margin-top: 40px;">
+                <h1 class="glitch-title" style="margin-bottom: 30px;">ANDRO</h1>
+                <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 15px;">Version History</h2>
+                <p class="hero-description">Explore the evolution of ANDRO through its versions</p>
+                <p class="hero-description">From initial release to the latest features and upcoming developments</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Versions Section -->
+    <section class="features" style="padding-top: 40px;">
+        <div class="timeline-container">
+            <!-- Current Version - ANDRO V.2.0 -->
+            <div class="version-card reveal">
+                <div class="feature-card">
+                    <div class="version-header">
+                        <div>
+                            <h2 class="version-title">ANDRO V.2.0 <span class="version-badge current">Current</span></h2>
+                            <p class="version-date">Released: Mar 15, 2025</p>
+                        </div>
+                    </div>
+                    
+                    <p class="feature-description">The second major release of ANDRO introduces significant enhancements to the user interface and adds several new monitoring capabilities.</p>
+                    
+                    <div class="changelog">
+                        <h4>What's New</h4>
+                        <ul class="change-list">
+                            <li>Completely redesigned control panel with improved UI/UX</li>
+                            <li>Added screen recording capability for more comprehensive monitoring</li>
+                            <li>Enhanced real-time location tracking with improved accuracy</li>
+                            <li>Implemented file explorer with download capabilities</li>
+                            <li>Added support for live clipboard monitoring</li>
+                            <li>Improved notification logging system to capture all notifications</li>
+                            <li>Enhanced stability and reduced resource consumption</li>
+                            <li>Added command queuing system for offline devices</li>
+                            <li>Enhanced security with better encryption</li>
+                        </ul>
+                        
+                        <h4>Key Features</h4>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3 class="feature-title">Screen Recording</h3>
+                                <p>Capture real-time screen recordings from target devices</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clipboard"></i>
+                                </div>
+                                <h3 class="feature-title">Live Clipboard</h3>
+                                <p>Monitor clipboard content as it changes</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h3 class="feature-title">Command Queue</h3>
+                                <p>Queue commands for offline devices</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-download"></i>
+                                </div>
+                                <h3 class="feature-title">File Explorer</h3>
+                                <p>Browse and download files from target devices</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" aria-label="Copy command">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <code><span class="highlight"># Upgrade from V.1.0 to V.2.0</span>
+git pull origin main
+npm install
+pm2 restart all</code>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- First Version - ANDRO V.1.0 -->
+            <div class="version-card reveal">
+                <div class="feature-card">
+                    <div class="version-header">
+                        <div>
+                            <h2 class="version-title">ANDRO V.1.0</h2>
+                            <p class="version-date">Released: January 10, 2019</p>
+                        </div>
+                    </div>
+                    
+                    <p class="feature-description">The initial release of ANDRO providing core Android device monitoring capabilities in a cloud-based environment.</p>
+                    
+                    <div class="changelog">
+                        <h4>Initial Features</h4>
+                        <ul class="change-list">
+                            <li>Basic GPS logging and location tracking</li>
+                            <li>Microphone recording capabilities</li>
+                            <li>Contact list viewing</li>
+                            <li>SMS logs and sending functionality</li>
+                            <li>Call logs viewing</li>
+                            <li>List of installed applications</li>
+                            <li>View of app permissions</li>
+                            <li>Basic WiFi networks logging</li>
+                            <li>Simple control panel interface</li>
+                            <li>First iteration of the APK builder</li>
+                        </ul>
+                        
+                        <h4>Core Features</h4>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h3 class="feature-title">GPS Logging</h3>
+                                <p>Track device location with GPS coordinates</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                                <h3 class="feature-title">Microphone Recording</h3>
+                                <p>Capture audio from target devices</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sms"></i>
+                                </div>
+                                <h3 class="feature-title">SMS Functionality</h3>
+                                <p>View and send SMS messages</p>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <h3 class="feature-title">APK Builder</h3>
+                                <p>First-generation APK creation tool</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" aria-label="Copy command">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <code><span class="highlight"># Install ANDRO V.1.0</span>
+git clone https://github.com/AryanVBW/ANDRO.git -b v1.0
+cd ANDRO
+npm install
+pm2 start index.js
+pm2 save</code>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Version -->
+            <div class="upcoming-section reveal">
+                <span class="upcoming-badge">Coming Soon</span>
+                <div class="version-header">
+                    <h2 class="version-title">ANDRO V.3.0</h2>
+                </div>
+                
+                <p class="feature-description">The next major update to ANDRO will introduce advanced features and significant improvements to the core functionality.</p>
+                
+                <div class="changelog">
+                    <h4>Planned Features</h4>
+                    <ul class="change-list">
+                        <li>Advanced Camera Control - Remote camera access and management</li>
+                        <li>Dark Web Protection - Monitor for account compromises on the dark web</li>
+                        <li>Enhanced Stealth Mode - Improved undetectable operation</li>
+                        <li>Multi-device Dashboard - Monitor multiple devices from a unified interface</li>
+                        <li>Advanced Geofencing - Set up virtual boundaries with automated alerts</li>
+                        <li>Activity Timeline - Comprehensive visualization of device activity</li>
+                        <li>Enhanced APK Builder with customizable options</li>
+                        <li>AI-powered anomaly detection in device usage patterns</li>
+                    </ul>
+                </div>
+                
+                <div class="progress-container">
+                    <h4>Development Progress</h4>
+                    
+                    <div class="progress-item">
+                        <div class="progress-title">
+                            <span>Core Functionality</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-title">
+                            <span>UI Development</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-title">
+                            <span>Security Enhancements</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-title">
+                            <span>Testing & Debugging</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback-section">
+                    <p>Have suggestions for the next version of ANDRO?</p>
+                    <a href="https://github.com/AryanVBW/ANDRO/issues/new" class="feedback-btn">
+                        <i class="fas fa-comment-alt"></i> Submit Feedback
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">ANDRO</h3>
+                <p>A cloud-based remote Android management suite powered by NodeJS.</p>
+                <div class="social-links">
+                    <a href="https://github.com/AryanVBW/ANDRO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#screenshots">Screenshots</a></li>
+                    <li><a href="index.html#installation">Installation</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="https://github.com/AryanVBW/ANDRO" target="_blank">GitHub Repository</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title">Disclaimer</h3>
+                <p>This software is meant for educational purposes only. We are not responsible for any malicious use of the app.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023-2024 ANDRO. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
