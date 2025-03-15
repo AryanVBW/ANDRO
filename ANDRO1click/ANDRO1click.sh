@@ -213,9 +213,19 @@ log "To view the application status, run: pm2 status"
 log "To view logs, run: pm2 logs"
 log "To stop the application, run: pm2 stop index.js"
 
+# Define colors for hacker-themed output
+GREEN='\033[0;32m'
+BRIGHT_GREEN='\033[1;32m'
+BRIGHT_PURPLE='\033[1;35m'
+NC='\033[0m' # No Color (reset)
+
+# Highlight specific parts of the output with different colors
+URL_COLOR='\033[1;34m' # Bright Blue for URLs
+CREDENTIAL_COLOR='\033[1;33m' # Bright Yellow for credentials
+
 echo -e "${BRIGHT_GREEN}Installation complete! ANDRO is now running.${NC}"
-echo -e "${BRIGHT_GREEN}Access the service at:${NC}"
-echo -e "${BRIGHT_GREEN}Localhost URL: http://localhost:8080${NC}"
+echo -e "${BRIGHT_PURPLE}Access the service at:${NC}"
+
 if [[ "$OS" == "Linux" ]]; then
     IP_ADDRESS=$(hostname -I | awk '{print $1}')
 elif [[ "$OS" == "macOS" ]]; then
@@ -225,5 +235,7 @@ elif [[ "$OS" == "Windows" ]]; then
 else
     IP_ADDRESS="Unknown"
 fi
-echo -e "${BRIGHT_GREEN}System IP URL: http://${IP_ADDRESS}:8080${NC}"
-echo -e "${BRIGHT_GREEN}Login credentials - Username: andro, Password: admin${NC}"
+
+echo -e "${BRIGHT_PURPLE}Localhost URL: ${URL_COLOR}http://localhost:8080${NC}"
+echo -e "${BRIGHT_PURPLE}System IP URL: ${URL_COLOR}http://${IP_ADDRESS}:8080${NC}"
+echo -e "${BRIGHT_PURPLE}Login credentials - Username: ${CREDENTIAL_COLOR}andro${NC}, Password: ${CREDENTIAL_COLOR}admin${NC}"
