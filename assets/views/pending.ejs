@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+<body>
+    <div class="ui middle aligned center aligned grid" style="height: 100vh;">
+        <div class="column" style="max-width: 450px;">
+            <div class="ui segment pending-container">
+                <h2 class="ui header">Account Pending Approval</h2>
+                <div class="ui icon message">
+                    <i class="clock outline icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Waiting for Admin Approval
+                        </div>
+                        <p>Your account has been created and is pending administrator approval. Please check back later.</p>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <a href="/logout" class="ui fluid button">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .pending-container {
+            text-align: center;
+            padding: 2em;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .pending-container {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .ui.icon.message {
+            background: transparent;
+            box-shadow: none;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        [data-theme="dark"] .ui.icon.message {
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.icon.message i {
+            color: var(--highlight-color);
+        }
+    </style>
+</body>
+</html>

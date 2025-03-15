@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+
+<body>
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        <div class="ui segment">
+            <h1 class="ui center aligned header">Build History</h1>
+            <div class="ui relaxed divided list">
+                <% buildHistory.forEach((build) => { %>
+                    <div class="item build-item">
+                        <div class="content">
+                            <div class="ui grid">
+                                <div class="three wide column">
+                                    <% if (build.logoPath) { %>
+                                        <img class="ui tiny image" src="<%= build.logoPath %>" alt="App Logo">
+                                    <% } else { %>
+                                        <img class="ui tiny image" src="/logo.png" alt="Default Logo">
+                                    <% } %>
+                                </div>
+                                <div class="nine wide column">
+                                    <h3 class="ui header">
+                                        <%= build.appName %>
+                                        <div class="sub header">Built on <%= new Date(build.time).toLocaleString() %></div>
+                                    </h3>
+                                    <div class="meta">
+                                        <span>Server: <%= build.uri %>:<%= build.port %></span>
+                                    </div>
+                                </div>
+                                <div class="four wide column">
+                                    <a class="ui primary button" href="/build.s.apk" download="<%= build.appName %>.apk">
+                                        <i class="download icon"></i>
+                                        Download APK
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <% if (!buildHistory || buildHistory.length === 0) { %>
+                <div class="ui placeholder segment">
+                    <div class="ui icon header">
+                        <i class="history icon"></i>
+                        No Build History Yet
+                        <div class="sub header">Your APK build history will appear here</div>
+                    </div>
+                    <a href="/builder" class="ui primary button">
+                        <i class="wrench icon"></i>
+                        Build New APK
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    
+    <style>
+        .build-item {
+            padding: 1em !important;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .build-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .build-item img {
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="dark"] .build-item img {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+    
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

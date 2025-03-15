@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="ui middle aligned center aligned grid main-container">
+        <div class="column" style="max-width: 450px;">
+            <div class="login-box">
+                <div class="logo-wrapper">
+                    <img src="/logo.png" alt="ANDRO" class="andro-logo">
+                </div>
+                <form class="ui form" action="/registerpost" method="POST">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user circle icon"></i>
+                            <input type="text" name="username" placeholder="Username" required autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+                    <button class="ui fluid large submit button" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        REGISTER
+                    </button>
+
+                    <% if (!firstTimeSetup) { %>
+                        <div class="ui divider"></div>
+                        <a href="/login" class="ui fluid register button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            BACK TO LOGIN
+                        </a>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-text">
+        <p>Made with <span class="heart">❤️‍🔥</span> By <a href="https://github.com/AryanVBW" target="_blank" class="author-link">🔥Vivek🔥</a></p>
+    </div>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Courier New', monospace;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .main-container {
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-box {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff9d;
+            box-shadow: 0 0 25px #00ff9d;
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            animation: borderGlow 2s infinite alternate;
+        }
+
+        .logo-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .andro-logo {
+            width: 180px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            animation: logoGlow 2s infinite alternate;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .andro-logo:hover {
+            transform: translateY(0) scale(1.05);
+        }
+
+        @keyframes logoGlow {
+            from {
+                filter: drop-shadow(0 0 8px #00ff9d);
+            }
+            to {
+                filter: drop-shadow(0 0 20px #00ff9d);
+            }
+        }
+
+        .glitch-wrapper {
+            margin-bottom: 30px;
+        }
+
+        .glitch {
+            color: #00ff9d;
+            font-size: 40px;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 10px #00ff9d;
+            animation: glitch 1s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            animation: glitch-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00ffff;
+            animation: glitch-2 3s infinite linear alternate-reverse;
+        }
+
+        // ...existing styles...
+
+        @keyframes logoGlow {
+            from {
+                filter: drop-shadow(0 0 5px #00ff9d);
+            }
+            to {
+                filter: drop-shadow(0 0 15px #00ff9d);
+            }
+        }
+    </style>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const drops = [];
+        const fontSize = 15;
+        const columns = canvas.width / fontSize;
+
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        // Form validation
+        $(document).ready(function() {
+            $('.ui.form').form({
+                fields: {
+                    username: {
+                        identifier: 'username',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter a username'
+                        }]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter a password'
+                        }]
+                    },
+                    confirmPassword: {
+                        identifier: 'confirmPassword',
+                        rules: [{
+                            type: 'match[password]',
+                            prompt: 'Passwords must match'
+                        }]
+                    }
+                }
+            });
+
+            // Handle error messages
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorType = urlParams.get('error');
+            
+            if (errorType) {
+                let errorMessage = '';
+                switch(errorType) {
+                    case 'passwordMismatch':
+                        errorMessage = 'Passwords do not match';
+                        break;
+                    case 'userExists':
+                        errorMessage = 'Username already exists';
+                        break;
+                    default:
+                        errorMessage = 'Registration error';
+                }
+                
+                showNotification('#ff5252', errorMessage);
+            }
+        });
+    </script>
+</body>
+</html>
