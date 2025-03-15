@@ -1,174 +1,144 @@
-# ANDRO - Advanced Android Remote Management Suite
 
 <p align="center">
-  <img src="assets/webpublic/logo.png" alt="ANDRO Logo" width="200">
+<img src="https://github.com/AryanVBW/ANDRO/releases/download/A1/andro__5_-removebg-preview.png" height="100"><br>
+A cloud based remote android managment suite, powered by Nodejs <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/nodejs%20(1).png" height="10">
 </p>
 
-<div align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#screenshots">Screenshots</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#security">Security</a> •
-  <a href="#license">License</a>
-</div>
+>**Disclaimer** : This software or tool is meant for educational purposes only. we are not responsible for any malicious use of the app.
+
+
+
+## Features
+- GPS Logging📍
+- Microphone Recording
+- View Contacts
+- SMS Logs
+- Send SMS
+- Call Logs📞
+- View Installed Apps
+- View Stub Permissions
+- Live Clipboard Logging
+- Live Notification Logging
+- View WiFi Networks (logs previously seen)
+- File Explorer & Downloader
+- Command Queuing
+- Built In APK Builder
+
+
+## Prerequisites 
+ - Java Runtime Environment 8<img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/java.png" height="30">
+    - See [installation](#Installation) for OS specifics
+ - NodeJs 
+ - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
+## 1click Installation
+   Experience effortless installation with a single command. Simply copy and paste the following line into your terminal to automatically install all dependencies and have your ANDRO application up and running seamlessly
+   
+```bash
+   curl -sSL https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh | bash
+```
+ <p align="center"> <h1>OR</h1> </p>
+ 
+```bash
+ wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
+ chmod +x ANDRO1click.sh 
+ sudo ./ANDRO1click.sh 
+```
+## Installation 
+1. Install JRE 8 (We cannot stress this enough USE java 1.8.0 ANY issues that dont use this will be closed WITHOUT a response)
+    - Debian, Ubuntu, Etc
+        - `sudo apt-get install openjdk-8-jre`
+    - Fedora, Oracle, Red Hat, etc
+        -  `su -c "yum install java-1.8.0-openjdk"`
+    - Windows 
+        - click [HERE](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) for downloads
+
+2. Install NodeJS [Instructions Here](https://nodejs.org/en/download/package-manager/) (If you can't figure this out, you shouldn't really be using this)
+
+3. install PM2 
+    - `npm install pm2 -g`
+
+4. Download and Extract the latest release from [HERE](https://github.com/AryanVBW/ANDRO/releases/download/v.1.0/ANDRO.zip)
+
+5. In the extracted folder, run these commands
+    - `npm install` <- install dependencies
+    - `pm2 start index.js` <-- start the script
+    - `pm2 startup` <- to run ANDRO on startup
+
+6. Set a Username & Password
+    1. Stop ANDRO `pm2 stop index`
+    2. Open `maindb.json` in a text editor
+    3. under `admin` 
+        - set the `username` as plain text {Default is andro}
+        - set the `password` as a LOWERCASE MD5 hash {default pass is admin}
+    4. save the file
+    5. run `pm2 restart all`
+
+7. in your browser navigate to `http://<SERVER IP>:8080`
+8. `http://localhost:8080`
+    
+It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
+
+## Contributor
+   - [Vinayak](https://www.instagram.com/mr_vinayak_1427)
+   - J
+## Demo Login page & Control Panel
+
+
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/login.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/APK-Builder.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Control-Panel.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Device-Management.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Logs.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/callhistory.png" alt="Darkside"></a>
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/Files-Directories.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/contact.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/downlaods.png" alt="Darkside"></a>
+
+
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/clipbord.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/recoding.png" alt="Darkside"></a>
+
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/permission.png" alt="Darkside"></a>
+<a href="https://github.com/AryanVBW/ANDRO"><img src="https://github.com/AryanVBW/ANDRO/releases/download/v.2.0_logo/gps.png" alt="Darkside"></a>
+<img src="https://github.com/AryanVBW/ANDRO/releases/download/p1/controlpanel.gif">
+
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/Aryanvbw/count.svg" />
+</p>
+
+## Notes
+When opening an issue, you **MUST** use the provided templates. Issues without this will not recieve support quickly and will be put to the bottom of the figurative pile.
+
+Please have a look through the current issues, open and closed to see if your issue has been addressed before. If it's java related, it's most definitely been addressed - In short Use Java 1.8.0
+## Thanks
+ANDRO Builds off and utilizes serveral opensource softwares, Without these, ANDRO Wouldn't be what it is!
+ - [express](https://github.com/expressjs/express)
+ - [node-geoip](https://github.com/bluesmoon/node-geoip)
+ - [lowdb](https://github.com/typicode/lowdb)
+ - [socket.io](https://github.com/socketio/socket.io)
+ - [Open Street Map](https://www.openstreetmap.org)
+ - [Leaflet](https://leafletjs.com/)
+ - L3MON by D3LV 
+ 
+## Disclaimer
+<b>Vivek W Provides no warranty with this software and will not be responsible for any direct or indirect damage caused due to the usage of this tool.<br>
+ANDRO is built for both Educational and Internal use ONLY.</b>
 
 <br>
+<p align="center">Made 🕸️ By <a href="https://aryanvbw.github.io/">*Vivek W*</a></p>
+<p align="center" style="font-size: 8px">v1.0</p>
 
-ANDRO is a comprehensive Android device management platform built with Node.js, Express, and Socket.io. It provides a sleek, cyberpunk-inspired web interface for remote monitoring and management of Android devices.
 
-## 💡 Features
-
-- **Real-time Device Monitoring**
-  - Live GPS tracking and location history
-  - System information and device details
-  - Battery status and hardware info
-  
-- **Communication Management**
-  - View and manage SMS messages
-  - Access call logs and contacts
-  - Monitor notifications
-  
-- **File Management**
-  - Browse and download device files
-  - Manage downloads
-  - View installed applications
-  
-- **Remote Access**
-  - Clipboard monitoring
-  - Microphone recording
-  - Permission management
-  
-- **Sleek UI**
-  - Responsive design
-  - Dark/Light theme toggle
-  - Cyberpunk-inspired interface
-  - Matrix background animation
-
-## 🔧 Installation
-
-### Prerequisites
-
-- Node.js (v14 or newer)
-- npm (v6 or newer)
-- Java JDK (for APK building)
-
-### Server Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AryanVBW/ANDRO.git
-   cd ANDRO
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Configure the server:
-   Edit `includes/const.js` to set your preferred ports and configuration.
-
-4. Start the server:
-   ```bash
-   # Production
-   npm start
-   
-   # Development mode with debug info
-   DEBUG=andro:* npm run dev
-   ```
-
-5. Access the web interface:
-   Open your browser and navigate to `http://localhost:8080`
-   Default credentials: 
-   - Username: `admin`
-   - Password: `admin`
-
-### Client Setup
-
-1. Access the Builder page in the web interface
-2. Enter your server's public IP/domain and port
-3. Build and download the APK
-4. Install the APK on target Android devices
-
-## 📱 Usage
-
-### Logging In
-Navigate to the web panel URL and log in using your credentials. The default login is:
-- Username: `admin`
-- Password: `admin`
-
-It's highly recommended to change these credentials after your first login.
-
-### Dashboard
-The main dashboard shows all connected devices, separated into online and offline categories. Click "Manage" to access a specific device's controls.
-
-### Device Management
-The device management interface provides access to various modules:
-
-- **Info**: View device specs, Android version, and system details
-- **GPS**: Monitor device location and location history
-- **Microphone**: Record audio from the device
-- **Contacts**: Access the device's contact list
-- **Calls**: Review call history
-- **Clipboard**: Monitor text copied to clipboard
-- **Notifications**: View app notifications
-- **SMS**: Access text messages
-- **WiFi**: View WiFi connection details and history
-- **Applications**: List installed apps
-- **Permissions**: View and manage app permissions
-- **Files**: Browse and download device files
-- **Downloads**: Access downloads folder
-
-### APK Builder
-Use the builder page to create custom APKs with your server information. The generated APK can be shared with target devices to establish connection.
-
-## 🖼️ Screenshots
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/screenshots/dashboard.png" alt="Dashboard" width="45%">
-  <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/screenshots/device-info.png" alt="Device Info" width="45%">
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/screenshots/file-manager.png" alt="File Manager" width="45%">
-  <img src="https://raw.githubusercontent.com/AryanVBW/ANDRO/main/screenshots/gps-tracking.png" alt="GPS Tracking" width="45%">
-</p>
-
-## 🤝 Contributing
-
-Contributions are welcome! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to contribute to this project. Key points:
-
-- Contributions to the UI should target the `WebPanel` branch
-- Website improvements should target the `website` branch
-- Follow the code style guidelines
-- Test thoroughly before submitting pull requests
-
-## 🔒 Security
-
-This application should be used responsibly and ethically. Always ensure you have proper authorization before monitoring any device. Unauthorized surveillance may violate local laws.
-
-### Security Recommendations
-
-1. Change default login credentials immediately
-2. Use HTTPS for production deployments
-3. Keep your Node.js and dependencies updated
-4. Restrict access to the web panel through firewall rules
-5. Regularly review connected devices
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Express.js](https://expressjs.com/) - The web framework
-- [Socket.io](https://socket.io/) - Real-time communication
-- [Semantic UI](https://semantic-ui.com/) - UI components
-- [Leaflet](https://leafletjs.com/) - Interactive maps
-
----
-
-<p align="center">
-  Made with <span style="color: #ff0066;">❤️‍🔥</span> by <a href="https://github.com/AryanVBW" target="_blank">AryanVBW</a>
-</p>
