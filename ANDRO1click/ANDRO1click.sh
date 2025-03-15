@@ -216,5 +216,14 @@ log "To stop the application, run: pm2 stop index.js"
 echo -e "${BRIGHT_GREEN}Installation complete! ANDRO is now running.${NC}"
 echo -e "${BRIGHT_GREEN}Access the service at:${NC}"
 echo -e "${BRIGHT_GREEN}Localhost URL: http://localhost:8080${NC}"
-echo -e "${BRIGHT_GREEN}System IP URL: http://$(hostname -I | awk '{print $1}'):8080${NC}"
+if [[ "$OS" == "Linux" ]]; then
+    IP_ADDRESS=$(hostname -I | awk '{print $1}')
+elif [[ "$OS" == "macOS" ]]; then
+    IP_ADDRESS=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}' | head -n 1)
+elif [[ "$OS" == "Windows" ]]; then
+    IP_ADDRESS=$(ipconfig | findstr /i "IPv4" | awk '{print $NF}' | head -n 1)
+else
+    IP_ADDRESS="Unknown"
+fi
+echo -e "${BRIGHT_GREEN}System IP URL: http://${IP_ADDRESS}:8080${NC}"
 echo -e "${BRIGHT_GREEN}Login credentials - Username: andro, Password: admin${NC}"
