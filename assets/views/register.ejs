@@ -2,6 +2,7 @@
 <html>
 <%- include('partials/head.ejs') %>
 <body>
+    <div class="bg-overlay"></div>
     <canvas id="matrix"></canvas>
     <div class="ui middle aligned center aligned grid main-container">
         <div class="column" style="max-width: 450px;">
@@ -61,8 +62,19 @@
             padding: 0;
             height: 100vh;
             font-family: 'Courier New', monospace;
-            background: #000;
+            background: url('/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             overflow: hidden;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
         }
 
         #matrix {
@@ -71,13 +83,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 1;
+            opacity: 0.5;
         }
 
         .main-container {
             height: 100vh;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .login-box {
@@ -152,7 +165,42 @@
             animation: glitch-2 3s infinite linear alternate-reverse;
         }
 
-        // ...existing styles...
+        .footer-text {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 5px #00ff9d;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .heart {
+            color: #ff0066;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+
+        .author-link {
+            color: #00ff9d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .author-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ff9d;
+            transform: scale(1.1);
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
         @keyframes logoGlow {
             from {
