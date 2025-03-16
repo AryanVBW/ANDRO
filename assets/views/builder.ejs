@@ -99,7 +99,15 @@
 
         <!-- Build History Section -->
         <div class="ui segment builder-container" style="margin-top: 2em;">
-            <h2 class="ui center aligned header builder-title">Build History</h2>
+            <h2 class="ui center aligned header builder-title">
+                Build History
+                <% if (buildHistory && buildHistory.length > 0) { %>
+                    <button class="ui small red button right floated clear-history-btn" style="margin-top: 5px;">
+                        <i class="trash icon"></i>
+                        Clear History
+                    </button>
+                <% } %>
+            </h2>
             <div class="ui relaxed divided list">
                 <% buildHistory.forEach((build) => { %>
                     <div class="item build-item">
@@ -141,6 +149,20 @@
                     </div>
                 </div>
             <% } %>
+        </div>
+    </div>
+
+    <!-- Clear History Confirmation Modal -->
+    <div class="ui tiny modal clear-history-modal">
+        <div class="header">
+            Clear Build History
+        </div>
+        <div class="content">
+            <p>Are you sure you want to clear the entire build history? This action cannot be undone.</p>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">Cancel</div>
+            <div class="ui negative approve button">Clear History</div>
         </div>
     </div>
 
@@ -351,6 +373,69 @@
             color: #121212 !important;
             box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
         }
+        
+        /* Modal styling for dark theme */
+        [data-theme="dark"] .ui.modal {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .header {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--highlight-color) !important;
+            border-bottom: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .content {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .actions {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-top: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button,
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.1) !important;
+            color: #ff6666 !important;
+            border-color: #ff6666 !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.2) !important;
+            box-shadow: 0 0 10px rgba(255, 102, 102, 0.3) !important;
+        }
+        
+        /* Add a cool effect when modals appear */
+        .ui.modal.visible.active {
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 
     <script>
@@ -491,6 +576,31 @@
                 }
             });
         }
+
+        // Clear history button handler
+        $('.clear-history-btn').on('click', function() {
+            $('.clear-history-modal')
+                .modal({
+                    closable: false,
+                    onApprove: function() {
+                        return $.ajax({
+                            url: '/builder/clear-history',
+                            method: 'POST',
+                            success: function() {
+                                showNotification('#00ff9d', 'Build history cleared successfully');
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function() {
+                                showNotification('#ff5252', 'Failed to clear build history');
+                                return false;
+                            }
+                        });
+                    }
+                })
+                .modal('show');
+        });
     </script>
     <%- include('partials/footer.ejs') %>
 </body>

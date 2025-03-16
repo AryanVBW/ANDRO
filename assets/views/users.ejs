@@ -193,6 +193,102 @@
             border-color: var(--highlight-color);
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* Modal styling for dark theme */
+        [data-theme="dark"] .ui.modal {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .header {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--highlight-color) !important;
+            border-bottom: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .content {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .actions {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-top: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button,
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.1) !important;
+            color: #ff6666 !important;
+            border-color: #ff6666 !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.2) !important;
+            box-shadow: 0 0 10px rgba(255, 102, 102, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .positive.button,
+        [data-theme="dark"] .ui.modal .positive.button:hover {
+            background-color: rgba(0, 255, 157, 0.1) !important;
+            color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .positive.button:hover {
+            background-color: rgba(0, 255, 157, 0.2) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal label {
+            color: var(--text-color) !important;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        [data-theme="dark"] .ui.form .field {
+            margin-bottom: 20px;
+        }
+        
+        [data-theme="dark"] .ui.form input {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.form input:focus {
+            border-color: var(--highlight-color) !important;
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2) !important;
+        }
+        
+        /* Add a cool effect when modals appear */
+        .ui.modal.visible.active {
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 
     <script>

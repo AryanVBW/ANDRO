@@ -371,6 +371,15 @@ routes.post('/builder', isAllowed, upload.single('logo'), (req, res) => {
     });
 });
 
+routes.post('/builder/clear-history', isAllowed, isAdmin, (req, res) => {
+    debug.route('Clear build history requested');
+    
+    // Clear the build history array in the database
+    db.maindb.set('admin.buildHistory', []).write();
+    
+    res.json({ success: true });
+});
+
 routes.get('/logs', isAllowed, (req, res) => {
     debug.route('Logs page requested');
     try {

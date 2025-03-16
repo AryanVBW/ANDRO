@@ -9,43 +9,12 @@
       "role": "admin",
       "approved": true,
       "created": "2025-03-15T21:01:24.977Z",
-      "loginToken": ""
-    },
-    {
-      "username": "vivek",
-      "password": "061a01a98f80f415b1431236b62bb10b",
-      "role": "user",
-      "approved": true,
-      "created": "2025-03-15T21:46:54.381Z",
-      "loginToken": ""
-    },
-    {
-      "username": "aryan",
-      "password": "e2071528cf1aa685779d9898ccd9b308",
-      "role": "user",
-      "approved": true,
-      "created": "2025-03-15T22:11:08.620Z",
-      "loginToken": ""
+      "loginToken": "a02f55b1d5751ed5b48b6387e7f527a9"
     }
   ],
   "admin": {
     "logs": [],
-    "buildHistory": [
-      {
-        "time": "2025-03-15T21:52:56.814Z",
-        "appName": "ANDRO",
-        "uri": "0.0.0.0",
-        "port": "8084",
-        "logoPath": "/uploads/app-logo.png"
-      },
-      {
-        "time": "2025-03-15T22:03:45.321Z",
-        "appName": "ANDRO",
-        "uri": "127.0.0.1",
-        "port": "8084",
-        "logoPath": null
-      }
-    ],
+    "buildHistory": [],
     "ipLog": []
   },
   "clients": []
