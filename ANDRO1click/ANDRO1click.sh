@@ -15,22 +15,78 @@ PURPLE='\033[0;35m'
 BRIGHT_PURPLE='\033[1;35m'
 NC='\033[0m' # No Color (reset)
 
-# Display enhanced banner with animated effect
+# Get terminal size
+TERM_WIDTH=$(tput cols 2>/dev/null || echo 80)
+TERM_HEIGHT=$(tput lines 2>/dev/null || echo 24)
+
+# Function to create a centered line with padding
+center_line() {
+    local text="$1"
+    local color_start="$2"
+    local color_end="$3"
+    local text_length=${#text}
+    local padding_total=$((TERM_WIDTH - 4 - text_length))
+    local padding_left=$((padding_total / 2))
+    local padding_right=$((padding_total - padding_left))
+    local padding_left_str="$(printf '%*s' $padding_left '')"
+    local padding_right_str="$(printf '%*s' $padding_right '')"
+    
+    echo -e "${BRIGHT_RED}║${color_start}${padding_left_str}${text}${padding_right_str}${color_end}${BRIGHT_RED}║${NC}"
+}
+
+# Create border line of appropriate width
+create_border_line() {
+    local char="$1"
+    local border_width=$((TERM_WIDTH - 2))
+    printf "${BRIGHT_RED}%s%s%s${NC}\n" "$char" "$(printf '%*s' $border_width | tr ' ' '═')" "$char"
+}
+
+# Display enhanced banner with auto-sizing
 clear
 echo ""
-echo -e "${BRIGHT_RED}╔════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BRIGHT_RED}║                                                                ║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN}  █████╗ ███╗   ██╗██████╗ ██████╗  ██████╗   ${BRIGHT_BLUE}▄█▀▄     ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN} ██╔══██╗████╗  ██║██╔══██╗██╔══██╗██╔═══██╗  ${BRIGHT_BLUE}▐█░░▐█    ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN} ███████║██╔██╗ ██║██║  ██║██████╔╝██║   ██║  ${BRIGHT_BLUE}▐█▀▀▄█    ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN} ██╔══██║██║╚██╗██║██║  ██║██╔══██╗██║   ██║  ${BRIGHT_BLUE}▝█  █▌    ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN} ██║  ██║██║ ╚████║██████╔╝██║  ██║╚██████╔╝  ${BRIGHT_BLUE} ▀▄▀▀     ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_GREEN} ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝            ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║                                                                ║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_CYAN}      𝒜𝓃𝒹𝓇𝓸𝒾𝒹 𝒟𝒶𝓉𝒶 𝒜𝓊𝓉𝑜𝓂𝒶𝓉𝒾𝑜𝓃 & 𝑅𝑒𝓂𝑜𝓉𝑒 𝒪𝓅𝑒𝓇𝒶𝓉𝒾𝑜𝓃𝓈       ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}║                                                                ║${NC}"
-echo -e "${BRIGHT_RED}║${BRIGHT_YELLOW}              Created by Vivek W © $(date +%Y)                    ${BRIGHT_RED}║${NC}"
-echo -e "${BRIGHT_RED}╚════════════════════════════════════════════════════════════════╝${NC}"
+
+# Top border
+create_border_line "╔" "╗"
+
+# Empty line
+center_line "" "" ""
+
+# Logo lines - will center in terminal
+if [ $TERM_WIDTH -ge 70 ]; then
+    # Full logo for larger terminals
+    center_line "  █████╗ ███╗   ██╗██████╗ ██████╗  ██████╗     " "${BRIGHT_GREEN}" "${NC}"
+    center_line " ██╔══██╗████╗  ██║██╔══██╗██╔══██╗██╔═══██╗    " "${BRIGHT_GREEN}" "${NC}"
+    center_line " ███████║██╔██╗ ██║██║  ██║██████╔╝██║   ██║    " "${BRIGHT_GREEN}" "${NC}"
+    center_line " ██╔══██║██║╚██╗██║██║  ██║██╔══██╗██║   ██║    " "${BRIGHT_GREEN}" "${NC}"
+    center_line " ██║  ██║██║ ╚████║██████╔╝██║  ██║╚██████╔╝    " "${BRIGHT_GREEN}" "${NC}"
+    center_line " ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝     " "${BRIGHT_GREEN}" "${NC}"
+else
+    # Simplified logo for smaller terminals
+    center_line "╔══ ANDRO ══╗" "${BRIGHT_GREEN}" "${NC}"
+    center_line "║ Android Data ║" "${BRIGHT_GREEN}" "${NC}"
+    center_line "╚═══════════╝" "${BRIGHT_GREEN}" "${NC}"
+fi
+
+# Empty line
+center_line "" "" ""
+
+# Description - adapts to different terminal widths
+if [ $TERM_WIDTH -ge 70 ]; then
+    center_line "𝒜𝓃𝒹𝓇𝓸𝒾𝒹 𝒟𝒶𝓉𝒶 𝒜𝓊𝓉𝑜𝓂𝒶𝓉𝒾𝑜𝓃 & 𝑅𝑒𝓂𝑜𝓉𝑒 𝒪𝓅𝑒𝓇𝒶𝓉𝒾𝑜𝓃𝓈" "${BRIGHT_CYAN}" "${NC}"
+else
+    center_line "Android Data Automation" "${BRIGHT_CYAN}" "${NC}"
+    center_line "& Remote Operations" "${BRIGHT_CYAN}" "${NC}"
+fi
+
+# Empty line
+center_line "" "" ""
+
+# Copyright notice
+center_line "Created by Vivek W © $(date +%Y)" "${BRIGHT_YELLOW}" "${NC}"
+
+# Bottom border
+create_border_line "╚" "╝"
+
 echo ""
 sleep 1
 
