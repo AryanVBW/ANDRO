@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('partials/head.ejs') %>
+
+<body>
+    <%- include('partials/header.ejs') %>
+    
+    <!-- Matrix Background Effect -->
+    <canvas class="matrix-bg"></canvas>
+
+    <div class="ui container main-content">
+        <div class="ui segment">
+            <h2 class="ui header glitch">
+                <i class="settings icon"></i>
+                <div class="content">Settings</div>
+            </h2>
+            
+            <div class="ui divider"></div>
+            
+            <!-- Theme Settings -->
+            <div class="ui segment">
+                <h3 class="ui header">
+                    <i class="paint brush icon"></i>
+                    <div class="content">Theme Settings</div>
+                </h3>
+                
+                <div class="ui form">
+                    <div class="field">
+                        <label>Default Theme</label>
+                        <div class="ui selection dropdown theme-selector">
+                            <input type="hidden" name="theme" id="themeSelection">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Select Theme</div>
+                            <div class="menu">
+                                <div class="item" data-value="dark"><i class="moon icon"></i>Dark Mode</div>
+                                <div class="item" data-value="light"><i class="sun icon"></i>Light Mode</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ui button theme-save-btn">Save Theme Preference</button>
+                </div>
+            </div>
+            
+            <!-- Password Change -->
+            <div class="ui segment">
+                <h3 class="ui header">
+                    <i class="lock icon"></i>
+                    <div class="content">Change Password</div>
+                </h3>
+                
+                <form class="ui form password-form" method="POST" action="/settings/password">
+                    <div class="field">
+                        <label>Current Password</label>
+                        <div class="ui left icon input">
+                            <i class="key icon"></i>
+                            <input type="password" name="currentPassword" placeholder="Current Password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>New Password</label>
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="newPassword" placeholder="New Password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Confirm New Password</label>
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="confirmPassword" placeholder="Confirm New Password">
+                        </div>
+                    </div>
+                    <button class="ui button" type="submit">Update Password</button>
+                </form>
+                <% if (typeof passwordMessage !== 'undefined') { %>
+                    <div class="ui <%= passwordMessage.type %> message">
+                        <p><%= passwordMessage.text %></p>
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="ui segment">
+                <h3 class="ui header">
+                    <i class="sliders horizontal icon"></i>
+                    <div class="content">Advanced Settings</div>
+                </h3>
+                
+                <form class="ui form advanced-form" method="POST" action="/settings/advanced">
+                    <div class="field">
+                        <label>Session Timeout (minutes)</label>
+                        <div class="ui input">
+                            <input type="number" name="sessionTimeout" placeholder="Session Timeout" min="5" max="1440" value="<%= typeof sessionTimeout !== 'undefined' ? sessionTimeout : 120 %>">
+                        </div>
+                        <small>How long until you're automatically logged out (between 5 minutes and 24 hours)</small>
+                    </div>
+                    <button class="ui button" type="submit">Save Advanced Settings</button>
+                </form>
+                <% if (typeof advancedMessage !== 'undefined') { %>
+                    <div class="ui <%= advancedMessage.type %> message">
+                        <p><%= advancedMessage.text %></p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('partials/footer.ejs') %>
+    
+    <script>
+        $(document).ready(function() {
+            // Semantic UI initialization
+            $('.ui.dropdown').dropdown();
+            
+            // Set current theme in dropdown
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            $('.theme-selector').dropdown('set selected', currentTheme);
+            
+            // Theme save button click handler
+            $('.theme-save-btn').on('click', function() {
+                const selectedTheme = $('#themeSelection').val();
+                localStorage.setItem('theme', selectedTheme);
+                setTheme(selectedTheme);
+                
+                // Show notification
+                const message = selectedTheme === 'dark' ? 'Dark mode set as default' : 'Light mode set as default';
+                const color = selectedTheme === 'dark' ? '#00ff9d' : '#2ecc71';
+                showNotification(color, message);
+            });
+            
+            // Password form validation
+            $('.password-form').form({
+                fields: {
+                    currentPassword: {
+                        identifier: 'currentPassword',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your current password'
+                            }
+                        ]
+                    },
+                    newPassword: {
+                        identifier: 'newPassword',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter a new password'
+                            },
+                            {
+                                type: 'length[6]',
+                                prompt: 'Your password must be at least 6 characters'
+                            }
+                        ]
+                    },
+                    confirmPassword: {
+                        identifier: 'confirmPassword',
+                        rules: [
+                            {
+                                type: 'match[newPassword]',
+                                prompt: 'Passwords do not match'
+                            }
+                        ]
+                    }
+                }
+            });
+            
+            // Advanced settings validation
+            $('.advanced-form').form({
+                fields: {
+                    sessionTimeout: {
+                        identifier: 'sessionTimeout',
+                        rules: [
+                            {
+                                type: 'integer[5..1440]',
+                                prompt: 'Session timeout must be between 5 and 1440 minutes'
+                            }
+                        ]
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

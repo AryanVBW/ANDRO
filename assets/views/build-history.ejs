@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('partials/head.ejs') %>
+
+<body>
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        <div class="ui segment history-container">
+            <h1 class="ui center aligned header history-title">APK Build History</h1>
+            
+            <% if(buildHistory && buildHistory.length > 0) { %>
+                <div class="ui relaxed divided list">
+                    <% buildHistory.forEach(function(build) { %>
+                        <div class="item build-item" data-id="<%= build.id %>">
+                            <div class="ui grid">
+                                <div class="three wide column">
+                                    <div class="logo-container">
+                                        <% if(build.logoUrl) { %>
+                                            <img class="ui small image" src="<%= build.logoUrl %>" alt="App Logo">
+                                        <% } else { %>
+                                            <div class="default-logo">
+                                                <i class="android icon"></i>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="nine wide column">
+                                    <h3 class="ui header build-name">
+                                        <%= build.appName %>
+                                        <div class="sub header">
+                                            <span class="build-id">Build ID: <%= build.id %></span>
+                                        </div>
+                                    </h3>
+                                    <div class="meta">
+                                        <span class="date">Built on: <%= new Date(build.time).toLocaleString() %></span>
+                                    </div>
+                                    <div class="description">
+                                        <p>
+                                            <strong>Server URL:</strong> <%= build.uri %>:<%= build.port %><br>
+                                            <strong>Custom Logo:</strong> <%= build.hasCustomLogo ? 'Yes' : 'No' %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="four wide column action-column">
+                                    <div class="ui vertical buttons">
+                                        <button class="ui primary button rebuild-btn" data-name="<%= build.appName %>" data-uri="<%= build.uri %>" data-port="<%= build.port %>" onclick="rebuildApp(this)">
+                                            <i class="sync icon"></i>Rebuild
+                                        </button>
+                                        <a class="ui button download-btn" href="/build.s.apk" download="<%= build.appName.replace(/\s+/g, '_') %>.apk">
+                                            <i class="download icon"></i>Download APK
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="ui placeholder segment">
+                    <div class="ui icon header">
+                        <i class="android icon"></i>
+                        No APK Builds Yet
+                    </div>
+                    <a href="/builder" class="ui primary button">
+                        <i class="plus icon"></i>Build New APK
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <style>
+        .main-container {
+            padding-bottom: 80px;
+        }
+        
+        .history-container {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            padding: 30px;
+        }
+        
+        [data-theme="dark"] .history-container {
+            background-color: rgba(18, 18, 18, 0.8);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .history-title {
+            font-family: 'Courier New', monospace !important;
+            margin-bottom: 30px !important;
+            font-size: 2.5em !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        [data-theme="dark"] .history-title {
+            color: var(--highlight-color) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+        
+        .build-item {
+            padding: 20px !important;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        [data-theme="dark"] .build-item {
+            background-color: rgba(24, 24, 24, 0.5);
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .build-item:hover {
+            background-color: rgba(24, 24, 24, 0.8);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.15);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .default-logo {
+            width: 90px;
+            height: 90px;
+            background-color: rgba(0, 255, 157, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        [data-theme="dark"] .default-logo i.android.icon {
+            font-size: 3em;
+            color: var(--highlight-color);
+        }
+        
+        [data-theme="dark"] .build-name {
+            color: var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .build-id {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85em;
+        }
+        
+        [data-theme="dark"] .meta .date {
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Courier New', monospace;
+        }
+        
+        [data-theme="dark"] .description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+        
+        .action-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ui.buttons {
+            width: 100%;
+        }
+        
+        [data-theme="dark"] .rebuild-btn {
+            background-color: transparent !important;
+            color: var(--highlight-color) !important;
+            border: 1px solid var(--highlight-color) !important;
+            margin-bottom: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .rebuild-btn:hover {
+            background-color: var(--highlight-color) !important;
+            color: #121212 !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+        }
+        
+        [data-theme="dark"] .download-btn {
+            background-color: transparent !important;
+            color: #00ccff !important;
+            border: 1px solid #00ccff !important;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
+        }
+        
+        [data-theme="dark"] .download-btn:hover {
+            background-color: #00ccff !important;
+            color: #121212 !important;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+        }
+        
+        [data-theme="dark"] .ui.placeholder.segment {
+            background-color: rgba(24, 24, 24, 0.5);
+            border: 1px dashed var(--highlight-color);
+        }
+        
+        [data-theme="dark"] .ui.icon.header {
+            color: var(--highlight-color) !important;
+        }
+    </style>
+
+    <script>
+        gtag('event', 'screen_view', {
+            'screen_name': 'buildHistory',
+            'app_name': 'AryanVBW'
+        });
+        
+        function rebuildApp(btn) {
+            // Get build details from the button's data attributes
+            const appName = btn.getAttribute('data-name');
+            const uri = btn.getAttribute('data-uri');
+            const port = btn.getAttribute('data-port');
+            
+            // Redirect to builder page with the values pre-filled
+            window.location.href = `/builder?prefill=true&appName=${encodeURIComponent(appName)}&uri=${encodeURIComponent(uri)}&port=${encodeURIComponent(port)}`;
+        }
+    </script>
+
+    <%- include('partials/footer.ejs') %>
+</body>
+
+</html>

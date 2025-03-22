@@ -6,11 +6,13 @@ const
     db = lowdb(adapter);
 
 db.defaults({
+    settings: {
+        firstTimeSetup: true
+    },
+    users: [],
     admin: {
-        username: 'ANDRO',
-        password: 'admin',
-        loginToken: '',
         logs: [],
+        buildHistory: [],
         ipLog: []
     },
     clients: []
