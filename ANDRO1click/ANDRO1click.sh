@@ -148,8 +148,9 @@ log "Detected OS: $OS"
 
 # Install dependencies based on OS
 if [ "$OS" == "Termux" ]; then
-    log "Termux detected. Updating package lists..."
+    log "Termux detected. Updating and upgrading packages..."
     execute "pkg update -y" "Failed to update package lists"
+    execute "pkg upgrade -y" "Failed to upgrade packages"
     
     # Check and install Node.js
     if check_command node; then
