@@ -79,7 +79,6 @@ A cloud based remote android managment suite, powered by Nodejs <img src="https:
 It's recommended to run ANDRO behind a reverse proxy such as [NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 
 ## Contributor
-   - [Vinayak](https://www.instagram.com/mr_vinayak_1427)
    - J
 ## Demo Login page & Control Panel
 
