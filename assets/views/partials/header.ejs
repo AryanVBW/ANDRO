@@ -13,9 +13,27 @@
             <i class="icon terminal"></i><span class="menu-text">Event Log's</span>
         </a>
         <div class="right menu">
-            <a href="/Logout" class="ui item">
-                <i class="icon sign-out"></i><span class="menu-text">Logout</span>
-            </a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/settings/users" class="ui item">
+                    <i class="users icon"></i><span class="menu-text">Manage Users</span>
+                </a>
+                <a href="/settings" class="ui item">
+                    <i class="icon settings"></i><span class="menu-text">Settings</span>
+                </a>
+            <% } %>
+            <div class="ui dropdown item">
+                <i class="user circle icon"></i>
+                <span class="menu-text">
+                    <%= user.username %> 
+                    <small class="role-badge"><%= user.role %></small>
+                </span>
+                <div class="menu">
+                    <a href="/logout" class="item">
+                        <i class="sign-out icon"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="ui divider header-divider"></div>
@@ -74,4 +92,18 @@
         box-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
         height: 1px;
     }
+
+    .role-badge {
+        background: rgba(0, 255, 157, 0.1);
+        color: var(--highlight-color);
+        padding: 2px 6px;
+        border-radius: 3px;
+        margin-left: 5px;
+        font-size: 0.8em;
+        text-transform: uppercase;
+    }
 </style>
+
+<script>
+    $('.ui.dropdown').dropdown();
+</script>

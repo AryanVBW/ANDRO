@@ -36,6 +36,47 @@
                             title="This is the `control_port` set in the consts" value="<%= myPort %>">
                     </div>
                 </div>
+                
+                <!-- New fields for app name and logo -->
+                <div class="inline fields">
+                    <div class="eight wide field">
+                        <div class="ui labeled input" style="width: 100%;">
+                            <div class="ui label app-name-label">
+                                App Name
+                            </div>
+                            <input type="text" id="appNameInput" placeholder="Enter App Name" value="ANDRO" 
+                                title="This will be the displayed name of your app">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inline fields">
+                    <div class="eight wide field">
+                        <div class="ui labeled input" style="width: 100%;">
+                            <div class="ui label app-logo-label">
+                                App Logo
+                            </div>
+                            <div class="ui action input" style="width: 100%;">
+                                <input type="text" id="logoLabel" placeholder="Select an image (PNG, 512x512 recommended)" readonly>
+                                <label for="logoInput" class="ui icon button">
+                                    <i class="file image outline icon"></i>
+                                </label>
+                                <input type="file" id="logoInput" accept="image/png" style="display: none;" onchange="updateLogoLabel()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Preview of the app logo -->
+                <div class="inline fields" id="logoPreviewContainer" style="display: none;">
+                    <div class="eight wide field">
+                        <div class="ui segment" style="margin: 0 auto; text-align: center; padding: 10px;">
+                            <p>Logo Preview</p>
+                            <img id="logoPreview" src="" style="max-height: 128px; max-width: 128px;">
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="inline fields">
                     <div class="eight wide field">
                         <button id="gobuild" class="ui fluid button build-btn">
@@ -54,6 +95,74 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Build History Section -->
+        <div class="ui segment builder-container" style="margin-top: 2em;">
+            <h2 class="ui center aligned header builder-title">
+                Build History
+                <% if (buildHistory && buildHistory.length > 0) { %>
+                    <button class="ui small red button right floated clear-history-btn" style="margin-top: 5px;">
+                        <i class="trash icon"></i>
+                        Clear History
+                    </button>
+                <% } %>
+            </h2>
+            <div class="ui relaxed divided list">
+                <% buildHistory.forEach((build) => { %>
+                    <div class="item build-item">
+                        <div class="content">
+                            <div class="ui grid">
+                                <div class="three wide column">
+                                    <% if (build.logoPath) { %>
+                                        <img class="ui tiny image" src="<%= build.logoPath %>" alt="App Logo">
+                                    <% } else { %>
+                                        <img class="ui tiny image" src="/logo.png" alt="Default Logo">
+                                    <% } %>
+                                </div>
+                                <div class="nine wide column">
+                                    <h3 class="ui header">
+                                        <%= build.appName %>
+                                        <div class="sub header">Built on <%= new Date(build.time).toLocaleString() %></div>
+                                    </h3>
+                                    <div class="meta">
+                                        <span>Server: <%= build.uri %>:<%= build.port %></span>
+                                    </div>
+                                </div>
+                                <div class="four wide column">
+                                    <a class="ui primary button download-history-btn" href="/build.s.apk" download="<%= build.appName %>.apk">
+                                        <i class="download icon"></i>
+                                        Download APK
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <% if (!buildHistory || buildHistory.length === 0) { %>
+                <div class="ui placeholder segment">
+                    <div class="ui icon header">
+                        <i class="history icon"></i>
+                        No Build History Yet
+                        <div class="sub header">Your APK build history will appear here</div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Clear History Confirmation Modal -->
+    <div class="ui tiny modal clear-history-modal">
+        <div class="header">
+            Clear Build History
+        </div>
+        <div class="content">
+            <p>Are you sure you want to clear the entire build history? This action cannot be undone.</p>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">Cancel</div>
+            <div class="ui negative approve button">Clear History</div>
         </div>
     </div>
 
@@ -99,7 +208,9 @@
             box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
         }
         
-        [data-theme="dark"] .protocol-label {
+        [data-theme="dark"] .protocol-label,
+        [data-theme="dark"] .app-name-label,
+        [data-theme="dark"] .app-logo-label {
             background-color: rgba(0, 255, 157, 0.1) !important;
             color: var(--highlight-color) !important;
             border: none !important;
@@ -122,6 +233,17 @@
             color: var(--highlight-color) !important;
             font-size: 1.2em;
             margin: 0 10px;
+        }
+        
+        [data-theme="dark"] #logoPreviewContainer .segment {
+            background-color: rgba(18, 18, 18, 0.9);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] #logoPreviewContainer p {
+            color: var(--highlight-color);
+            font-family: 'Courier New', monospace;
         }
         
         .build-btn, .download-btn {
@@ -156,6 +278,15 @@
             background-color: #00ccff !important;
             color: #121212 !important;
             box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+        }
+        
+        [data-theme="dark"] .ui.action.input > .button {
+            background-color: rgba(0, 255, 157, 0.1) !important;
+            color: var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.action.input > .button:hover {
+            background-color: rgba(0, 255, 157, 0.2) !important;
         }
         
         /* Loading animation styles */
@@ -206,6 +337,105 @@
         [data-theme="dark"] .terminal-text {
             animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both infinite;
         }
+
+        /* Build History Styles */
+        .build-item {
+            padding: 1em !important;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        [data-theme="dark"] .build-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .build-item img {
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+        }
+        
+        [data-theme="dark"] .build-item img {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .download-history-btn {
+            background-color: transparent !important;
+            color: #00ccff !important;
+            border: 1px solid #00ccff !important;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
+        }
+        
+        [data-theme="dark"] .download-history-btn:hover {
+            background-color: #00ccff !important;
+            color: #121212 !important;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+        }
+        
+        /* Modal styling for dark theme */
+        [data-theme="dark"] .ui.modal {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .header {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--highlight-color) !important;
+            border-bottom: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .content {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .actions {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-top: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button,
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.1) !important;
+            color: #ff6666 !important;
+            border-color: #ff6666 !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.2) !important;
+            box-shadow: 0 0 10px rgba(255, 102, 102, 0.3) !important;
+        }
+        
+        /* Add a cool effect when modals appear */
+        .ui.modal.visible.active {
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 
     <script>
@@ -217,6 +447,8 @@
         var loadingTexts = [
             "Initializing Build Process...",
             "Decompiling APK...",
+            "Customizing App Name...",
+            "Applying Custom Logo...",
             "Patching Server Information...",
             "Injecting Payload...",
             "Compiling Modified APK...",
@@ -228,10 +460,49 @@
         var loadingIndex = 0;
         var isDone = false;
         var isDoneInterval;
+        var logoFile = null;
+
+        // Function to update the logo label and show preview
+        function updateLogoLabel() {
+            var input = document.getElementById('logoInput');
+            var labelText = document.getElementById('logoLabel');
+            
+            if (input.files && input.files[0]) {
+                var file = input.files[0];
+                labelText.value = file.name;
+                logoFile = file;
+                
+                // Show preview
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                    document.getElementById('logoPreviewContainer').style.display = 'flex';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
 
         $('#gobuild').click((e) => {
             $('#dimmer').addClass('active');
-            build($('#uriInput').val(), $('#portInput').val());
+            
+            // Get app name and logo
+            var URI = $('#uriInput').val();
+            var PORT = $('#portInput').val();
+            var appName = $('#appNameInput').val() || 'ANDRO';
+            
+            // Create FormData to handle file upload
+            var formData = new FormData();
+            formData.append('uri', URI);
+            formData.append('port', PORT);
+            formData.append('appName', appName);
+            
+            // Add logo file if selected
+            if (logoFile) {
+                formData.append('logo', logoFile);
+            }
+            
+            // Build the APK with custom settings
+            buildWithFormData(formData);
             setTimeout(loaderText, 500);
         });
 
@@ -258,6 +529,40 @@
             }
         }
 
+        function buildWithFormData(formData) {
+            gtag('event', 'build', {
+                'builduri': formData.get('uri') + ':' + formData.get('port'),
+                'appName': formData.get('appName'),
+                'customLogo': formData.has('logo')
+            });
+            
+            $.ajax({
+                url: '/builder',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (!data.error) {
+                        isDone = true;
+                        // Update download filename with custom app name
+                        var appName = formData.get('appName').replace(/\s+/g, '_') || 'ANDRO';
+                        $('.download-btn').attr('download', appName + '.apk');
+                        showNotification('#00ff9d', 'Build completed successfully!');
+                    } else {
+                        $('#dimmer').removeClass('active');
+                        loadingIndex = 0;
+                        showNotification('#ff5252', data.error);
+                    }
+                },
+                error: function() {
+                    $('#dimmer').removeClass('active');
+                    loadingIndex = 0;
+                    showNotification('#ff5252', 'Network error occurred');
+                }
+            });
+        }
+
         function build(URI, PORT) {
             gtag('event', 'build', {
                 'builduri': URI + ':' + PORT
@@ -271,6 +576,31 @@
                 }
             });
         }
+
+        // Clear history button handler
+        $('.clear-history-btn').on('click', function() {
+            $('.clear-history-modal')
+                .modal({
+                    closable: false,
+                    onApprove: function() {
+                        return $.ajax({
+                            url: '/builder/clear-history',
+                            method: 'POST',
+                            success: function() {
+                                showNotification('#00ff9d', 'Build history cleared successfully');
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function() {
+                                showNotification('#ff5252', 'Failed to clear build history');
+                                return false;
+                            }
+                        });
+                    }
+                })
+                .modal('show');
+        });
     </script>
     <%- include('partials/footer.ejs') %>
 </body>
