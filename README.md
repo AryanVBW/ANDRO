@@ -30,13 +30,27 @@ A cloud based remote android managment suite, powered by Nodejs <img src="https:
     - See [installation](#Installation) for OS specifics
  - NodeJs 
  - Any Linux distribution like:Kali,Arch  or [Android with LinuxDroid](https://github.com/AryanVBW/LinuxDroid) 
-## 1click Installation
+## 1click Installation (Recommended)
    Experience effortless installation with a single command. Simply copy and paste the following line into your terminal to automatically install all dependencies and have your ANDRO application up and running seamlessly
    
 ```bash
    curl -sSL https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh | bash
 ```
- <p align="center"> <h1>OR</h1> </p>
+### 🚀 Quick Install 
+
+Install globally using npm:
+
+```bash
+npm install -g andro-remote-suite
+```
+
+Or using npx (no installation required):
+
+```bash
+npx andro-remote-suite
+```
+
+### 📦 Local Installation
  
 ```bash
  wget https://github.com/AryanVBW/ANDRO/releases/download/1click/ANDRO1click.sh 
