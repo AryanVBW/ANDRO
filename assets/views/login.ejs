@@ -1,178 +1,290 @@
 <!DOCTYPE html>
 <html>
-
 <%- include('partials/head.ejs') %>
-
 <body>
-    <script>
-        $(document).ready(function () {
-            $('.ui.form').form({
-                fields: {
-                    email: {
-                        identifier: 'username',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Please enter your username'
-                            }
-                        ]
-                    },
-                    password: {
-                        identifier: 'password',
-                        rules: [
-                            {
-                                type: 'empty',
-                                prompt: 'Please enter your password'
-                            }
-                        ]
-                    }
-                }
-            });
-        });
-    </script>
-
-    <!-- Background with parallax effect -->
-    <div class="background-container">
-        <div class="background-overlay"></div>
-    </div>
-
-    <div class="login-container">
-        <form class="ui large form" method="POST">
-            <div class="ui stacked segment">
-                <h1 class="ui center aligned header glitch">ANDRO_RAT</h1>
-                <div class="login-logo">
-                    <img src="/logo.png" style="height: 150px; display: block; margin: 0 auto;">
+    <div class="bg-overlay"></div>
+    <canvas id="matrix"></canvas>
+    <div class="ui middle aligned center aligned grid main-container">
+        <div class="column" style="max-width: 450px;">
+            <div class="login-box">
+                <div class="logo-wrapper">
+                    <img src="/logo.png" alt="ANDRO" class="andro-logo">
                 </div>
-                
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="username" placeholder="Username">
+                <form class="ui form" action="/login" method="POST">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user circle icon"></i>
+                            <input type="text" name="username" placeholder="Username" required autocomplete="off">
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
                     </div>
-                </div>
-                <button class="ui fluid large button submit-btn" type="submit">LOGIN</button>
-                <div class="ui error message"></div>
+                    <button class="ui fluid large submit button" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        LOGIN
+                    </button>
+
+                    <div class="ui divider"></div>
+                    <a href="/register" class="ui fluid register button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        CREATE ACCOUNT
+                    </a>
+                </form>
             </div>
-        </form>
-        <div class="footer-text">
-            <p>Made with <span class="heart">❤️‍🔥</span> By <a href="https://github.com/AryanVBW" target="_blank" class="author-link">🔥Vivek🔥</a></p>
         </div>
     </div>
 
-    <style type="text/css">
+    <div class="footer-text">
+        <p>Made with <span class="heart">❤️‍🔥</span> By <a href="https://github.com/AryanVBW" target="_blank" class="author-link">🔥Vivek🔥</a></p>
+    </div>
+
+    <style>
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Courier New', monospace;
+            background: url('/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             overflow: hidden;
         }
 
-        .background-container {
+        .bg-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("https://github.com/AryanVBW/kali-Linux-Android/releases/download/1.p/anonymous-g4c02e4053_1920.jpg");
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
         }
 
-        .background-overlay {
-            position: absolute;
+        #matrix {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: -1;
+            z-index: 1;
+            opacity: 0.5;
         }
 
-        .login-container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
+        .main-container {
+            height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-box {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #00ff9d;
+            box-shadow: 0 0 25px #00ff9d;
+            padding: 40px;
             border-radius: 10px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 10;
-            animation: glow 3s infinite alternate;
+            backdrop-filter: blur(10px);
+            animation: borderGlow 2s infinite alternate;
         }
 
-        [data-theme="dark"] .login-container {
-            background-color: rgba(30, 30, 30, 0.8);
-            border: 1px solid var(--highlight-color);
+        .glitch-wrapper {
+            margin-bottom: 30px;
         }
 
-        .ui.stacked.segment {
-            border: none;
-            background-color: rgba(255, 255, 255, 0.05);
-            box-shadow: none;
+        .glitch {
+            color: #00ff9d;
+            font-size: 40px;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 10px #00ff9d;
+            animation: glitch 1s infinite;
         }
 
-        [data-theme="dark"] .ui.stacked.segment {
-            background-color: rgba(0, 0, 0, 0.2);
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        .ui.header {
-            color: var(--header-color);
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0 0 20px 0;
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            animation: glitch-1 2s infinite linear alternate-reverse;
         }
 
-        .ui.form .field {
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00ffff;
+            animation: glitch-2 3s infinite linear alternate-reverse;
+        }
+
+        .ui.input {
+            width: 100%;
             margin-bottom: 20px;
         }
 
-        .ui.form input {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-color);
-            border-radius: 5px;
-        }
-
-        [data-theme="dark"] .ui.form input {
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--highlight-color);
-            color: var(--text-color);
-        }
-
-        .submit-btn {
-            background-color: transparent !important;
-            color: #fff !important;
+        .ui.input input {
+            background: rgba(0, 0, 0, 0.5) !important;
             border: 1px solid #00ff9d !important;
-            font-family: 'Courier New', Courier, monospace !important;
+            color: #fff !important;
+            border-radius: 5px !important;
+            padding: 15px !important;
             transition: all 0.3s ease !important;
         }
 
-        .submit-btn:hover {
-            background-color: #00ff9d !important;
-            color: #000 !important;
+        .ui.input input:focus {
+            background: rgba(0, 0, 0, 0.7) !important;
             box-shadow: 0 0 10px #00ff9d !important;
         }
 
-        .footer-text {
-            margin-top: 20px;
-            text-align: center;
-            color: var(--text-color);
-            font-size: 14px;
+        .ui.input i.icon {
+            color: #00ff9d;
+            opacity: 0.8;
         }
 
-        .footer-text .heart {
+        .submit.button,
+        .register.button {
+            background: transparent !important;
+            color: #00ff9d !important;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 2px solid #00ff9d !important;
+            padding: 15px !important;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s !important;
+            margin: 10px 0;
+        }
+
+        .submit.button:hover,
+        .register.button:hover {
+            background: #00ff9d !important;
+            color: #000 !important;
+            box-shadow: 0 0 20px #00ff9d;
+        }
+
+        .submit.button span,
+        .register.button span {
+            position: absolute;
+            display: block;
+        }
+
+        .button span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff9d);
+            animation: btn-anim1 1s linear infinite;
+        }
+
+        .button span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #00ff9d);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: .25s;
+        }
+
+        .button span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #00ff9d);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: .5s;
+        }
+
+        .button span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #00ff9d);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: .75s;
+        }
+
+        .ui.divider {
+            border-top: 1px solid #00ff9d !important;
+            border-bottom: 1px solid #00ff9d !important;
+            margin: 25px 0 !important;
+            opacity: 0.3;
+        }
+
+        @keyframes borderGlow {
+            from {
+                box-shadow: 0 0 15px #00ff9d;
+            }
+            to {
+                box-shadow: 0 0 25px #00ff9d;
+            }
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px,0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px,0) skew(0deg);
+            }
+            62% {
+                transform: translate(0,0) skew(5deg);
+            }
+        }
+
+        @keyframes btn-anim1 {
+            0% { left: -100%; }
+            50%,100% { left: 100%; }
+        }
+
+        @keyframes btn-anim2 {
+            0% { top: -100%; }
+            50%,100% { top: 100%; }
+        }
+
+        @keyframes btn-anim3 {
+            0% { right: -100%; }
+            50%,100% { right: 100%; }
+        }
+
+        @keyframes btn-anim4 {
+            0% { bottom: -100%; }
+            50%,100% { bottom: 100%; }
+        }
+
+        .footer-text {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 5px #00ff9d;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .heart {
             color: #ff0066;
             animation: heartbeat 1.5s infinite;
+            display: inline-block;
         }
 
         .author-link {
@@ -182,17 +294,10 @@
         }
 
         .author-link:hover {
-            color: #00cc7a;
-            text-shadow: 0 0 5px #00ff9d;
-        }
-
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
-            }
-            100% {
-                box-shadow: 0 0 20px rgba(0, 255, 157, 0.6);
-            }
+            color: #fff;
+            text-shadow: 0 0 10px #00ff9d;
+            transform: scale(1.1);
+            display: inline-block;
         }
 
         @keyframes heartbeat {
@@ -201,23 +306,115 @@
             100% { transform: scale(1); }
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
+        .logo-wrapper {
+            margin-bottom: 40px;
         }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
+        .andro-logo {
+            width: 180px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            animation: logoGlow 2s infinite alternate;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #00ff9d;
+        .andro-logo:hover {
+            transform: translateY(0) scale(1.05);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00cc7a;
+        @keyframes logoGlow {
+            from {
+                filter: drop-shadow(0 0 8px #00ff9d);
+            }
+            to {
+                filter: drop-shadow(0 0 20px #00ff9d);
+            }
         }
     </style>
-</body>
 
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const drops = [];
+        const fontSize = 15;
+        const columns = canvas.width / fontSize;
+
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        // Form validation
+        $(document).ready(function() {
+            $('.ui.form').form({
+                fields: {
+                    username: {
+                        identifier: 'username',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Please enter your password'
+                        }]
+                    }
+                }
+            });
+
+            // Handle error messages
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorType = urlParams.get('e');
+            
+            if (errorType) {
+                let errorMessage = '';
+                switch(errorType) {
+                    case 'badLogin':
+                        errorMessage = 'Access Denied: Invalid credentials';
+                        break;
+                    case 'missingUsername':
+                        errorMessage = 'Username required';
+                        break;
+                    case 'missingPassword':
+                        errorMessage = 'Password required';
+                        break;
+                    default:
+                        errorMessage = 'Authentication error';
+                }
+                
+                showNotification('#ff5252', errorMessage);
+            }
+        });
+    </script>
+</body>
 </html>

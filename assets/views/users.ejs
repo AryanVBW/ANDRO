@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+<body>
+    <div class="ui container main-container">
+        <%- include('partials/header.ejs') %>
+        <div class="ui segment users-container">
+            <h2 class="ui header">
+                <i class="users icon"></i>
+                <div class="content">
+                    User Management
+                    <div class="sub header">Manage user accounts and permissions</div>
+                </div>
+            </h2>
+            
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(function(user) { %>
+                        <tr class="user-row" data-username="<%= user.username %>">
+                            <td><%= user.username %></td>
+                            <td>
+                                <div class="ui selection dropdown role-dropdown">
+                                    <input type="hidden" name="role" value="<%= user.role %>">
+                                    <i class="dropdown icon"></i>
+                                    <div class="text"><%= user.role %></div>
+                                    <div class="menu">
+                                        <div class="item" data-value="admin">Admin</div>
+                                        <div class="item" data-value="user">User</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="status-cell">
+                                <% if (user.approved) { %>
+                                    <div class="ui green label">Approved</div>
+                                <% } else { %>
+                                    <div class="ui yellow label">Pending</div>
+                                <% } %>
+                            </td>
+                            <td><%= new Date(user.created).toLocaleString() %></td>
+                            <td class="action-buttons">
+                                <% if (!user.approved) { %>
+                                    <button class="ui primary button approve-btn">
+                                        <i class="check icon"></i>
+                                        Approve
+                                    </button>
+                                <% } %>
+                                <button class="ui teal button change-password-btn">
+                                    <i class="key icon"></i>
+                                    Change Password
+                                </button>
+                                <button class="ui red button delete-btn">
+                                    <i class="trash icon"></i>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="ui tiny modal password-modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Change Password for <span class="username"></span>
+        </div>
+        <div class="content">
+            <form class="ui form" id="password-form">
+                <div class="field">
+                    <label>New Password</label>
+                    <input type="password" name="newPassword" required>
+                </div>
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" required>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui deny button">Cancel</div>
+            <div class="ui positive button">Change Password</div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="ui tiny modal delete-modal">
+        <div class="header">
+            Delete User
+        </div>
+        <div class="content">
+            <p>Are you sure you want to delete user <span class="username"></span>? This action cannot be undone.</p>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">Cancel</div>
+            <div class="ui negative approve button">Delete</div>
+        </div>
+    </div>
+
+    <style>
+        .users-container {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            padding: 2em;
+        }
+        
+        [data-theme="dark"] .users-container {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .ui.header {
+            color: var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.header .sub.header {
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.celled.table {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .ui.celled.table th,
+        [data-theme="dark"] .ui.celled.table td {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.selection.dropdown {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.selection.dropdown:hover {
+            border-color: var(--highlight-color);
+        }
+        
+        [data-theme="dark"] .ui.selection.dropdown .menu {
+            background: rgba(18, 18, 18, 0.95);
+            border-color: var(--highlight-color);
+        }
+        
+        [data-theme="dark"] .ui.selection.dropdown .menu > .item {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.selection.dropdown .menu > .item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .action-buttons {
+            white-space: nowrap;
+        }
+        
+        .action-buttons .button {
+            margin: 0 3px;
+        }
+        
+        [data-theme="dark"] .ui.modal {
+            background: rgba(18, 18, 18, 0.95);
+            border: 1px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        [data-theme="dark"] .ui.modal .header,
+        [data-theme="dark"] .ui.modal .content {
+            background: transparent;
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.modal input {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        
+        [data-theme="dark"] .ui.modal input:focus {
+            border-color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal styling for dark theme */
+        [data-theme="dark"] .ui.modal {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            border: 1px solid var(--highlight-color) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .header {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            color: var(--highlight-color) !important;
+            border-bottom: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .content {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal > .actions {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border-top: 1px solid var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button {
+            background-color: transparent !important;
+            color: var(--text-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .ui.button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button,
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.1) !important;
+            color: #ff6666 !important;
+            border-color: #ff6666 !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .negative.button:hover {
+            background-color: rgba(219, 40, 40, 0.2) !important;
+            box-shadow: 0 0 10px rgba(255, 102, 102, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .positive.button,
+        [data-theme="dark"] .ui.modal .positive.button:hover {
+            background-color: rgba(0, 255, 157, 0.1) !important;
+            color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal .positive.button:hover {
+            background-color: rgba(0, 255, 157, 0.2) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3) !important;
+        }
+        
+        [data-theme="dark"] .ui.modal label {
+            color: var(--text-color) !important;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        [data-theme="dark"] .ui.form .field {
+            margin-bottom: 20px;
+        }
+        
+        [data-theme="dark"] .ui.form input {
+            background-color: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: var(--text-color) !important;
+        }
+        
+        [data-theme="dark"] .ui.form input:focus {
+            border-color: var(--highlight-color) !important;
+            background-color: rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 157, 0.2) !important;
+        }
+        
+        /* Add a cool effect when modals appear */
+        .ui.modal.visible.active {
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+    <script>
+        $('.ui.dropdown').dropdown();
+
+        $('.role-dropdown').on('change', function() {
+            const username = $(this).closest('.user-row').data('username');
+            const role = $(this).dropdown('get value');
+            
+            $.ajax({
+                url: `/settings/users/${username}/role`,
+                method: 'POST',
+                data: { role },
+                success: function() {
+                    showNotification('#00ff9d', 'User role updated successfully');
+                },
+                error: function() {
+                    showNotification('#ff5252', 'Failed to update user role');
+                }
+            });
+        });
+
+        $('.approve-btn').on('click', function() {
+            const row = $(this).closest('.user-row');
+            const username = row.data('username');
+            
+            $.ajax({
+                url: `/settings/users/${username}/approve`,
+                method: 'POST',
+                success: function() {
+                    row.find('.status-cell').html('<div class="ui green label">Approved</div>');
+                    $(this).remove();
+                    showNotification('#00ff9d', 'User approved successfully');
+                },
+                error: function() {
+                    showNotification('#ff5252', 'Failed to approve user');
+                }
+            });
+        });
+
+        // Change Password button handler
+        $('.change-password-btn').on('click', function() {
+            const username = $(this).closest('.user-row').data('username');
+            $('.password-modal .username').text(username);
+            $('#password-form')[0].reset();
+            $('.password-modal')
+                .modal({
+                    onApprove: function() {
+                        const newPassword = $('input[name="newPassword"]').val();
+                        const confirmPassword = $('input[name="confirmPassword"]').val();
+                        
+                        if (newPassword !== confirmPassword) {
+                            showNotification('#ff5252', 'Passwords do not match');
+                            return false;
+                        }
+                        
+                        $.ajax({
+                            url: `/settings/users/${username}/password`,
+                            method: 'POST',
+                            data: { newPassword },
+                            success: function() {
+                                showNotification('#00ff9d', 'Password changed successfully');
+                            },
+                            error: function() {
+                                showNotification('#ff5252', 'Failed to change password');
+                            }
+                        });
+                    }
+                })
+                .modal('show');
+        });
+
+        // Delete button handler
+        $('.delete-btn').on('click', function() {
+            const $row = $(this).closest('.user-row');
+            const username = $row.data('username');
+            $('.delete-modal .username').text(username);
+            $('.delete-modal')
+                .modal({
+                    closable: false,
+                    onApprove: function() {
+                        return $.ajax({
+                            url: `/settings/users/${username}`,
+                            method: 'DELETE',
+                            success: function() {
+                                $row.transition('fade out', function() {
+                                    $row.remove();
+                                });
+                                showNotification('#00ff9d', 'User deleted successfully');
+                            },
+                            error: function(xhr) {
+                                showNotification('#ff5252', xhr.responseJSON?.error || 'Failed to delete user');
+                                return false;
+                            }
+                        });
+                    }
+                })
+                .modal('show');
+        });
+    </script>
+
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

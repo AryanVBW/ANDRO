@@ -4,12 +4,12 @@ module.exports = {
     log: (type, message) => {
         db.maindb.get('admin.logs').push({
             "time": new Date(),
-            type: type.name,
+            type: typeof type === 'string' ? type : type.name || 'INFO',
             message
         }).write();
-        console.log(type.name, message);
+        console.log(type.name || type, message);
     },
     getLogs: () => {
-        return db.maindb.get('admin.logs').sortBy('time').reverse().value();
+        return db.maindb.get('admin.logs').sortBy('time').reverse().value() || [];
     }
 }

