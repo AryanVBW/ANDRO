@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#91D6AE</color>
+    <color name="colorPrimary">#91D6AE</color>
+    <color name="colorPrimaryDark">#0F2017</color>
+    <color name="app_background">#101713</color>
+    <color name="surface">#17211B</color>
+    <color name="text_primary">#F2F7F4</color>
+    <color name="text_secondary">#BBC9C0</color>
+    <color name="notice_surface">#173B28</color>
+    <color name="notice_text">#C6F2D6</color>
+    <color name="warning_surface">#3B2E13</color>
+    <color name="warning_text">#FFE2A3</color>
+    <color name="divider">#3B4C42</color>
+</resources>

@@ -1,10 +1,14 @@
 {
   "name": "ANDRO",
   "version": "1.0.0",
-  "description": "ANDRO - Remote Android Managment Suite",
-  "main": "index.js",
+  "description": "ANDRO - isolated ethical training demo",
+  "main": "demo/server.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node demo/server.js",
+    "demo": "node demo/server.js",
+    "android:build": "npm test && node demo/build-android.js",
+    "android:verify": "node demo/build-android.js --verify",
+    "test": "node --test demo/test/*.test.js"
   },
   "author": "AryanVBWs",
   "license": "ISC",

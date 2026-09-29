@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_horizontal_margin">64.0dip</dimen>
+    <dimen name="activity_horizontal_margin">96dp</dimen>
+    <dimen name="screen_horizontal_padding">96dp</dimen>
+    <dimen name="screen_vertical_padding">48dp</dimen>
 </resources>

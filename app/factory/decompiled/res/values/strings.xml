@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Process Manager</string>
+    <string name="app_name">ANDRO Ethical Demo</string>
+    <string name="demo_badge">USER-CONTROLLED DEMO</string>
+    <string name="screen_title">Authorized Android testing</string>
+    <string name="screen_subtitle">A transparent, user-started demonstration for current Android devices.</string>
+    <string name="ethical_use_title">Ethical-use boundary</string>
+    <string name="ethical_use_notice">This application and its source are for testing, demonstrations, and ethical purposes in an isolated environment only.\n\nUse only on devices you own or have explicit permission to test.\n\nStop if permission is withdrawn.</string>
+    <string name="demo_scope">This build can run only a visible demo session for up to 60 minutes. It requests notification permission so the Stop control remains visible. It has no network or device-data access.</string>
+    <string name="session_title">Demo session</string>
+    <string name="session_status_idle">No demo session is running.</string>
+    <string name="session_status_starting">Starting the visible demo session…</string>
+    <string name="session_status_active">Demo session active. You can stop it here or from the notification.</string>
+    <string name="session_explanation">Starting creates an ongoing low-priority notification. Tapping the notification returns to this screen.</string>
+    <string name="session_start">Start demo session</string>
+    <string name="session_stop">Stop demo session</string>
+    <string name="session_timeout_note">The session stops automatically after 60 minutes and never starts at boot or restarts itself.</string>
+    <string name="session_started_message">Visible demo session started.</string>
+    <string name="session_stopped_message">Demo session stopped.</string>
+    <string name="session_start_failed">The demo session could not start. Review system notification settings and try again.</string>
+    <string name="notification_permission_denied">Notification permission is required because this demo never runs without visible controls.</string>
+    <string name="notification_channel_name">ANDRO demo session</string>
+    <string name="notification_channel_description">Visible controls for a user-started, time-limited ethical demo session.</string>
+    <string name="notification_title">ANDRO Ethical Demo is running</string>
+    <string name="notification_text">Tap to review. This visible session stops automatically after 60 minutes.</string>
+    <string name="notification_stop">Stop session</string>
+    <string name="session_service_description">Runs only a visible, user-started, time-limited demo notification.</string>
+    <string name="safety_boundaries_title">Safety boundaries</string>
+    <string name="safety_boundaries">• No connection to the legacy dashboard\n• No SMS, call log, microphone, location, contact, file, or network access\n• No boot launch, hidden execution, self-restart, analytics, or unbounded persistence</string>
+    <string name="testing_checklist_title">Before any real security test</string>
+    <string name="testing_checklist">1. Obtain explicit written authorization.\n2. Define the devices, data, actions, and time window in scope.\n3. Use isolated test accounts and devices.\n4. Provide a clear stop and data-deletion process.</string>
+    <string name="close_hint">Closing this screen does not hide the active session: its notification stays visible. Use Stop in the app or notification; otherwise it ends after 60 minutes.</string>
 </resources>

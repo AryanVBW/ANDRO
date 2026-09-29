@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_horizontal_margin">16.0dip</dimen>
-    <dimen name="activity_vertical_margin">16.0dip</dimen>
+    <dimen name="activity_horizontal_margin">24dp</dimen>
+    <dimen name="activity_vertical_margin">24dp</dimen>
+    <dimen name="screen_horizontal_padding">24dp</dimen>
+    <dimen name="screen_vertical_padding">32dp</dimen>
+    <dimen name="section_spacing">24dp</dimen>
+    <dimen name="content_spacing">12dp</dimen>
+    <dimen name="panel_padding">20dp</dimen>
+    <dimen name="panel_corner_radius">20dp</dimen>
 </resources>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="An isolated, sample-only ANDRO demonstration. No real devices connect to this workspace.">
+    <title>ANDRO — Ethical demo workspace</title>
+    <link rel="stylesheet" href="/demo.css">
+    <script src="/demo.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to workspace</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <a class="brand" href="#workspace" aria-label="ANDRO demo workspace">
+          <span class="brand-mark" aria-hidden="true">A<span></span></span>
+          <span>ANDRO<small>Ethical demo lab</small></span>
+        </a>
+        <nav aria-label="On this page">
+          <a href="#workspace" class="nav-link"><span aria-hidden="true">◫</span> Workspace</a>
+          <a href="#history" class="nav-link"><span aria-hidden="true">≡</span> Session history</a>
+          <a href="#guide" class="nav-link"><span aria-hidden="true">◎</span> How it works</a>
+        </nav>
+        <div class="sidebar-note">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg>
+          <strong>A place to practice.</strong>
+          <p>Everything here is fabricated. No real device can connect.</p>
+          <span>Memory only. Cleared on reload.</span>
+        </div>
+      </aside>
+
+      <main id="workspace" tabindex="-1">
+        <header class="page-header">
+          <div>
+            <p class="workspace-label">Testing workspace</p>
+            <h1>Practice with a clear scope.</h1>
+            <p class="intro">Walk through a responsible testing session with sample devices and simulated results.</p>
+          </div>
+          <span class="demo-badge"><span aria-hidden="true"></span> SIMULATED DATA · LOCAL DEMO</span>
+        </header>
+
+        <section class="ethical-notice" aria-labelledby="notice-heading">
+          <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg>
+          <div>
+            <h2 id="notice-heading">For ethical testing only</h2>
+            <p>This application and its source are for testing, demonstrations, and ethical purposes in an isolated environment only. Use only on devices you own or have explicit permission to test. Stop if permission is withdrawn.</p>
+          </div>
+        </section>
+
+        <noscript><p class="noscript-message">Enable JavaScript to run this local simulation. No real device functions are available.</p></noscript>
+
+        <div class="workspace-grid">
+          <div class="control-column">
+            <section class="setup-section" aria-labelledby="setup-heading">
+              <div class="section-heading"><h2 id="setup-heading">Prepare your demo</h2><span class="section-caption">Two simple steps</span></div>
+              <fieldset id="device-options" class="device-fieldset">
+                <legend><span class="step-number" aria-hidden="true">1</span> Choose a sample device</legend>
+                <p class="field-help" id="device-help">These are fabricated profiles, not nearby devices.</p>
+                <div class="device-options" aria-describedby="device-help">
+                  <label class="device-option">
+                    <input type="radio" name="sample-device" value="sample-a">
+                    <span class="device-art" aria-hidden="true"><span></span></span>
+                    <span class="device-copy"><strong>Sample device A</strong><span>Compact phone</span><small>Fabricated Android profile</small></span>
+                    <span class="radio-indicator" aria-hidden="true"></span>
+                  </label>
+                  <label class="device-option">
+                    <input type="radio" name="sample-device" value="sample-b">
+                    <span class="device-art device-art-large" aria-hidden="true"><span></span></span>
+                    <span class="device-copy"><strong>Sample device B</strong><span>Large phone</span><small>Fabricated Android profile</small></span>
+                    <span class="radio-indicator" aria-hidden="true"></span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset id="readiness-options" class="readiness-fieldset">
+                <legend><span class="step-number" aria-hidden="true">2</span> Complete the practice checklist <span id="readiness-count" class="count-label">0 of 3</span></legend>
+                <p class="field-help" id="practice-help">This records a practice step. It is not real device-owner consent.</p>
+                <div class="checklist" aria-describedby="practice-help">
+                  <label class="check-item"><input type="checkbox" id="check-isolated"><span><strong>Isolated environment</strong><small>I understand this exercise belongs in an isolated testing environment.</small></span></label>
+                  <label class="check-item"><input type="checkbox" id="check-sample"><span><strong>Sample-only data</strong><small>I will use the fabricated profiles and simulated results provided here.</small></span></label>
+                  <label class="check-item"><input type="checkbox" id="check-scope"><span><strong>Scope and permission plan</strong><small>I understand real testing needs explicit permission, a defined scope, and a way to stop.</small></span></label>
+                </div>
+              </fieldset>
+            </section>
+
+            <section class="session-section" aria-labelledby="session-heading">
+              <div class="session-header"><h2 id="session-heading">Simulated session</h2><span id="session-badge" class="session-badge">Not started</span></div>
+              <p id="session-description">Choose a sample device and complete all three practice checks to begin.</p>
+              <div id="session-detail" class="session-detail" hidden><span>Sample device<strong id="active-device">—</strong></span><span>Started at<strong id="session-start">—</strong></span></div>
+              <div class="session-actions">
+                <button id="start-session" class="button button-primary" type="button" disabled>Start demo session</button>
+                <button id="stop-session" class="button button-stop" type="button" disabled>Stop demo session</button>
+              </div>
+              <p class="session-footnote">One simulated session at a time. Stop the session to change its setup.</p>
+            </section>
+          </div>
+
+          <aside class="preview-section" aria-labelledby="preview-heading">
+            <div class="preview-heading"><h2 id="preview-heading">Sample Android screen</h2><p>A preview drawn in this browser.</p></div>
+            <div class="phone-frame">
+              <div class="phone-top" aria-hidden="true"><span class="phone-speaker"></span></div>
+              <div class="phone-content">
+                <div class="phone-app-brand"><span class="phone-logo" aria-hidden="true">A</span><span>ANDRO<small>Demo application</small></span></div>
+                <span class="phone-demo-label">Simulated screen</span>
+                <h3>Testing with permission.</h3>
+                <p class="phone-notice">This application and its source are for testing, demonstrations, and ethical purposes in an isolated environment only. Use only on devices you own or have explicit permission to test. Stop if permission is withdrawn.</p>
+                <div class="phone-status"><span id="phone-status-dot" class="phone-status-dot" aria-hidden="true"></span><div><strong id="phone-status">Demo is idle</strong><span id="phone-status-description">No session is running.</span></div></div>
+                <p class="phone-bottom-note">No sensitive device permissions requested.<br>No device data collected.</p>
+              </div>
+              <div class="phone-home" aria-hidden="true"></div>
+            </div>
+            <p class="preview-caption">This is a simulated preview, not an APK or a connected Android application.</p>
+          </aside>
+        </div>
+
+        <section id="history" class="history-section" aria-labelledby="history-heading">
+          <div class="section-heading history-heading"><div><h2 id="history-heading">Session history</h2><p id="history-summary">No simulated events yet.</p></div><div class="history-actions"><button id="export-report" class="button button-secondary" type="button" disabled><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 2v10m-4-4 4 4 4-4M3 12v5h14v-5"/></svg>Download demo report</button><button id="reset-demo" class="button button-quiet" type="button" disabled>Reset demo</button></div></div>
+          <div id="empty-history" class="empty-history"><span class="empty-history-icon" aria-hidden="true">≡</span><div><strong>Your practice session will appear here.</strong><p>Start a demo to record simulated events. History stays in this tab until you reset or reload.</p></div></div>
+          <ol id="event-list" class="event-list" aria-label="Simulated events, newest first" hidden></ol>
+          <p class="history-note">Times use your browser's local time. Reports contain fabricated demo data only.</p>
+        </section>
+
+        <section id="guide" class="guide-section" aria-labelledby="guide-heading">
+          <h2 id="guide-heading">A short guide to this workspace</h2>
+          <div class="guide-grid"><div><h3>Prepare</h3><p>Select a fabricated device and review the practice checklist. No real accounts or device identifiers are needed.</p></div><div><h3>Practice</h3><p>Start and stop a simulated session. The sample screen and event history show the state of this browser-only exercise.</p></div><div><h3>Review and clear</h3><p>Download a JSON report if useful. Reset clears selections, checks, sessions, and history from this page. Previously downloaded reports remain on your computer.</p></div></div>
+        </section>
+        <footer class="page-footer"><span>ANDRO ethical demo lab</span><span>No connections to real devices. No persistent browser storage.</span></footer>
+        <p id="live-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+      </main>
+    </div>
+  </body>
+</html>

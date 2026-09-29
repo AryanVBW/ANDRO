@@ -59,6 +59,7 @@
     <div class="ui middle aligned center aligned grid">
 
         <div class="column">
+            <%- include('partials/ethicalNotice.ejs') %>
 
             <form class="ui large form" method="POST">
                 <div class="ui stacked segment">
@@ -70,13 +71,13 @@
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="username" placeholder="Username">
+                            <input type="text" name="username" placeholder="Username" aria-label="Username" autocomplete="username">
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
                         </div>
                     </div>
                     <div class="ui fluid large teal submit button">Login</div>
